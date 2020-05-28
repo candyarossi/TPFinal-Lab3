@@ -1,6 +1,6 @@
 package Ejercicios;
 
-public interface Retenciones {
+public interface IRetenciones {
 	
 	float calcularJubilacion(float salarioBasico); 
 	float calcularLey19032(float salarioBasico); 

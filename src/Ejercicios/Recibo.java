@@ -6,7 +6,7 @@ import java.util.TimeZone;
 import java.text.ParseException;
 
 
-public class Recibo implements Remuneraciones, Retenciones {
+public class Recibo implements IRemuneraciones, IRetenciones {
 
 	private float sueldoBasico;
 	private Date fechaPago;

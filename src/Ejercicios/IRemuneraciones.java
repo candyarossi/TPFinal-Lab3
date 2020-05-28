@@ -1,6 +1,6 @@
 package Ejercicios;
 
-public interface Remuneraciones {
+public interface IRemuneraciones {
 	
 	float calcularDestajo(float salarioBasico, int diasTrabajados ); 
 	float calcularPresentismo(float salarioBasico, float antiguedad); 
