@@ -23,7 +23,8 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 	private float presentismo;
 	private float sac;
 	private float vacaciones;
-	
+	private float totalRemuneraciones;
+	private float totalRetenciones;
 	
 	public Recibo() {
 		super();
@@ -42,8 +43,30 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 		presentismo = 0;
 		sac = 0;
 		vacaciones = 0;
+		totalRemuneraciones = 0;
+		totalRetenciones = 0;
 	}
-
+	
+	public Recibo(float sueldoBasico, Date fechaPago, Date periodo, int diasTrabajados, int diasVacaciones, float obraSocial) {
+		super();
+		this.sueldoBasico = sueldoBasico;
+		this.fechaPago = fechaPago;
+		this.periodo = periodo;
+		this.diasTrabajados = diasTrabajados;
+		this.diasVacaciones = diasVacaciones;
+		obraSocial = calcularObraSocial(sueldoBasico);
+		jubilacion = calcularJubilacion(sueldoBasico);
+		ley = calcularLey19032(sueldoBasico);
+		cuotaSindical = calcularCuotaSindical(sueldoBasico);
+		destajo = calcularDestajo(sueldoBasico, diasTrabajados);
+		antiguedad = calcularAntiguedad(sueldoBasico);
+		presentismo = calcularPresentismo(sueldoBasico, antiguedad);
+		sac = calcularSAC(sueldoBasico, diasTrabajados);
+		vacaciones = calcularVacaciones(sueldoBasico, diasTrabajados, diasVacaciones); 
+		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones);
+		totalRetenciones = calcularTotalRetenciones(sueldoBasico);
+		salarioNeto = calcularSalarioNeto(totalRemuneraciones, totalRetenciones);
+	}
 
 	public float getSueldoBasico() {
 		return sueldoBasico;
@@ -101,16 +124,14 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 	}
 
 
-	public String imprimirRecibo(String nombreObraSocial, float salarioBasico, int diasTrabajados, int diasVacaciones) {
+	public String imprimirRecibo(String nombreObraSocial) {
 		
-		//TODO Recibo impreso 
-		float remuneraciones = calcularTotalRemuneraciones(salarioBasico, diasTrabajados, diasVacaciones);
-		float retenciones = calcularTotalRetenciones(salarioBasico);
-		salarioNeto = calcularSalarioNeto(remuneraciones, retenciones); 
+		//TODO Recibo impreso  
 		
 		return "Recibo de Sueldo"
-				+ "Retenciones: [DNRP= " + jubilacion + ", INSSJP Ley 19032= " + ley + ", Obra Social " + nombreObraSocial + "= " + obraSocial + ", Cuota Sindical= " + cuotaSindical + ", Total= " + remuneraciones + "]"
-				+ "Remuneraciones: [Destajo= " + destajo + ", Presentismo= " + presentismo + ", Antiguedad= " + antiguedad + ", SAC= " + sac + ", Vacaciones= " + vacaciones + ", Total= " + retenciones + "]";
+				+ "Retenciones: [DNRP= " + jubilacion + ", INSSJP Ley 19032= " + ley + ", Obra Social " + nombreObraSocial + "= " + obraSocial + ", Cuota Sindical= " + cuotaSindical + ", Total= " + totalRemuneraciones + "]"
+				+ "Remuneraciones: [Destajo= " + destajo + ", Presentismo= " + presentismo + ", Antiguedad= " + antiguedad + ", SAC= " + sac + ", Vacaciones= " + vacaciones + ", Total= " + totalRetenciones + "]"
+				+ "Neto a Percibir: " + salarioNeto;
 
 		
 	}

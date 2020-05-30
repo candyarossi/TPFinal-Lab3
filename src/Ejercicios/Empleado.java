@@ -8,7 +8,6 @@ public class Empleado extends Persona {
 	private String obraSocial;
 	private Date fechaIngreso;
 	
-	
 	public Empleado() {
 		super();
 		categoria = " ";
@@ -16,6 +15,14 @@ public class Empleado extends Persona {
 		fechaIngreso = new Date();
 	}
 	
+	public Empleado(String nombre, String apellido, String cuil, String lugarNacimiento, String nacionalidad,
+			String direccion, String lugarResidencia, String telefono, String email, int nroLegajo, String categoria, String obraSocial, Date fechaIngreso) {
+		super(nombre, apellido, new StringBuilder(cuil), lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
+		this.categoria = categoria;
+		this.obraSocial = obraSocial;
+		this.fechaIngreso = fechaIngreso;
+	}
+
 	public String getCategoria() {
 		return categoria;
 	}

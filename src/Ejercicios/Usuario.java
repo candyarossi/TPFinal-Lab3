@@ -5,13 +5,14 @@ public class Usuario {
 	private String nickname;
 	private String password;
 	
-	
 	public Usuario() {
 		
 		nickname = " ";
 		password = " ";
 		
-	}	
+	}
+	
+	
 	
 	public String getNickname() {
 		return nickname;

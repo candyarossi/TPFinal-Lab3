@@ -2,11 +2,13 @@ package Ejercicios;
 
 import java.lang.StringBuilder;
 
-public abstract class Persona {
+public class Persona {
+	
+	//TODO Hacer ABSTRACTA Persona, la deje concreta para probar algunas cosas. 
 
-	private String nombres;
-	private String apellidos;
-	private String cuil; 
+	private String nombre;
+	private String apellido;
+	private StringBuilder cuil; 
 	private StringBuilder dni;
 	private String lugarNacimiento;
 	private String nacionalidad;
@@ -14,14 +16,15 @@ public abstract class Persona {
 	private String lugarResidencia;
 	private String telefono;
 	private String email; 
-	private int nroLegajo;
+	public int nroLegajo; 
+	public static int cantidad = 0;
 	
 	
 	public Persona() {
 		super();
-		nombres = " ";
-		apellidos = " ";
-		cuil = " ";
+		nombre = " ";
+		apellido = " ";
+		cuil = new StringBuilder();
 		dni = new StringBuilder();
 		lugarNacimiento = " ";
 		nacionalidad = " ";
@@ -29,38 +32,63 @@ public abstract class Persona {
 		lugarResidencia = " ";
 		telefono = " ";
 		email = " ";
-		nroLegajo = 0;
+		nroLegajo = Persona.cantidad;
+		cantidad++;
 	}
 	
-	public String getNombres() {
-		return nombres;
+	public Persona(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
+			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cuil = cuil;
+		setDni(cuil);
+		this.lugarNacimiento = lugarNacimiento;
+		this.nacionalidad = nacionalidad;
+		this.direccion = direccion;
+		this.lugarResidencia = lugarResidencia;
+		this.telefono = telefono;
+		this.email = email;
+		nroLegajo = Persona.cantidad;
+		cantidad++;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 	
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
-	public String getApellidos() {
-		return apellidos;
+	public String getApellido() {
+		return apellido;
 	}
 	
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 	
-	public String getCuil() {
+	public StringBuilder getCuil() {
 		return cuil;
 	} 
 	
-	public void setCuil(String cuil) {
-		this.cuil = cuil;
+	public void setCuil(StringBuilder cuil) {
 		setDni(cuil);
+		this.cuil = cuil;
+		cuil.insert(2, "-");
+		cuil.insert(11, "-");
+
 	}
 	
-	public void setDni(String cuil) {
-		dni.append(cuil.substring(3, 11));
+	private void setDni(StringBuilder cuil) {
+		dni.append(cuil.substring(2, 10));
 		dni.insert(2, ".");
 		dni.insert(6, ".");
+	}
+	
+	public StringBuilder getDni () {
+		return dni; 
 	}
 	
 	public String getLugarNacimiento() {
@@ -115,15 +143,31 @@ public abstract class Persona {
 		return nroLegajo;
 	}
 	
-	public void setNroLegajo(int nroLegajo) {
-		this.nroLegajo = nroLegajo;
+	public void setNroLegajo() {
+		nroLegajo = Persona.cantidad;
+		cantidad++;	
 	}
 
 	@Override
 	public String toString() {
-		return "Persona [nombres=" + nombres + ", apellidos=" + apellidos + ", cuil=" + cuil + ", dni=" + dni + ", lugarNacimiento="
+		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", cuil=" + cuil + ", dni=" + dni + ", lugarNacimiento="
 				+ lugarNacimiento + ", nacionalidad=" + nacionalidad + ", direccion=" + direccion + ", lugarResidencia="
 				+ lugarResidencia + ", telefono=" + telefono + ", email=" + email + ", nroLegajo=" + nroLegajo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean esIgual = false;
+		Persona aux = (Persona) obj; 
+		if (this.getCuil().equals(aux.getCuil())) {
+			esIgual = true; 
+		}
+		return esIgual;
 	}
 
 }
