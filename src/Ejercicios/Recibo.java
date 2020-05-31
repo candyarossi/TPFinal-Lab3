@@ -1,16 +1,14 @@
 package Ejercicios;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-import java.text.ParseException;
-
+import java.time.LocalDate;
 
 public class Recibo implements IRemuneraciones, IRetenciones {
 
+	private Empleador empleador;
+	private Empleado empleado;
 	private float sueldoBasico;
-	private Date fechaPago;
-	private Date periodo;
+	private LocalDate fechaPago;
+	private LocalDate periodo;
 	private int diasTrabajados;
 	private int diasVacaciones;
 	private float salarioNeto;
@@ -28,9 +26,11 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 	
 	public Recibo() {
 		super();
+		empleador = new Empleador();
+		empleado = new Empleado();
 		sueldoBasico = 0;
-		fechaPago = new Date();
-		periodo = new Date();
+		fechaPago = LocalDate.parse("");
+		periodo = LocalDate.parse("");
 		diasTrabajados = 0;
 		diasVacaciones = 0;
 		salarioNeto = 0;
@@ -47,8 +47,10 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 		totalRetenciones = 0;
 	}
 	
-	public Recibo(float sueldoBasico, Date fechaPago, Date periodo, int diasTrabajados, int diasVacaciones, float obraSocial) {
+	public Recibo(Empleador empleador, Empleado empleado, float sueldoBasico, LocalDate fechaPago, LocalDate periodo, int diasTrabajados, int diasVacaciones, float obraSocial) {
 		super();
+		this.empleador = empleador;
+		this.empleado = empleado;
 		this.sueldoBasico = sueldoBasico;
 		this.fechaPago = fechaPago;
 		this.periodo = periodo;
@@ -59,11 +61,11 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 		ley = calcularLey19032(sueldoBasico);
 		cuotaSindical = calcularCuotaSindical(sueldoBasico);
 		destajo = calcularDestajo(sueldoBasico, diasTrabajados);
-		antiguedad = calcularAntiguedad(sueldoBasico);
+		antiguedad = calcularAntiguedad(sueldoBasico, empleado.getFechaIngreso(), periodo);
 		presentismo = calcularPresentismo(sueldoBasico, antiguedad);
-		sac = calcularSAC(sueldoBasico, diasTrabajados);
+		sac = calcularSAC(sueldoBasico, diasTrabajados, empleado.getFechaIngreso(), periodo);
 		vacaciones = calcularVacaciones(sueldoBasico, diasTrabajados, diasVacaciones); 
-		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones);
+		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones, empleado.getFechaIngreso(), periodo);
 		totalRetenciones = calcularTotalRetenciones(sueldoBasico);
 		salarioNeto = calcularSalarioNeto(totalRemuneraciones, totalRetenciones);
 	}
@@ -78,22 +80,22 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 	}
 
 
-	public Date getFechaPago() {
+	public LocalDate getFechaPago() {
 		return fechaPago;
 	}
 
 
-	public void setFechaPago(Date fechaPago) {
+	public void setFechaPago(LocalDate fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 
 
-	public Date getPeriodo() {
+	public LocalDate getPeriodo() {
 		return periodo;
 	}
 
 
-	public void setPeriodo(Date periodo) {
+	public void setPeriodo(LocalDate periodo) {
 		this.periodo = periodo;
 	}
 
@@ -119,45 +121,24 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 	
 
 	public float calcularSalarioNeto(float totalRemuneraciones, float totalRetenciones) {
-		
 		return totalRemuneraciones-totalRetenciones;
 	}
 
 
-	public String imprimirRecibo(String nombreObraSocial) {
+	public StringBuilder imprimirRecibo() {
 		
-		//TODO Recibo impreso  
+		//TODO Hacer mas bonito el recibo impreso con datos del Empleador y Empleado, lo que esta aca abajo, y el periodo y fecha de pago.
 		
-		return "Recibo de Sueldo"
-				+ "Retenciones: [DNRP= " + jubilacion + ", INSSJP Ley 19032= " + ley + ", Obra Social " + nombreObraSocial + "= " + obraSocial + ", Cuota Sindical= " + cuotaSindical + ", Total= " + totalRemuneraciones + "]"
+		StringBuilder sb = new StringBuilder();
+		sb.append(empleador.toString());
+		sb.append(empleado.toString());
+		sb.append("Recibo de Sueldo"
+				+ "Retenciones: [DNRP= " + jubilacion + ", INSSJP Ley 19032= " + ley + ", Obra Social " + empleado.getObraSocial() + "= " + obraSocial + ", Cuota Sindical= " + cuotaSindical + ", Total= " + totalRemuneraciones + "]"
 				+ "Remuneraciones: [Destajo= " + destajo + ", Presentismo= " + presentismo + ", Antiguedad= " + antiguedad + ", SAC= " + sac + ", Vacaciones= " + vacaciones + ", Total= " + totalRetenciones + "]"
-				+ "Neto a Percibir: " + salarioNeto;
-
-		
+				+ "Neto a Percibir: " + salarioNeto + "Periodo Liquidado= " + periodo + "Fecha de Pago= " + fechaPago);
+		return sb;
 	}
 	
-	
-	public int calcularDiasTrabajadosDesdeInicioDeActividad() throws ParseException {
-		
-		//TODO 
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		
-		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-		
-		Date dia1 = new Date();
-		Date dia2 = new Date();
-
-		dia1 = dateFormat.parse("2020-05-15");
-		dia2 = dateFormat.parse("2020-05-22");
-
-		int dias = (int)((dia2.getTime()-dia1.getTime())/86400000);
-		
-		System.out.println("dias= " + dias);
-		
-		return 0;
-	}
-
 
 	@Override
 	public float calcularJubilacion(float salarioBasico) {
@@ -214,20 +195,18 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 
 
 	@Override
-	public float calcularAntiguedad(float salarioBasico) {
+	public float calcularAntiguedad(float salarioBasico, LocalDate ingreso, LocalDate periodo) {
 		
-		//TODO calcular años trabajados
-		int añosTrabajados = 1;
+		int añosTrabajados = calcularAniosTrabajados(ingreso, periodo);
 		
 		return salarioBasico*añosTrabajados/100;
 	}
 
 
 	@Override
-	public float calcularSAC(float salarioBasico, int diasTrabajados) {
-		
-		//TODO calcular meses trabajados
-		int mesesTrabajados = 1;
+	public float calcularSAC(float salarioBasico, int diasTrabajados, LocalDate ingreso, LocalDate periodo) {
+
+		int mesesTrabajados = calcularMesesTrabajados(ingreso, periodo);
 		
 		if (mesesTrabajados > 6) return salarioBasico/2;
 		else return salarioBasico/365*diasTrabajados;
@@ -242,17 +221,50 @@ public class Recibo implements IRemuneraciones, IRetenciones {
 
 
 	@Override
-	public float calcularTotalRemuneraciones(float salarioBasico, int diasTrabajados, int diasVacaciones) {
+	public float calcularTotalRemuneraciones(float salarioBasico, int diasTrabajados, int diasVacaciones, LocalDate ingreso, LocalDate periodo) {
 		
 		destajo = calcularDestajo(salarioBasico, diasTrabajados);
-		antiguedad = calcularAntiguedad(salarioBasico);
+		antiguedad = calcularAntiguedad(salarioBasico, ingreso, periodo);
 		presentismo = calcularPresentismo(salarioBasico, antiguedad);
-		sac = calcularSAC(salarioBasico, diasTrabajados);
+		sac = calcularSAC(salarioBasico, diasTrabajados, ingreso, periodo);
 		vacaciones = calcularVacaciones(salarioBasico, diasTrabajados, diasVacaciones);
 				
 		return destajo+antiguedad+presentismo+sac+vacaciones;
 	}
 	
+	
+	public int calcularDiasTrabajados(LocalDate fechaGuardada, LocalDate fechaIngresada) {
+		int cantidadDias = fechaIngresada.getDayOfMonth()-fechaGuardada.getDayOfMonth();
+		int cantidadMeses = fechaIngresada.getMonthValue()-fechaGuardada.getMonthValue();
+		int cantidadAnios = fechaIngresada.getYear()-fechaGuardada.getYear();
+		
+		int dias = cantidadDias + (cantidadMeses*30) + (cantidadAnios*365);
+		
+		if (dias<0)
+			dias = dias*(-1);
+		
+		return dias;
+	}
+	
+
+	public int calcularMesesTrabajados(LocalDate fechaGuardada, LocalDate fechaIngresada) {
+
+		int diasTrabajados = calcularDiasTrabajados(fechaGuardada, fechaIngresada);
+		
+		int meses = (int)diasTrabajados/30;
+				
+		return meses;
+	}
+	
+	
+	public int calcularAniosTrabajados(LocalDate fechaGuardada, LocalDate fechaIngresada) {
+
+		int diasTrabajados = calcularDiasTrabajados(fechaGuardada, fechaIngresada);
+		
+		int meses = (int)diasTrabajados/365;
+				
+		return meses;
+	}
 	
 
 }

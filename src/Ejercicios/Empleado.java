@@ -1,22 +1,22 @@
 package Ejercicios;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Empleado extends Persona {
 		
 	private String categoria;
 	private String obraSocial;
-	private Date fechaIngreso;
+	private LocalDate fechaIngreso;
 	
 	public Empleado() {
 		super();
 		categoria = " ";
 		obraSocial = " ";
-		fechaIngreso = new Date();
+		fechaIngreso = LocalDate.parse("");
 	}
 	
 	public Empleado(String nombre, String apellido, String cuil, String lugarNacimiento, String nacionalidad,
-			String direccion, String lugarResidencia, String telefono, String email, int nroLegajo, String categoria, String obraSocial, Date fechaIngreso) {
+			String direccion, String lugarResidencia, String telefono, String email, int nroLegajo, String categoria, String obraSocial, LocalDate fechaIngreso) {
 		super(nombre, apellido, new StringBuilder(cuil), lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
 		this.categoria = categoria;
 		this.obraSocial = obraSocial;
@@ -39,11 +39,11 @@ public class Empleado extends Persona {
 		this.obraSocial = obraSocial;
 	}
 	
-	public Date getFechaIngreso() {
+	public LocalDate getFechaIngreso() {
 		return fechaIngreso;
 	}
 	
-	public void setFechaIngreso(Date fechaIngreso) {
+	public void setFechaIngreso(LocalDate fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 

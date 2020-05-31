@@ -1,7 +1,6 @@
 package Ejercicios;
 
 import java.util.HashMap;
-import java.util.Set;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -35,6 +34,8 @@ public class Listado <K, T extends Persona> {
 	public void modificar (K clave, T nuevaPersona) {
 		map.replace(clave, nuevaPersona);
 	}
+	
+	//TODO funcion de buscar 
 	
 	/*public <K, T> K buscar (String apellido, String nombre) {
 		Iterator <Entry<K, T>> it = map.entrySet().iterator();
