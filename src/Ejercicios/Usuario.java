@@ -1,38 +1,49 @@
 package Ejercicios;
 
-public class Usuario {
+public class Usuario
+{
 	
 	private String nickname;
 	private String password;
 	
-	public Usuario() {
-		
+	
+	public Usuario()
+	{
 		nickname = " ";
 		password = " ";
-		
 	}
 	
-	
-	
-	public String getNickname() {
+	public Usuario(String nickname, String password)
+	{
+		this.nickname = nickname;
+		this.password = password;
+	}
+
+
+	public String getNickname()
+	{
 		return nickname;
 	}
 	
-	public void setNickname(String nickname) {
+	public void setNickname(String nickname)
+	{
 		this.nickname = nickname;
 	}
 	
-	public String getPassword() {
+	public String getPassword()
+	{
 		return password;
 	}
 	
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
 
 	@Override
-	public String toString() {
-		return "Usuario [nickname=" + nickname + ", password=" + password + "]";
+	public String toString()
+	{
+		return "\nNickname:" + nickname + "\nPassword=" + password;
 	} 
 	
 }

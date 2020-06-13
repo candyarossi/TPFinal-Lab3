@@ -2,8 +2,8 @@ package Ejercicios;
 
 import java.time.LocalDate;
 
-public interface IRemuneraciones {
-	
+public interface IRemuneraciones
+{
 	float calcularDestajo(float salarioBasico, int diasTrabajados ); 
 	float calcularPresentismo(float salarioBasico, float antiguedad); 
 	float calcularAntiguedad(float salarioBasico, LocalDate ingreso, LocalDate periodo); 
