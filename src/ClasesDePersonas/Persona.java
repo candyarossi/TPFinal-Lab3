@@ -1,8 +1,11 @@
-package Ejercicios;
+package ClasesDePersonas;
 
+import java.io.Serializable;
 import java.lang.StringBuilder;
+import Interfaces.IGenerarJSON;
 
-public abstract class Persona
+
+public abstract class Persona implements IGenerarJSON, Serializable
 {
 	private String nombre;
 	private String apellido;
@@ -20,6 +23,7 @@ public abstract class Persona
 	
 	public Persona()
 	{
+		super();
 		nombre = "";
 		apellido = "";
 		cuil = new StringBuilder();
@@ -34,12 +38,13 @@ public abstract class Persona
 	}
 	
 	public Persona(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
-			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
+			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) 
+	{
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.cuil = cuil;
-		setDni(cuil);
+		this.cuil = setCuil(cuil);
+		this.dni = setDni(cuil);
 		this.lugarNacimiento = lugarNacimiento;
 		this.nacionalidad = nacionalidad;
 		this.direccion = direccion;
@@ -76,19 +81,25 @@ public abstract class Persona
 		return cuil;
 	} 
 	
-	public void setCuil(StringBuilder cuil)
+	public StringBuilder setCuil(StringBuilder cuil)
 	{
-		setDni(cuil);
 		this.cuil = cuil;
 		cuil.insert(2, "-");
 		cuil.insert(11, "-");
+		this.dni = setDni(cuil);
+		
+		return cuil;
 	}
 	
-	private void setDni(StringBuilder cuil)
+	public StringBuilder setDni(StringBuilder cuil)
 	{
-		dni.append(cuil.substring(2, 10));
+		StringBuilder dni = new StringBuilder();
+		
+		dni.append(cuil.substring(3, 11));
 		dni.insert(2, ".");
 		dni.insert(6, ".");
+		
+		return dni;
 	}
 	
 	public StringBuilder getDNI()
@@ -171,6 +182,20 @@ public abstract class Persona
 		return cantidad++;
 	}
 	
+	public void leerNroLegajo (int legajo)
+	{
+		this.nroLegajo = legajo;
+	}
+	
+	public void leerCuil (StringBuilder cuil)
+	{
+		this.cuil = cuil;
+	}
+	
+	public void leerDni (StringBuilder dni)
+	{
+		this.dni = dni;
+	}
 
 	@Override
 	public String toString()

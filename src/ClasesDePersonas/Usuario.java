@@ -1,6 +1,10 @@
-package Ejercicios;
+package ClasesDePersonas;
 
-public class Usuario
+import org.json.JSONObject;
+import Interfaces.IGenerarJSON;
+
+
+public class Usuario implements IGenerarJSON
 {
 	
 	private String nickname;
@@ -44,6 +48,12 @@ public class Usuario
 	public String toString()
 	{
 		return "\nNickname:" + nickname + "\nPassword=" + password;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 	
 }

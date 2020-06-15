@@ -1,32 +1,37 @@
-package Ejercicios;
+package Papeles;
 
 import java.time.LocalDate;
 
-public class Recibo implements IRemuneraciones, IRetenciones
+import ClasesDePersonas.Empleado;
+import ClasesDePersonas.Empleador;
+
+
+public class Recibo
 {
 
 	private Empleador empleador;
 	private Empleado empleado;
-	private float sueldoBasico;
+	private double sueldoBasico;
 	private LocalDate fechaPago;
 	private LocalDate periodo;
 	private int diasTrabajados;
 	private int diasVacaciones;
-	private float salarioNeto;
-	private float jubilacion;
-	private float ley;
-	private float obraSocial;
-	private float cuotaSindical;
-	private float destajo;
-	private float antiguedad;
-	private float presentismo;
-	private float sac;
-	private float vacaciones;
-	private float totalRemuneraciones;
-	private float totalRetenciones;
+	private double salarioNeto;
+	private double jubilacion;
+	private double ley;
+	private double obraSocial;
+	private double cuotaSindical;
+	private double destajo;
+	private double antiguedad;
+	private double presentismo;
+	private double sac;
+	private double vacaciones;
+	private double totalRemuneraciones;
+	private double totalRetenciones;
 	
 	public Recibo()
 	{
+		super();
 		empleador = new Empleador();
 		empleado = new Empleado();
 		sueldoBasico = 0;
@@ -48,13 +53,14 @@ public class Recibo implements IRemuneraciones, IRetenciones
 		totalRetenciones = 0;
 	}
 	
-	public Recibo(Empleador empleador, Empleado empleado, float sueldoBasico, LocalDate fechaPago, LocalDate periodo, int diasTrabajados, int diasVacaciones, float obraSocial)
+	public Recibo(Empleador empleador, Empleado empleado, double sueldoBasico, String fPago, String period, int diasTrabajados, int diasVacaciones)
 	{
+		super();
 		this.empleador = empleador;
 		this.empleado = empleado;
 		this.sueldoBasico = sueldoBasico;
-		this.fechaPago = fechaPago;
-		this.periodo = periodo;
+		fechaPago = LocalDate.parse(fPago);
+		periodo = LocalDate.parse(period);
 		this.diasTrabajados = diasTrabajados;
 		this.diasVacaciones = diasVacaciones;
 		obraSocial = calcularObraSocial(sueldoBasico);
@@ -62,16 +68,16 @@ public class Recibo implements IRemuneraciones, IRetenciones
 		ley = calcularLey19032(sueldoBasico);
 		cuotaSindical = calcularCuotaSindical(sueldoBasico);
 		destajo = calcularDestajo(sueldoBasico, diasTrabajados);
-		antiguedad = calcularAntiguedad(sueldoBasico, empleado.getFechaIngreso(), periodo);
+		antiguedad = calcularAntiguedad(sueldoBasico, empleado.getFechaIngreso(), LocalDate.parse(period));
 		presentismo = calcularPresentismo(sueldoBasico, antiguedad);
-		sac = calcularSAC(sueldoBasico, diasTrabajados, empleado.getFechaIngreso(), periodo);
+		sac = calcularSAC(sueldoBasico, diasTrabajados, empleado.getFechaIngreso(), LocalDate.parse(period));
 		vacaciones = calcularVacaciones(sueldoBasico, diasTrabajados, diasVacaciones); 
-		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones, empleado.getFechaIngreso(), periodo);
+		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones, empleado.getFechaIngreso(), LocalDate.parse(period));
 		totalRetenciones = calcularTotalRetenciones(sueldoBasico);
 		salarioNeto = calcularSalarioNeto(totalRemuneraciones, totalRetenciones);
 	}
 
-	public float getSueldoBasico()
+	public double getSueldoBasico()
 	{
 		return sueldoBasico;
 	}
@@ -131,72 +137,69 @@ public class Recibo implements IRemuneraciones, IRetenciones
 	}
 	
 
-	public float calcularSalarioNeto(float totalRemuneraciones, float totalRetenciones)
+	public double calcularSalarioNeto(double totalRemuneraciones, double totalRetenciones)
 	{
 		return totalRemuneraciones-totalRetenciones;
 	}
 
 
 	public StringBuilder imprimirRecibo()
-	{
-		
-		//TODO Hacer mas bonito el recibo impreso con datos del Empleador y Empleado, lo que esta aca abajo, y el periodo y fecha de pago.
-		
+	{		
 		StringBuilder sb = new StringBuilder();
+		sb.append("\n-----------------------------------------------------\n");
+		sb.append("RECIBO \n\n");
+		sb.append("EMPLEADOR: \n");
 		sb.append(empleador.toString());
+		sb.append("\nEMPLEADO: \n");
 		sb.append(empleado.toString());
-		sb.append("Recibo de Sueldo"
-				+ "Retenciones: [DNRP= " + jubilacion 
-				+ ", INSSJP Ley 19032= " + ley 
-				+ ", Obra Social " + empleado.getObraSocial() + "= " + obraSocial 
-				+ ", Cuota Sindical= " + cuotaSindical 
-				+ ", Total= " + totalRemuneraciones + "]"
-				+ "Remuneraciones: [Destajo= " + destajo
-				+ ", Presentismo= " + presentismo 
-				+ ", Antiguedad= " + antiguedad 
-				+ ", SAC= " + sac 
-				+ ", Vacaciones= " + vacaciones 
-				+ ", Total= " + totalRetenciones + "]"
-				+ "Neto a Percibir: " + salarioNeto 
-				+ "Periodo Liquidado= " + periodo 
-				+ "Fecha de Pago= " + fechaPago);
+		sb.append("\n\n\nRetenciones: \nDNRP = $ " + String.format ("%.2f", jubilacion)
+				+ "\nINSSJP Ley 19032 = $ " + String.format ("%.2f", ley) 
+				+ "\nObra Social " + empleado.getObraSocial() + " = $ " + String.format ("%.2f", obraSocial) 
+				+ "\nCuota Sindical = $ " + String.format ("%.2f", cuotaSindical) 
+				+ "\nTotal = $ " + String.format ("%.2f", totalRetenciones) + "\n"
+				+ "\nRemuneraciones: \nDestajo = $ " + String.format ("%.2f", destajo)
+				+ "\nPresentismo = $ " + String.format ("%.2f", presentismo) 
+				+ "\nAntiguedad = $ " + String.format ("%.2f", antiguedad) 
+				+ "\nSAC = $ " + String.format ("%.2f", sac) 
+				+ "\nVacaciones = $ " + String.format ("%.2f", vacaciones) 
+				+ "\nTotal = $ " + String.format ("%.2f", totalRemuneraciones) + "\n"
+				+ "\nNeto a Percibir: $ " + String.format ("%.2f", salarioNeto) 
+				+ "\n\nPeriodo Liquidado: " + periodo.getYear() + "-" + periodo.getMonthValue() 
+				+ "\nFecha de Pago: " + fechaPago);
+		sb.append("\n-----------------------------------------------------\n\n");
 		return sb;
 	}
 	
 
-	@Override
-	public float calcularJubilacion(float salarioBasico)
+	public double calcularJubilacion(double salarioBasico)
 	{
 		
 		return salarioBasico*11/100;
 	}
 
 	
-	@Override
-	public float calcularLey19032(float salarioBasico)
+	public double calcularLey19032(double salarioBasico)
 	{
 		
 		return salarioBasico*3/100;
 	}
 
 	
-	@Override
-	public float calcularObraSocial(float salarioBasico)
+	
+	public double calcularObraSocial(double salarioBasico)
 	{
 		return salarioBasico*3/100;
 	}
 	
 	
-	@Override
-	public float calcularCuotaSindical(float salarioBasico)
+	public double calcularCuotaSindical(double salarioBasico)
 	{
 
-		return salarioBasico*(float)2.5/100;
+		return salarioBasico*(double)2.5/100;
 	}
 
 	
-	@Override
-	public float calcularTotalRetenciones(float salarioBasico)
+	public double calcularTotalRetenciones(double salarioBasico)
 	{
 		
 		jubilacion = calcularJubilacion(salarioBasico);
@@ -208,24 +211,21 @@ public class Recibo implements IRemuneraciones, IRetenciones
 	}
 
 	
-	@Override
-	public float calcularDestajo(float salarioBasico, int diasTrabajados)
+	public double calcularDestajo(double salarioBasico, int diasTrabajados)
 	{
 	
 		return salarioBasico/30*diasTrabajados;
 	}
 
 	
-	@Override
-	public float calcularPresentismo(float salarioBasico, float antiguedad)
+	public double calcularPresentismo(double salarioBasico, double antiguedad)
 	{
 		
 		return (salarioBasico+antiguedad)*(float)8.33/100;
 	}
 
 	
-	@Override
-	public float calcularAntiguedad(float salarioBasico, LocalDate ingreso, LocalDate periodo)
+	public double calcularAntiguedad(double salarioBasico, LocalDate ingreso, LocalDate periodo)
 	{
 		
 		int añosTrabajados = calcularAniosTrabajados(ingreso, periodo);
@@ -234,8 +234,7 @@ public class Recibo implements IRemuneraciones, IRetenciones
 	}
 
 	
-	@Override
-	public float calcularSAC(float salarioBasico, int diasTrabajados, LocalDate ingreso, LocalDate periodo)
+	public double calcularSAC(double salarioBasico, int diasTrabajados, LocalDate ingreso, LocalDate periodo)
 	{
 
 		int mesesTrabajados = calcularMesesTrabajados(ingreso, periodo);
@@ -245,16 +244,14 @@ public class Recibo implements IRemuneraciones, IRetenciones
 	}
 
 	
-	@Override
-	public float calcularVacaciones(float salarioBasico, int diasTrabajados, int diasVacaciones)
+	public double calcularVacaciones(double salarioBasico, int diasTrabajados, int diasVacaciones)
 	{
 		
 		return salarioBasico/diasTrabajados*diasVacaciones;
 	}
 
 	
-	@Override
-	public float calcularTotalRemuneraciones(float salarioBasico, int diasTrabajados, int diasVacaciones, LocalDate ingreso, LocalDate periodo)
+	public double calcularTotalRemuneraciones(double salarioBasico, int diasTrabajados, int diasVacaciones, LocalDate ingreso, LocalDate periodo)
 	{	
 		destajo = calcularDestajo(salarioBasico, diasTrabajados);
 		antiguedad = calcularAntiguedad(salarioBasico, ingreso, periodo);
