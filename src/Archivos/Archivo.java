@@ -18,11 +18,17 @@ import ClasesDePersonas.Persona;
 import ListadosGenericos.Listado;
 
 
+/**
+ * <p><b><i>Archivo</i></b></p>
+ * <pre>public class Archivo</pre>
+ * <p>La clase <code>Archivo</code> contiene todos los métodos necesarios para guardar y leer los datos de los empleadores y empleados en sus correspondientes archivos. Sus métodos son de tipo estático.</p>
+ * @author Yarossi, Candela & Trucco, Nahuel
+ */
 public class Archivo {
 
 	
-	// SEGUN MIS CALCULOS LO QUE HICE ACA NO NOS VA A SERVIR Y VAMOS A TENER QUE TRABAJAR CON DOS ARCHIVOS DISTINTOS
-	// UNO CON LOS EMPLEADORES Y OTRO CON LOS EMPLEADOS
+	//TODO documentar esto.
+	
 	
 	public static void guardar(Persona aux) 
 	{

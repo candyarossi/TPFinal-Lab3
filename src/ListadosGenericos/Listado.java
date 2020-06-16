@@ -13,27 +13,63 @@ import ClasesDePersonas.Empleador;
 import Archivos.Archivo;
 
 
-public class Listado <K, T extends Persona> extends HashMap implements Serializable
+/**
+ * <p><b><i>Listado <K, T extends Persona></i></b></p>
+ * <pre>public class Listado <K, T extends Persona> implements Serializable</pre>
+ * <p>La clase <code>Listado <K, T extends Persona></code> es una clase genérica que puede ser utilizada para generar diferentes tipos de listados, 
+ * donde K sea una clave única y significativa para el objeto y T sea un objeto que extienda de <code>Persona</code>. Esta clase implementa la
+ * interfaz <code>Serializable</code>.</p>
+ * @author Yarossi, Candela & Trucco, Nahuel
+ */
+public class Listado <K, T extends Persona> implements Serializable
 {
 
 	HashMap<K, T> hMap;
 	
 
+	/**
+	 * <p><b><i>Listado</i></b></p>
+	 * <pre>public Listado ()</pre>
+	 * <p>Constructor de la clase <code>Listado</code>.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public Listado ()
 	{
 		hMap = new HashMap<K, T>();
 	}
 	
+	
+	/**
+	 * <p><b><i>agregar</i></b></p>
+	 * <pre>public void agregar (K clave, T persona)</pre>
+	 * @param clave Recibe la clave con la que será guardada la persona.
+	 * @param persona Recibe la persona a ser guardada.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void agregar (K clave, T persona)
 	{
 		hMap.put(clave, persona);
 	}
 	
+	
+	/**
+	 * <p><b><i>borrar</i></b></p>
+	 * <pre>public void borrar (K clave)</pre>
+	 * @param clave Recibe la clave de la persona a borrar.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void borrar (K clave)
 	{
 		hMap.remove(clave);
 	}
 	
+	
+	/**
+	 * <p><b><i>listar</i></b></p>
+	 * <pre>public String listar ()</pre>
+	 * @return Retorna los nombres y apellidos de las personas que se encontraban en el listado en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String listar ()
 	{
 		StringBuilder strBuildable = new StringBuilder();
@@ -50,26 +86,55 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		return strBuildable.toString();
 	}
 
+	
+	/**
+	 * <p><b><i>modificar</i></b></p>
+	 * <pre>public void modificar (K clave, T nuevaPersona)</pre>
+	 * @param clave Recibe la clave de la persona a modificar.
+	 * @param nuevaPersona Recibe a la persona por la cual se reemplazará a la anterior.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void modificar (K clave, T nuevaPersona)
 	{
 		hMap.replace(clave, nuevaPersona);
 	}
 	
+	
+	/**
+	 * <p><b><i>mostrar</i></b></p>
+	 * <pre>public String mostrar (K clave)</pre>
+	 * @param clave Recibe la clave de la persona a mostrar.
+	 * @return Retorna un <code>String</code> con los datos de la persona a mostrar.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String mostrar (K clave)
 	{
 		return hMap.get(clave).toString();
 	}
 	
+	
+	/**
+	 * <p><b><i>contar</i></b></p>
+	 * <pre>public int contar ()</pre>
+	 * @return Retorna un <code>int</code> indicando cuantos registros hay en el listado.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public int contar () 
 	{
 		return hMap.size();
 	}
 	
+	
+	/**
+	 * <p><b><i>buscar</i></b></p>
+	 * <pre>public <K, T> K buscar (String apellido, String nombre)</pre>
+	 * @param apellido Recibe el apellido de la persona a buscar.
+	 * @param nombre Recibe el nombre de la persona a buscar.
+	 * @return Retorna un tipo genérico <code>K</code> que indica la clave de la persona buscada.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public <K, T> K buscar (String apellido, String nombre)
-	{
-		//ToDo funcion de buscar (La arreglé bastante, pero sigue habiendo un problema con los tipos de datos genericos)
-		//SERA PEDORRO, PERO FUNCIONA.
-		
+	{		
 		K respuesta = null;
 		boolean encontrado = false;
 		Iterator it = hMap.entrySet().iterator();
@@ -89,6 +154,13 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		return respuesta;
 	}
 
+	
+	/**
+	 * <p><b><i>toJSON</i></b></p>
+	 * <pre>public JSONArray toJSON()</pre>
+	 * @return Retorna un <code>JSONArray</code> con los datos del listado que ha llamado al método.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public JSONArray toJSON() {
 		
 		JSONArray array = new JSONArray();
@@ -113,7 +185,10 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		return array;
 	}
 	
-	public void guardarEnArchivo () 
+	
+	//TODO estas eran unas funciones que habia hecho para manejar archivos, pero ya ni me acuerdo si estan completas o no. 
+	
+	/*public void guardarEnArchivo () 
 	{
 		Iterator <Entry<K, T>> it = hMap.entrySet().iterator();
 		
@@ -137,7 +212,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		}
 		
 		return listado;
-	}
+	}*/
 	
 }
 

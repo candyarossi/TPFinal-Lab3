@@ -5,6 +5,7 @@ import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
+import Papeles.Factura;
 import Archivos.Archivo;
 
 
@@ -80,7 +81,6 @@ public class Main {
         
         /*System.out.println("");
         System.out.println("Guardando en archivo");
-       
         
         System.out.println("");
         System.out.println("Leyendo el archivo");*/
@@ -88,7 +88,7 @@ public class Main {
         System.out.println("");
         System.out.println("Cantidad empleados: " + empleador2.getCantidadEmpleados());
 
-        
+       
 	}
 	
 	

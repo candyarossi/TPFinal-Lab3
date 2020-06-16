@@ -5,6 +5,12 @@ import java.lang.StringBuilder;
 import Interfaces.IGenerarJSON;
 
 
+/**
+ * <p><b><i>Persona</i></b></p>
+ * <pre>public abstract class Persona implements IGenerarJSON, Serializable</pre>
+ * <p>La clase <code>Persona</code> contiene todos los métodos que serán compartidos por sus clases hijas. Esta clase no se puede instanciar e implementa las interfaces <code>IGenerarJSON</code> y <code>Serializable</code>.</p>
+ * @author Yarossi, Candela & Trucco, Nahuel
+ */
 public abstract class Persona implements IGenerarJSON, Serializable
 {
 	private String nombre;
@@ -21,6 +27,12 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	public static int cantidad = 0;
 	
 	
+	/**
+	 * <p><b><i>Persona</i></b></p>
+	 * <pre>public Persona ()</pre>
+	 * <p>Constructor de la clase <code>Persona</code>.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public Persona()
 	{
 		super();
@@ -37,6 +49,24 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		nroLegajo = setNroLegajo();
 	}
 	
+	
+	/**
+	 * <p><b><i>Persona</i></b></p>
+	 * <pre>public Persona (String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, String telefono, String email)</pre>
+	 * <p>Constructor de la clase <code>Persona</code>.</p>
+	 * @param nombre Recibe el nombre de la persona.
+	 * @param apellido Recibe el apellido de la persona.
+	 * @param cuil Recibe el cuil (sin guiones) de la persona.
+	 * @param lugarNacimiento Recibe la ciudad de nacimiento de la persona.
+	 * @param nacionalidad Recibe la nacionalidad de la persona.
+	 * @param direccion Recibe la dirección de la persona.
+	 * @param lugarResidencia Recibe la ciudad de residencia de la persona.
+	 * @param telefono Recibe el telefono de la persona.
+	 * @param email Recibe el e-mail de la persona.
+	 * @throws ??
+	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public Persona(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
 			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) 
 	{
@@ -55,32 +85,80 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	}
 	
 	
-
+	/**
+	 * <p><b><i>getNombre</i></b></p>
+	 * <pre>public String getNombre ()</pre>
+	 * @return Retorna el nombre de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getNombre()
 	{
 		return nombre;
 	}
 	
+	
+	/**
+	 * <p><b><i>setNombre</i></b></p>
+	 * <pre>public void setNombre (String nombre)</pre>
+	 * @param nombre Recibe el nombre de la persona.
+	 * @throws ??
+	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setNombre(String nombre)
 	{
 		this.nombre = nombre;
 	}
 	
+	
+	/**
+	 * <p><b><i>getApellido</i></b></p>
+	 * <pre>public String getApellido ()</pre>
+	 * @return Retorna el apellido de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getApellido()
 	{
 		return apellido;
 	}
 	
+	
+	/**
+	 * <p><b><i>setApellido</i></b></p>
+	 * <pre>public void setApellido (String apellido)</pre>
+	 * @param apellido Recibe el apellido de la persona.
+	 * @throws ??
+	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setApellido(String apellido)
 	{
 		this.apellido = apellido;
 	}
 	
-	public StringBuilder getCuil()
+	
+	/**
+	 * <p><b><i>getCuil</i></b></p>
+	 * <pre>public String getCuil ()</pre>
+	 * @return Retorna el cuil de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String getCuil()
 	{
-		return cuil;
+		return cuil.toString();
 	} 
 	
+	
+	/**
+	 * <p><b><i>setCuil</i></b></p>
+	 * <pre>public StringBuilder setCuil (StringBuilder cuil)</pre>
+	 * <p>Este método recibe el cuil de la persona sin los guiones y los agrega. Además, guarda el número de dni.</p>
+	 * @param cuil Recibe el cuil de la persona (sin guiones).
+	 * @return Retorna el cuil de la persona en formato <code>StringBuilder</code>.
+	 * @throws ??
+	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public StringBuilder setCuil(StringBuilder cuil)
 	{
 		this.cuil = cuil;
@@ -91,7 +169,16 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		return cuil;
 	}
 	
-	public StringBuilder setDni(StringBuilder cuil)
+	
+	/**
+	 * <p><b><i>setDni</i></b></p>
+	 * <pre>private StringBuilder setDni (StringBuilder cuil)</pre>
+	 * <p>Este método recibe el cuil de la persona con sus guiones incluidos y genera el número de dni.</p>
+	 * @param cuil Recibe el cuil de la persona (con guiones).
+	 * @return Retorna el dni de la persona en formato <code>StringBuilder</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	private StringBuilder setDni(StringBuilder cuil)
 	{
 		StringBuilder dni = new StringBuilder();
 		
@@ -102,101 +189,261 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		return dni;
 	}
 	
-	public StringBuilder getDNI()
+	
+	/**
+	 * <p><b><i>getDni</i></b></p>
+	 * <pre>public String getDni ()</pre>
+	 * @return Retorna el dni de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String getDni()
 	{
-		return dni; 
+		return dni.toString(); 
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getLugarNacimiento</i></b></p>
+	 * <pre>public String getLugarNacimiento ()</pre>
+	 * @return Retorna el lugar de nacimiento de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getLugarNacimiento()
 	{
 		return lugarNacimiento;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setLugarNacimiento</i></b></p>
+	 * <pre>public void setLugarNacimiento (String lugarNacimiento)</pre>
+	 * @param lugarNacimiento Recibe el lugar de nacimiento de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setLugarNacimiento(String lugarNacimiento)
 	{
 		this.lugarNacimiento = lugarNacimiento;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getNacionalidad</i></b></p>
+	 * <pre>public String getNacionalidad ()</pre>
+	 * @return Retorna la nacionalidad de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getNacionalidad()
 	{
 		return nacionalidad;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setNacionalidad</i></b></p>
+	 * <pre>public void setNacionalidad (String nacionalidad)</pre>
+	 * @param nacionalidad Recibe la nacionalidad de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setNacionalidad(String nacionalidad)
 	{
 		this.nacionalidad = nacionalidad;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getDireccion</i></b></p>
+	 * <pre>public String getDireccion ()</pre>
+	 * @return Retorna la direccion de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getDireccion()
 	{
 		return direccion;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setDireccion</i></b></p>
+	 * <pre>public void setDireccion (String direccion)</pre>
+	 * @param direccion Recibe la direccion de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setDireccion(String direccion)
 	{
 		this.direccion = direccion;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getLugarResidencia</i></b></p>
+	 * <pre>public String getLugarResidencia ()</pre>
+	 * @return Retorna el lugar de residencia de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getLugarResidencia()
 	{
 		return lugarResidencia;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setLugarResidencia</i></b></p>
+	 * <pre>public void setLugarResidencia (String lugarResidencia)</pre>
+	 * @param lugarResidencia Recibe el lugar de residencia de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setLugarResidencia(String lugarResidencia)
 	{
 		this.lugarResidencia = lugarResidencia;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getTelefono</i></b></p>
+	 * <pre>public String getTelefono ()</pre>
+	 * @return Retorna el telefono de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getTelefono()
 	{
 		return telefono;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setTelefono</i></b></p>
+	 * <pre>public void setTelefono (String telefono)</pre>
+	 * @param telefono Recibe el telefono de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setTelefono(String telefono)
 	{
 		this.telefono = telefono;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getEmail</i></b></p>
+	 * <pre>public String getEmail ()</pre>
+	 * @return Retorna el e-mail de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getEmail()
 	{
 		return email;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setEmail</i></b></p>
+	 * <pre>public void setEmail (String email)</pre>
+	 * @param email Recibe el email de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setEmail(String email)
 	{
 		this.email = email;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>getNroLegajo</i></b></p>
+	 * <pre>public int getNroLegajo ()</pre>
+	 * @return Retorna el número de legajo de la persona en formato <code>int</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public int getNroLegajo()
 	{
 		return nroLegajo;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>setNroLegajo</i></b></p>
+	 * <pre>public int setNroLegajo ()</pre>
+	 * @return Retorna el número de legajo generado en formato <code>int</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	private int setNroLegajo()
 	{
 		return incrementarCantidad();
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>incrementarCantidad</i></b></p>
+	 * <pre>private static int incrementarCantidad ()</pre>
+	 * @return Retorna el incremento del número de legajo en formato <code>int</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	private static int incrementarCantidad()
 	{
 		return cantidad++;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>leerNroLegajo</i></b></p>
+	 * <pre>public void leerNroLegajo (int legajo)</pre>
+	 * @param legajo Recibe el número de legajo de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void leerNroLegajo (int legajo)
 	{
 		this.nroLegajo = legajo;
 	}
 	
-	public void leerCuil (StringBuilder cuil)
+	
+	
+	/**
+	 * <p><b><i>leerCuil</i></b></p>
+	 * <pre>public void leerCuil (String cuil)</pre>
+	 * @param cuil Recibe el número de cuil de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public void leerCuil (String cuil)
 	{
-		this.cuil = cuil;
+		this.cuil = new StringBuilder(cuil);
 	}
 	
-	public void leerDni (StringBuilder dni)
+	
+	
+	/**
+	 * <p><b><i>leerDni</i></b></p>
+	 * <pre>public void leerDni (String dni)</pre>
+	 * @param dni Recibe el número de dni de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public void leerDni (String dni)
 	{
-		this.dni = dni;
+		this.dni = new StringBuilder(dni);
 	}
 
+	
+	
+	/**
+	 * <p><b><i>toString</i></b></p>
+	 * <pre>public String toString()</pre>
+	 * <p>Sobreescritura del método <code>toString()</code>.</p>
+	 * @return Retorna un <code>String</code> con los datos de la persona.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	@Override
 	public String toString()
 	{
@@ -212,6 +459,15 @@ public abstract class Persona implements IGenerarJSON, Serializable
 				+ "\nNumero de legajo: " + nroLegajo;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>equals</i></b></p>
+	 * <pre>public boolean equals(Object obj)</pre>
+	 * <p>Sobreescritura del método <code>equals(Object obj)</code>. Compara números de CUIL.</p>
+	 * @return Retorna un <code>boolean</code> indicando si ambas personas son iguales o no.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -228,6 +484,15 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		return esIgual;
 	}
 	
+	
+	
+	/**
+	 * <p><b><i>hashCode</i></b></p>
+	 * <pre>public int hashCode()</pre>
+	 * <p>Sobreescritura del método <code>hashCode()</code>.</p>
+	 * @return Retorna 1.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	@Override
 	public int hashCode()
 	{
