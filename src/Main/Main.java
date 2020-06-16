@@ -6,10 +6,7 @@ import ClasesDePersonas.Empleador;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
-
 import java.util.Scanner;
-
-import Archivos.Archivo;
 import Archivos.ArchivoNOUSAR;
 import Archivos.GestorDeArchivos;
 
@@ -26,7 +23,7 @@ public class Main
 		
 		
 		
-		
+		/*
 		Empleador testN = new Empleador("Nahuel", "Trucco", new StringBuilder("20502315405"), "Mar del Plata", "Argentino", "Calle 1234", "Mar del Plata", "+542236338083", "test@n.com", "Algo");
 		
 		System.out.println(testN.getArchivoEmpleados());
@@ -39,10 +36,10 @@ public class Main
 		
 		
 		
+		*/
 		
 		
 		
-		/*
 		Empleador empleador = new Empleador("Lucas", "Perez", new StringBuilder("20207522334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
 		
 		System.out.println(empleador.toString());
@@ -84,7 +81,7 @@ public class Main
         Listado<Integer, Empleador> empleadores = new Listado<Integer, Empleador>();
         
         empleadores.agregar(empleador.getNroLegajo(), empleador);
-        empleadores.agregar(empleador2.getNroLegajo(), empleador2);
+        empleadores.agregar(empleador2.getNroLegajo(), empleador2); 
         
         System.out.println("");
         System.out.println("");
@@ -102,7 +99,7 @@ public class Main
         System.out.println("Leyendo archivo JSON...");
         System.out.println(JsonUtiles.leer().toString());
         
-        System.out.println("");
+       /* System.out.println("");
         System.out.println("\nListado de Empleadores: ");
         System.out.println(empleadores.listar());
         

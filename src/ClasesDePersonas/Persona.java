@@ -2,6 +2,10 @@ package ClasesDePersonas;
 
 import java.io.Serializable;
 import java.lang.StringBuilder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import Interfaces.IGenerarJSON;
 
 
@@ -497,6 +501,41 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	public int hashCode()
 	{
 		return 1;
+	}
+	
+	
+	/**
+	 * <p><b><i>toJSON</i></b></p>
+	 * <pre>public JSONObject toJSON()</pre>
+	 * <p>Sobreescritura del método <code>toJSON()</code> perteneciente a la interfaz <code>IGenerarJSON</code>.</p>
+	 * @return Retorna un <code>JSONObject</code> con los datos de la persona en formato <code>JSON</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	@Override
+	public JSONObject toJSON() {
+		
+		JSONObject jsonObj = new JSONObject();
+		
+		try 
+		{
+			jsonObj.put("nombre", nombre);
+			jsonObj.put("apellido", apellido);
+			jsonObj.put("cuil", cuil);
+			jsonObj.put("dni", dni);
+			jsonObj.put("lugar de nacimiento", lugarNacimiento);
+			jsonObj.put("nacionalidad", nacionalidad);
+			jsonObj.put("direccion", direccion);
+			jsonObj.put("lugar de residencia", lugarResidencia);
+			jsonObj.put("telefono", telefono);
+			jsonObj.put("email", email);
+			jsonObj.put("legajo", nroLegajo);
+		} 
+		catch (JSONException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return jsonObj;
 	}
 
 }

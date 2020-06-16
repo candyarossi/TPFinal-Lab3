@@ -162,21 +162,10 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 	@Override
 	public JSONObject toJSON() {
 		
-		JSONObject jsonObj = new JSONObject();
+		JSONObject jsonObj = super.toJSON();
 		
 		try 
 		{
-			jsonObj.put("nombre", super.getNombre());
-			jsonObj.put("apellido", super.getApellido());
-			jsonObj.put("cuil", super.getCuil());
-			jsonObj.put("dni", super.getDNI());
-			jsonObj.put("lugar de nacimiento", super.getLugarNacimiento());
-			jsonObj.put("nacionalidad", super.getNacionalidad());
-			jsonObj.put("direccion", super.getDireccion());
-			jsonObj.put("lugar de residencia", super.getLugarResidencia());
-			jsonObj.put("telefono", super.getTelefono());
-			jsonObj.put("email", super.getEmail());
-			jsonObj.put("legajo", super.getNroLegajo());
 			jsonObj.put("categoria", categoria);
 			jsonObj.put("obra social", obraSocial);
 			jsonObj.put("fecha de ingreso", fechaIngreso);
