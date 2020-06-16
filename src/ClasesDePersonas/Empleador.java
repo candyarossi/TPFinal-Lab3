@@ -1,5 +1,6 @@
 package ClasesDePersonas;
 
+import java.io.File;
 import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	private String actividad;
 	private Listado<Integer, Empleado> empleados; 
 	private int cantidadEmpleados;
+	private File archivoEmpleados;
 	
 	
 	/**
@@ -34,6 +36,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		actividad = "";
 		empleados = new Listado<Integer, Empleado>();
 		cantidadEmpleados = 0;
+		archivoEmpleados = null;
 	}
 	
 	
@@ -52,7 +55,9 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	 * @param email Recibe el e-mail de la persona.
 	 * @param actividad Recibe la actividad desarrollada por la persona (rubro).
 	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * TODO (para Nahuel) tiene que lanzar la excepcion del nombre/apellido/cuil
+	 * Lo revisé, me parece que va a ser para muchisimo lio por que es un constructor, las validaciones tienen que ser antes del constructor, otra cosa sería terriblemente mala.
+	 * Hay que forzar las Excepciones en otra parte, yo me ocupo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public Empleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad,
@@ -62,6 +67,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		this.actividad = actividad;
 		empleados = new Listado<Integer, Empleado>();
 		setCantidadEmpleados();
+		archivoEmpleados = new File( super.getDNI() + ".dat" );
 	}
 
 	
@@ -192,6 +198,16 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		return empleados.listar();
 	}
 
+	/**
+	 * <p><b><i>getArchivoEmpleados</i></b></p>
+	 * <pre>public String getArchivoEmpleados ()</pre>
+	 * @return Retorna un <code>String</code> con el nombre del archivo de empleados del empleador.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String getArchivoEmpleados()
+	{
+		return archivoEmpleados.toString();
+	}
 	
 	/**
 	 * <p><b><i>toString</i></b></p>
@@ -259,7 +275,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 			jsonObj.put("nombre", super.getNombre());
 			jsonObj.put("apellido", super.getApellido());
 			jsonObj.put("cuil", super.getCuil());
-			jsonObj.put("dni", super.getDni());
+			jsonObj.put("dni", super.getDNI());
 			jsonObj.put("lugar de nacimiento", super.getLugarNacimiento());
 			jsonObj.put("nacionalidad", super.getNacionalidad());
 			jsonObj.put("direccion", super.getDireccion());

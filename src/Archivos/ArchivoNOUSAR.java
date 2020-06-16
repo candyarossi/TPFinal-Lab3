@@ -18,13 +18,20 @@ import ClasesDePersonas.Persona;
 import ListadosGenericos.Listado;
 
 
+
+
+
+
 /**
+ * <p><b><i>NO USAR</i></b></p>
+ * <p><b><i>NO USAR</i></b></p>
+ * 
  * <p><b><i>Archivo</i></b></p>
  * <pre>public class Archivo</pre>
  * <p>La clase <code>Archivo</code> contiene todos los métodos necesarios para guardar y leer los datos de los empleadores y empleados en sus correspondientes archivos. Sus métodos son de tipo estático.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public class Archivo {
+public class ArchivoNOUSAR {
 
 	
 	//TODO documentar esto.
@@ -34,7 +41,7 @@ public class Archivo {
 	{
 		try
         {
-            FileOutputStream fileOutputStream = new FileOutputStream("personas.dat");
+            FileOutputStream fileOutputStream = new FileOutputStream("personas.dat"); //personas.dat no va más
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
     		   
             objectOutputStream.writeUTF(aux.getNombre());
@@ -55,7 +62,7 @@ public class Archivo {
             		objectOutputStream.writeUTF(empleador.getActividad());
             		objectOutputStream.writeInt(empleador.getCantidadEmpleados());
 
-            		empleador.getEmpleados().guardarEnArchivo();
+            		empleador.getEmpleados().guardarEnArchivo(); //TODO guardarEnArchivo()
     			}
             	else if (aux instanceof Empleado)
             	{
@@ -88,8 +95,8 @@ public class Archivo {
             	
             persona.setNombre(objectInputStream.readUTF());
             persona.setApellido(objectInputStream.readUTF());
-            persona.leerCuil((StringBuilder)objectInputStream.readObject());
-            persona.leerDni((StringBuilder)objectInputStream.readObject());
+            persona.leerCuil((String)objectInputStream.readObject());
+            persona.leerDni((String)objectInputStream.readObject());
             persona.setLugarNacimiento(objectInputStream.readUTF());
             persona.setNacionalidad(objectInputStream.readUTF());
             persona.setDireccion(objectInputStream.readUTF());

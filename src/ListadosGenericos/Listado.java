@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import ClasesDePersonas.Persona;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
-import Archivos.Archivo;
+import Archivos.ArchivoNOUSAR;
 
 
 /**

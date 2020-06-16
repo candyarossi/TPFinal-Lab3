@@ -169,7 +169,7 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 			jsonObj.put("nombre", super.getNombre());
 			jsonObj.put("apellido", super.getApellido());
 			jsonObj.put("cuil", super.getCuil());
-			jsonObj.put("dni", super.getDni());
+			jsonObj.put("dni", super.getDNI());
 			jsonObj.put("lugar de nacimiento", super.getLugarNacimiento());
 			jsonObj.put("nacionalidad", super.getNacionalidad());
 			jsonObj.put("direccion", super.getDireccion());

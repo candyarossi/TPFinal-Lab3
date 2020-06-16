@@ -6,16 +6,43 @@ import ClasesDePersonas.Empleador;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
+
+import java.util.Scanner;
+
 import Archivos.Archivo;
+import Archivos.ArchivoNOUSAR;
+import Archivos.GestorDeArchivos;
 
 
-public class Main {
+public class Main
+{
+	Scanner leer = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// ZONA DE PRUEBAS
 
 		//Scanner unScan = new Scanner(System.in);
 		
+		
+		
+		
+		Empleador testN = new Empleador("Nahuel", "Trucco", new StringBuilder("20502315405"), "Mar del Plata", "Argentino", "Calle 1234", "Mar del Plata", "+542236338083", "test@n.com", "Algo");
+		
+		System.out.println(testN.getArchivoEmpleados());
+		// Mostró esto: 50.231.540.dat
+		// Suficiente para mi(?
+		// Esto quiere decir que cada vez que se registra un nuevo empleador, automaticamente se genera el String que será el nombre de su archivo de empleados.
+		// Y queda guardado en el atributo archivoEmpleados, que no estoy muy seguro de ponerlo en mayusculas, porque no es del todo una constante, pero casi,
+		// Ya que una vez que se genera ese nombre de archivo, no se debería cambiar nunca más
+		// Ahora tengo que trabajar esto desde GestorDeArchivos
+		
+		
+		
+		
+		
+		
+		/*
 		Empleador empleador = new Empleador("Lucas", "Perez", new StringBuilder("20207522334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
 		
 		System.out.println(empleador.toString());
@@ -83,10 +110,12 @@ public class Main {
         System.out.println("Guardando en archivo");
         
         System.out.println("");
-        System.out.println("Leyendo el archivo");*/
+        System.out.println("Leyendo el archivo");
         
         System.out.println("");
         System.out.println("Cantidad empleados: " + empleador2.getCantidadEmpleados());
+        
+        */
 
        
 	}

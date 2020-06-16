@@ -196,7 +196,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * @return Retorna el dni de la persona en formato <code>String</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public String getDni()
+	public String getDNI()
 	{
 		return dni.toString(); 
 	}
