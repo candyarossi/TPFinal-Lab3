@@ -1,6 +1,8 @@
 package Excepciones;
 
-public class ExcepcionDeCampoVacio
+public class ExcepcionDeCampoVacio extends Exception
 {
+
+	
 
 }

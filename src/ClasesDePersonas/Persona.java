@@ -29,6 +29,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	private String email; 
 	public int nroLegajo; 
 	public static int cantidad = 0;
+	public String nombreArchivo; 
 	
 	
 	/**
@@ -51,6 +52,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		telefono = "";
 		email = "";
 		nroLegajo = setNroLegajo();
+		nombreArchivo = "";
 	}
 	
 	
@@ -86,6 +88,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		this.telefono = telefono;
 		this.email = email;
 		nroLegajo = setNroLegajo();
+		nombreArchivo = getCuil() + ".dat";
 	}
 	
 	
@@ -439,6 +442,29 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		this.dni = new StringBuilder(dni);
 	}
 
+	
+	/**
+	 * <p><b><i>getNombreArchivo</i></b></p>
+	 * <pre>public String getNombreArchivo ()</pre>
+	 * @return Retorna el nombre del archivo de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String getNombreArchivo()
+	{
+		return nombreArchivo;
+	}
+	
+	
+	/**
+	 * <p><b><i>setNombreArchivo</i></b></p>
+	 * <pre>public void setNombreArchivo ()</pre>
+	 * <p>Crea el nombre del archivo de la persona.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public void setNombreArchivo()
+	{
+		nombreArchivo = getCuil() + ".dat";
+	}
 	
 	
 	/**

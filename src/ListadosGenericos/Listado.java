@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import ClasesDePersonas.Persona;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
-import Archivos.ArchivoNOUSAR;
+import Archivos.GestorDeArchivos;
 
 
 /**
@@ -21,12 +21,13 @@ import Archivos.ArchivoNOUSAR;
  * interfaz <code>Serializable</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public class Listado <K, T extends Persona> implements Serializable
+public class Listado <K, T extends Persona> extends HashMap implements Serializable
 {
 
 	HashMap<K, T> hMap;
+	public static String ARCHIVO = "empleadores.dat";
 	
-
+	
 	/**
 	 * <p><b><i>Listado</i></b></p>
 	 * <pre>public Listado ()</pre>
@@ -186,33 +187,38 @@ public class Listado <K, T extends Persona> implements Serializable
 	}
 	
 	
-	//TODO estas eran unas funciones que habia hecho para manejar archivos, pero ya ni me acuerdo si estan completas o no. 
+	//TODO Documentar.
 	
-	/*public void guardarEnArchivo () 
+	public static void guardarEnArchivo (Listado<Integer, Persona> listado) 
 	{
-		Iterator <Entry<K, T>> it = hMap.entrySet().iterator();
+		Iterator <Entry<Integer, Persona>> it = listado.entrySet().iterator();
 		
 		while (it.hasNext())
 		{
-			Map.Entry<K, T> me = (Map.Entry<K, T>) it.next();
+			Map.Entry<Integer, Persona> me = (Map.Entry<Integer, Persona>) it.next();
 			Persona persona = me.getValue();
-			Archivo.guardar(persona);
+			GestorDeArchivos.guardar(persona, ARCHIVO); 
 		}
 	}
 	
-	public Listado<Integer, Persona> leerDeArchivo () 
+	public static Listado<Integer, Persona> leerDeArchivo () 
 	{
 		Listado<Integer, Persona> listado = new Listado<Integer, Persona>();
-		boolean x = true;
 		
-		while (x) 
+		//TODO aca hay una excepcion hecha asi nomas.
+		
+		try
 		{
-			Persona aux = Archivo.leer();
+			Persona aux = GestorDeArchivos.leer(ARCHIVO);
 			listado.agregar(aux.getNroLegajo(), aux);
+		}
+		catch (Exception e)
+		{
+			System.out.println("No se pudo leer el archivo");
 		}
 		
 		return listado;
-	}*/
+	}
 	
 }
 

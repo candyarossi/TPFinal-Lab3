@@ -3,12 +3,10 @@ package Main;
 //import java.util.Scanner;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
+import ClasesDePersonas.Persona;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
-import Papeles.Factura;
 import java.util.Scanner;
-import Archivos.ArchivoNOUSAR;
-import Archivos.GestorDeArchivos;
 
 
 public class Main
@@ -78,7 +76,7 @@ public class Main
         
         System.out.println(empleador2.toJSON().toString());
 
-        Listado<Integer, Empleador> empleadores = new Listado<Integer, Empleador>();
+        Listado<Integer, Persona> empleadores = new Listado<Integer, Persona>();
         
         empleadores.agregar(empleador.getNroLegajo(), empleador);
         empleadores.agregar(empleador2.getNroLegajo(), empleador2); 
@@ -115,8 +113,18 @@ public class Main
         */
 
        
+        System.out.println("");
+        System.out.println("");
+        System.out.println("Guardando archivo");
+        Listado.guardarEnArchivo(empleadores);
+        
+        System.out.println("Leyendo archivo");
+        Listado<Integer, Persona> listado = Listado.leerDeArchivo();
+        System.out.println(listado.listar());
+
+
+       
 	}
-	
 	
 	
 }

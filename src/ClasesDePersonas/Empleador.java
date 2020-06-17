@@ -1,6 +1,5 @@
 package ClasesDePersonas;
 
-import java.io.File;
 import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +20,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	private String actividad;
 	private Listado<Integer, Empleado> empleados; 
 	private int cantidadEmpleados;
-	private File archivoEmpleados;
 	
 	
 	/**
@@ -36,7 +34,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		actividad = "";
 		empleados = new Listado<Integer, Empleado>();
 		cantidadEmpleados = 0;
-		archivoEmpleados = null;
 	}
 	
 	
@@ -67,7 +64,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		this.actividad = actividad;
 		empleados = new Listado<Integer, Empleado>();
 		setCantidadEmpleados();
-		archivoEmpleados = new File( super.getDNI() + ".dat" );
 	}
 
 	
@@ -198,16 +194,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		return empleados.listar();
 	}
 
-	/**
-	 * <p><b><i>getArchivoEmpleados</i></b></p>
-	 * <pre>public String getArchivoEmpleados ()</pre>
-	 * @return Retorna un <code>String</code> con el nombre del archivo de empleados del empleador.
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	public String getArchivoEmpleados()
-	{
-		return archivoEmpleados.toString();
-	}
 	
 	/**
 	 * <p><b><i>toString</i></b></p>
