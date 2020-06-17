@@ -222,7 +222,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	 * @return Retorna un <code>String</code> con el recibo de sueldo del empleado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public String generarRecibos (Empleador empleador, Empleado empleado, float sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)
+	public String generarRecibos (Empleador empleador, Empleado empleado, double sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)
 	{
 		Recibo recibo = new Recibo(empleador, empleado, sueldoBasico, fechaPago, periodo, diasTrabajados, diasVacaciones);
 		return recibo.imprimirRecibo().toString();

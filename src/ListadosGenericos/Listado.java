@@ -24,7 +24,7 @@ import Archivos.GestorDeArchivos;
 public class Listado <K, T extends Persona> extends HashMap implements Serializable
 {
 
-	HashMap<K, T> hMap;
+	private HashMap<K, T> hMap;
 	public static String ARCHIVO = "empleadores.dat";
 	
 	
