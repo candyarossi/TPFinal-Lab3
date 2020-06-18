@@ -78,7 +78,6 @@ public class Persona implements IGenerarJSON, Serializable
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cuil = setCuil(cuil);
-		this.dni = setDni(cuil);
 		this.lugarNacimiento = lugarNacimiento;
 		this.nacionalidad = nacionalidad;
 		this.direccion = direccion;
