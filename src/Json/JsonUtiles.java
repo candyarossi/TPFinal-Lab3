@@ -12,9 +12,9 @@ import org.json.JSONArray;
  * <pre>public class JsonUtiles</pre>
  * @author Los profes de Programación y Laboratorio de Computación III - UTN FRMDP
  */
-public class JsonUtiles {
 
-		
+public class JsonUtiles 
+{		
 		/**
 		 * <p><b><i>grabar</i></b></p>
 		 * <pre>public static void grabar (JSONArray array)</pre>
@@ -22,15 +22,18 @@ public class JsonUtiles {
 		 * @param array Recibe el JSONArray. 
 		 * @author Los profes de Programación y Laboratorio de Computación III - UTN FRMDP
 		 */
-		public static void grabar(JSONArray array) {
+		public static void grabar(JSONArray array)
+		{
 			try {
 				FileWriter file = new FileWriter("listado.json");
-				//file.write(array.toString());
+				
 				file.write(array.toString());
 				file.flush();
 				file.close();
 
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 		}

@@ -52,8 +52,6 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 	 * @param categoria Recibe la categoría de trabajo de la persona (actividad que desarrolla dentro del rubro).
 	 * @param obraSocial Recibe el nombre de la obra social de la persona.
 	 * @param fIngreso Recibe la fecha de ingreso a la actividad de la persona en formato <code>yyyy-mm-dd</code>.
-	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public Empleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, 

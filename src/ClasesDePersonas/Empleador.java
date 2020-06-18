@@ -51,10 +51,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	 * @param telefono Recibe el telefono de la persona.
 	 * @param email Recibe el e-mail de la persona.
 	 * @param actividad Recibe la actividad desarrollada por la persona (rubro).
-	 * @throws ??
-	 * TODO (para Nahuel) tiene que lanzar la excepcion del nombre/apellido/cuil
-	 * Lo revisé, me parece que va a ser para muchisimo lio por que es un constructor, las validaciones tienen que ser antes del constructor, otra cosa sería terriblemente mala.
-	 * Hay que forzar las Excepciones en otra parte, yo me ocupo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public Empleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad,
@@ -252,7 +248,8 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	@Override
-	public JSONObject toJSON() {
+	public JSONObject toJSON()
+	{
 		
 		JSONObject jsonObj = super.toJSON();
 		

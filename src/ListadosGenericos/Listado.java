@@ -1,5 +1,6 @@
 package ListadosGenericos;
 
+import java.awt.print.Printable;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import org.json.JSONArray;
 import ClasesDePersonas.Persona;
+import Interfaces.ILista;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
 import Archivos.GestorDeArchivos;
@@ -21,9 +23,8 @@ import Archivos.GestorDeArchivos;
  * interfaz <code>Serializable</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public class Listado <K, T extends Persona> extends HashMap implements Serializable
+public class Listado <K, T extends Persona> extends HashMap implements Serializable, ILista<K, T>
 {
-
 	HashMap<K, T> hMap;
 	public static String ARCHIVO = "empleadores.dat";
 	
@@ -43,22 +44,25 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>agregar</i></b></p>
 	 * <pre>public void agregar (K clave, T persona)</pre>
+	 * * <p>Sobreescritura del método <code>guardar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave con la que será guardada la persona.
 	 * @param persona Recibe la persona a ser guardada.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public void agregar (K clave, T persona)
 	{
 		hMap.put(clave, persona);
 	}
 	
-	
 	/**
 	 * <p><b><i>borrar</i></b></p>
 	 * <pre>public void borrar (K clave)</pre>
+	 * * <p>Sobreescritura del método <code>borrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave de la persona a borrar.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public void borrar (K clave)
 	{
 		hMap.remove(clave);
@@ -68,9 +72,11 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>listar</i></b></p>
 	 * <pre>public String listar ()</pre>
+	 * * <p>Sobreescritura del método <code>listar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @return Retorna los nombres y apellidos de las personas que se encontraban en el listado en formato <code>String</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public String listar ()
 	{
 		StringBuilder strBuildable = new StringBuilder();
@@ -91,10 +97,12 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>modificar</i></b></p>
 	 * <pre>public void modificar (K clave, T nuevaPersona)</pre>
+	 * <p>Sobreescritura del método <code>modificar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave de la persona a modificar.
 	 * @param nuevaPersona Recibe a la persona por la cual se reemplazará a la anterior.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public void modificar (K clave, T nuevaPersona)
 	{
 		hMap.replace(clave, nuevaPersona);
@@ -104,10 +112,12 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>mostrar</i></b></p>
 	 * <pre>public String mostrar (K clave)</pre>
+	 * * <p>Sobreescritura del método <code>mostrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave de la persona a mostrar.
 	 * @return Retorna un <code>String</code> con los datos de la persona a mostrar.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public String mostrar (K clave)
 	{
 		return hMap.get(clave).toString();
@@ -117,9 +127,11 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>contar</i></b></p>
 	 * <pre>public int contar ()</pre>
+	 * * <p>Sobreescritura del método <code>contar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @return Retorna un <code>int</code> indicando cuantos registros hay en el listado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
+	@Override
 	public int contar () 
 	{
 		return hMap.size();
@@ -187,11 +199,17 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 	
-	//TODO Documentar.
-	
+	/**
+	 * <p><b><i>guardarEnArchivo</i></b></p>
+	 * <pre>public static void guardarEnArchivo (Listado<Integer, Persona> listado) </pre>
+	 * @param listado Recibe el listado de pesonas que tiene que guardar en el archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static void guardarEnArchivo (Listado<Integer, Persona> listado) 
 	{
-		Iterator <Entry<Integer, Persona>> it = listado.entrySet().iterator();
+		Set<Entry<Integer, Persona>> set = listado.hMap.entrySet();
+		Iterator<Entry<Integer, Persona>> it = set.iterator();
+		//Iterator <Entry<Integer, Persona>> it = listado.entrySet().iterator();
 		
 		while (it.hasNext())
 		{
@@ -201,11 +219,15 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		}
 	}
 	
+	/**
+	 * <p><b><i>leerDeArchivo</i></b></p>
+	 * <pre>public static Listado<Integer, Persona> leerDeArchivo ()  </pre>
+	 * @return Retorna un listado de personas, leido del archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static Listado<Integer, Persona> leerDeArchivo () 
 	{
 		Listado<Integer, Persona> listado = new Listado<Integer, Persona>();
-		
-		//TODO aca hay una excepcion hecha asi nomas.
 		
 		try
 		{
@@ -214,7 +236,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		}
 		catch (Exception e)
 		{
-			System.out.println("No se pudo leer el archivo");
+			e.printStackTrace();
 		}
 		
 		return listado;

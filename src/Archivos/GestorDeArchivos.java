@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import ClasesDePersonas.Persona;
@@ -15,34 +16,28 @@ public class GestorDeArchivos
 	
 	//TODO documentar.
 	
-	public static void guardar(Persona aux, String archivo) 
+	public static void guardar(Persona aux, String archivo)
 	{
 		try
         {
             FileOutputStream fos = new FileOutputStream(archivo);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-    		   
-            oos.writeObject(aux);	
+    		  
+            System.out.println(aux);
+            oos.writeObject(aux);
+            
             oos.close();
         }	
 		catch (FileNotFoundException e)
         {
-			//TODO tratamiento catch
-            e.printStackTrace();
-        }
-        catch (EOFException e)
-        {
-        	//TODO tratamiento catch
-        	System.out.println("Fin del archivo");
+            System.out.println("Archivo inexistente.");
         }
         catch (IOException e)
         {
-        	//TODO tratamiento catch
             e.printStackTrace();
         }
         catch (Exception e)
         {
-        	//TODO tratamiento catch
             e.printStackTrace();
         }
 	}
@@ -57,35 +52,30 @@ public class GestorDeArchivos
         {
             FileInputStream fis = new FileInputStream(archivo);
             ObjectInputStream ois = new ObjectInputStream(fis);
-        
+       
             persona = (Persona)ois.readObject();
    
             ois.close();
         }
 		catch (FileNotFoundException e)
         {
-			//TODO tratamiento catch
-            e.printStackTrace();
+			System.out.println("Archivo inexistente.");
         }
         catch (EOFException e)
         {
-        	//TODO tratamiento catch
-        	System.out.println("Fin del archivo");
+        	System.out.println("Fin del archivo.");
         }
         catch (IOException e)
         {
-        	//TODO tratamiento catch
-            e.printStackTrace();
+        	e.printStackTrace();
         }
         catch (ClassNotFoundException e)
         {
-        	//TODO tratamiento catch
             e.printStackTrace();
         }
 		catch (Exception e)
         {
-        	//TODO tratamiento catch
-            e.printStackTrace();
+			e.printStackTrace();
         }
 		
 		return persona;

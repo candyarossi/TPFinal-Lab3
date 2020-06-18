@@ -15,7 +15,7 @@ import Interfaces.IGenerarJSON;
  * <p>La clase <code>Persona</code> contiene todos los métodos que serán compartidos por sus clases hijas. Esta clase no se puede instanciar e implementa las interfaces <code>IGenerarJSON</code> y <code>Serializable</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public abstract class Persona implements IGenerarJSON, Serializable
+public class Persona implements IGenerarJSON, Serializable
 {
 	private String nombre;
 	private String apellido;
@@ -69,8 +69,6 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * @param lugarResidencia Recibe la ciudad de residencia de la persona.
 	 * @param telefono Recibe el telefono de la persona.
 	 * @param email Recibe el e-mail de la persona.
-	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public Persona(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
@@ -108,8 +106,6 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p><b><i>setNombre</i></b></p>
 	 * <pre>public void setNombre (String nombre)</pre>
 	 * @param nombre Recibe el nombre de la persona.
-	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public void setNombre(String nombre)
@@ -134,8 +130,6 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p><b><i>setApellido</i></b></p>
 	 * <pre>public void setApellido (String apellido)</pre>
 	 * @param apellido Recibe el apellido de la persona.
-	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public void setApellido(String apellido)
@@ -162,8 +156,6 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p>Este método recibe el cuil de la persona sin los guiones y los agrega. Además, guarda el número de dni.</p>
 	 * @param cuil Recibe el cuil de la persona (sin guiones).
 	 * @return Retorna el cuil de la persona en formato <code>StringBuilder</code>.
-	 * @throws ??
-	 * TODO tiene que lanzar la excepcion del nombre/apellido/cuil
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public StringBuilder setCuil(StringBuilder cuil)
@@ -538,7 +530,8 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	@Override
-	public JSONObject toJSON() {
+	public JSONObject toJSON()
+	{
 		
 		JSONObject jsonObj = new JSONObject();
 		
