@@ -88,10 +88,15 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 			Map.Entry<K, T> me = (Map.Entry<K, T>) it.next();
 			Persona aux = (Persona) me.getValue();
 			
-			strBuildable.append("- " + aux.getApellido() + ", "+ aux.getNombre() + "\n");
+			strBuildable.append("- " + aux.getApellido() + ", "+ aux.getNombre() + "...............Legajo N° " + aux.getNroLegajo() + "\n");
 		}
 		
 		return strBuildable.toString();
+	}
+	
+	public boolean existeLegajo(int legajo)
+	{
+		return hMap.containsKey(legajo);
 	}
 
 	
@@ -144,7 +149,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	 * <pre>public <K, T> K buscar (String apellido, String nombre)</pre>
 	 * @param apellido Recibe el apellido de la persona a buscar.
 	 * @param nombre Recibe el nombre de la persona a buscar.
-	 * @return Retorna un tipo genérico <code>K</code> que indica la clave de la persona buscada.
+	 * @return Retorna un tipo genérico <code>K</code> que indica la clave de la persona buscada, o <code>null</code> si no existe.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public <K, T> K buscar (String apellido, String nombre)

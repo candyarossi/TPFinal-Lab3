@@ -160,10 +160,13 @@ public class Persona implements IGenerarJSON, Serializable
 	 */
 	public StringBuilder setCuil(StringBuilder cuil)
 	{
+		// TODO revisar como se guarda el CUIL ( Ingreso esto: 20502315405 y me muestra esto: 20--5023154-0-5 )
 		this.cuil = cuil;
 		cuil.insert(2, "-");
 		cuil.insert(11, "-");
-		this.dni = setDni(cuil);
+		//this.dni = setDni(cuil); El DNI ya se setea en en costructor llamando a setDni(cuil), igual que acá.
+		
+		System.out.println(cuil);
 		
 		return cuil;
 	}

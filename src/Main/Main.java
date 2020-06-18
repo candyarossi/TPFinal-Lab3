@@ -9,16 +9,17 @@ import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import java.util.Scanner;
 
+import com.oracle.xmlns.internal.webservices.jaxws_databinding.SoapBindingParameterStyle;
+
 
 
 public class Main
 {
 	static Scanner leer = new Scanner(System.in);
+	static Listado<Integer, Persona> empleadores = new Listado<Integer, Persona>();
 
 	public static void main(String[] args)
-	{
-		
-		
+	{	
 		menuPricipal();
 		
 		
@@ -235,10 +236,29 @@ public class Main
 		{
 		case 1: 
 			Empleador nuevoEmpleador = crearEmpleador();
+			empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
+			empleadores.guardarEnArchivo(empleadores);
+			empleadores.clear();
 			
 			break;
 			
 		case 2:
+			LimpiarBuffer();
+			empleadores.leerDeArchivo();
+			String nombre;
+			String apellido;
+			boolean encontrado = false;
+			
+			do
+			{
+				System.out.println("Ingrese primer nombre del empleador:");
+				
+			} while (  );
+			
+			
+			
+			
+			
 			Empleado nuevoEmpleado = crearEmpleado();
 			break;
 			
@@ -271,7 +291,7 @@ public class Main
 		{
 			LimpiarBuffer();
 			
-			System.out.println("Ingrese nombre: ");
+			System.out.println("Ingrese primer nombre: ");
 			nombre = leer.nextLine();
 			
 			try
