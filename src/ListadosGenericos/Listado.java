@@ -88,16 +88,12 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 			Map.Entry<K, T> me = (Map.Entry<K, T>) it.next();
 			Persona aux = (Persona) me.getValue();
 			
-			strBuildable.append("- " + aux.getApellido() + ", "+ aux.getNombre() + "...............Legajo N° " + aux.getNroLegajo() + "\n");
+			strBuildable.append("- " + aux.getApellido() + ", "+ aux.getNombre() +"\n");
 		}
 		
 		return strBuildable.toString();
 	}
 	
-	public boolean existeLegajo(int legajo)
-	{
-		return hMap.containsKey(legajo);
-	}
 
 	
 	/**

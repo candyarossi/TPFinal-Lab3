@@ -9,7 +9,6 @@ import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import java.util.Scanner;
 
-import com.oracle.xmlns.internal.webservices.jaxws_databinding.SoapBindingParameterStyle;
 
 
 
@@ -20,9 +19,11 @@ public class Main
 
 	public static void main(String[] args)
 	{	
-		menuPricipal();
+		menuPrincipal();
 		
-		
+		empleadores.leerDeArchivo();
+		System.out.println(empleadores.listar());
+		System.out.println("---");
 		
 		
 		
@@ -120,106 +121,14 @@ public class Main
         System.out.println(listado.listar());
         
         
-        
-        
-        
-        
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		Empleador empleador = new Empleador("Lucas", "Perez", new StringBuilder("20207522334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-		
-		System.out.println(empleador.toString());
-		
-        System.out.println("");
-        System.out.println("");
-		
-        Empleador empleador2 = new Empleador("Lucas", "Perez", new StringBuilder("20207522334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-        
-        
-		Empleado empleado1 = new Empleado("Maria", "Garcia",  new StringBuilder("20207522335"), "Balcarce", "Argentina", "nose", "nose", "", "anamaria@hotmail.com", "niides", "Ospedyc", "2018-07-20");
-		Empleado empleado2 = new Empleado("Luna", "Garcia",  new StringBuilder("20207522336"), "Balcarce", "Argentina", "nose", "nose", "", "anamaria@hotmail.com", "niides", "", "2020-07-20");
-		
-		
-		empleador2.agregarEmpleado(empleado1.getNroLegajo(), empleado1);
-		empleador2.agregarEmpleado(empleado2.getNroLegajo(), empleado2);
-		
-
-        System.out.println(empleador2.toString());
-		
-        System.out.println(empleador2.getNombre());
-        
-        System.out.println(empleador2.verEmpleados());
-        
-        System.out.println("");
-        System.out.println("Buscado: ");
-        System.out.println(empleador2.buscarEmpleado("Garcia", "Luna"));
-        
-        System.out.println("");
-        System.out.println("");
-
-        System.out.println(empleador2.generarRecibos(empleador2, empleado1, 20000, "2020-07-03", "2020-05-01", 25, 5));
-        System.out.println(empleador2.generarFactura(empleador2, 357));
-
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Generando JSON de 1 empleador con array empleados:");
-        
-        System.out.println(empleador2.toJSON().toString());
-
-        Listado<Integer, Persona> empleadores = new Listado<Integer, Persona>();
-        
-        empleadores.agregar(empleador.getNroLegajo(), empleador);
-        empleadores.agregar(empleador2.getNroLegajo(), empleador2); 
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Generando JSON de listado de empleadores");
-        
-        System.out.println(empleadores.toJSON().toString());
-
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Guardando archivo JSON...");
-        JsonUtiles.grabar(empleadores.toJSON());
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Leyendo archivo JSON...");
-        System.out.println(JsonUtiles.leer().toString());
-        
-       /* System.out.println("");
-        System.out.println("\nListado de Empleadores: ");
-        System.out.println(empleadores.listar());
-        
-        /*System.out.println("");
-        System.out.println("Guardando en archivo");
-        
-        System.out.println("");
-        System.out.println("Leyendo el archivo");
-        
-        System.out.println("");
-        System.out.println("Cantidad empleados: " + empleador2.getCantidadEmpleados());
-
-        
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Guardando archivo");
-        Listado.guardarEnArchivo(empleadores);
-        
-        System.out.println("Leyendo archivo");
-        Listado<Integer, Persona> listado = Listado.leerDeArchivo();
-        System.out.println(listado.listar());
-        
-      
         */
-
 
        
 	}
 	
-	
-	public static void menuPricipal()
+	 
+	 
+	public static void menuPrincipal()
 	{
 		int opcionMenu;
 		banner();
@@ -234,15 +143,18 @@ public class Main
 		
 		switch (opcionMenu)
 		{
-		case 1: 
-			Empleador nuevoEmpleador = crearEmpleador();
+			case 1: 
+			Empleador nuevoEmpleador = (Empleador) crearPersona(opcionMenu); 
+			
+			empleadores.leerDeArchivo();
 			empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
 			empleadores.guardarEnArchivo(empleadores);
-			empleadores.clear();
 			
+			//empleadores.clear();
 			break;
 			
 		case 2:
+			/*
 			LimpiarBuffer();
 			empleadores.leerDeArchivo();
 			String nombre;
@@ -256,10 +168,10 @@ public class Main
 			} while (  );
 			
 			
+			Empleado nuevoEmpleado = crearPersona(opcionMenu);
 			
+			*/
 			
-			
-			Empleado nuevoEmpleado = crearEmpleado();
 			break;
 			
 		case 3:
@@ -269,15 +181,32 @@ public class Main
 		
 	}
 	
-	private static Persona crearPersona()
+	
+
+
+	public static void banner()
 	{
-		Persona nueva;
-		boolean semaforo;
+		System.out.println("\n====================================================================================\n");
 		
+		System.out.println("\t\t\t    Bienvenido a SevenGestión");
+		
+		System.out.println("\n------------------------------------------------------------------------------------\n");
+	}
+	
+
+	private static void LimpiarBuffer()
+	{
+		leer.nextLine();
+	}
+	
+	
+	private static Persona crearPersona(int opcionMenu)
+	{
+		Persona nueva = null;
+		boolean semaforo;
 		String nombre;
 		String apellido;
 		StringBuilder cuil = new StringBuilder();
-		StringBuilder dni = new StringBuilder();
 		String lugarNacimiento;
 		String nacionalidad;
 		String direccion;
@@ -291,7 +220,7 @@ public class Main
 		{
 			LimpiarBuffer();
 			
-			System.out.println("Ingrese primer nombre: ");
+			System.out.println("Ingrese nombre: ");
 			nombre = leer.nextLine();
 			
 			try
@@ -359,7 +288,7 @@ public class Main
 		{
 			LimpiarBuffer();
 			
-			System.out.println("Ingrese lugar de nacimineto: ");
+			System.out.println("Ingrese lugar de nacimiento: ");
 			lugarNacimiento = leer.nextLine();
 			
 			if ( lugarNacimiento.isEmpty() )
@@ -430,17 +359,24 @@ public class Main
 				System.out.println("Debe completar este campo.\n");
 		} while (email.isEmpty());
 		
-		
-		
-		nueva = new Persona(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
+		switch (opcionMenu) 
+		{
+			case 1: 
+					nueva = new Empleador();
+					nueva = crearEmpleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
+					break;
+			case 2:
+					nueva = new Empleado();
+					nueva = crearEmpleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
+					break;
+		}
 		
 		return nueva;
+		
 	}
 	
-	private static Empleador crearEmpleador()
+	private static Empleador crearEmpleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, String telefono, String email)
 	{
-		Persona nueva = crearPersona();
-		StringBuilder strBuilderCUIL = new StringBuilder();
 		String auxActividad;
 		
 		// ACTIVIDAD
@@ -455,21 +391,13 @@ public class Main
 				System.out.println("Debe completar este campo.\n");
 		} while (auxActividad.isEmpty());
 		
-		strBuilderCUIL.append(nueva.getCuil());
-		
-		Empleador nuevo = new Empleador(nueva.getNombre(), nueva.getApellido(), strBuilderCUIL, nueva.getLugarNacimiento(), nueva.getNacionalidad(), nueva.getDireccion(),
-				nueva.getLugarResidencia(), nueva.getTelefono(), nueva.getEmail(), auxActividad);
-		
-		
-		
+		Empleador nuevo = new Empleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email, auxActividad);
 		
 		return nuevo;
 	}
 	
-	private static Empleado crearEmpleado()
+	private static Empleado crearEmpleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, String telefono, String email)
 	{
-		Persona nueva = crearPersona();
-		StringBuilder strBuilderCUIL = new StringBuilder();
 		String auxCategoria;
 		String auxObraSocial;
 		String auxFechaIngreso;
@@ -507,39 +435,26 @@ public class Main
 		{
 			LimpiarBuffer();
 			
-			System.out.println("Ingrese fecha de ingreso (dd-mm-aaaa): ");
+			System.out.println("Ingrese fecha de ingreso (aaaa-mm-dd): ");
 			auxFechaIngreso = leer.nextLine();
 			
 			if ( auxFechaIngreso.isEmpty() )
 				System.out.println("Debe completar este campo.\n");
 		} while (auxFechaIngreso.isEmpty());
 		
-		strBuilderCUIL.append(nueva.getCuil());
 		
-		Empleado nuevo = new Empleado(nueva.getNombre(), nueva.getApellido(), strBuilderCUIL, nueva.getLugarNacimiento(), nueva.getNacionalidad(), nueva.getDireccion(),
-				nueva.getLugarResidencia(), nueva.getTelefono(), nueva.getEmail(), auxCategoria, auxObraSocial, auxFechaIngreso);
-		
-		
+		Empleado nuevo = new Empleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email, auxCategoria, auxObraSocial, auxFechaIngreso);
 		
 		
 		return nuevo;
 	}
 
 
-	public static void banner()
-	{
-		System.out.println("\n====================================================================================\n");
-		
-		System.out.println("\t\t\t    Bienvenido a SevenGestión");
-		
-		System.out.println("\n------------------------------------------------------------------------------------\n");
-	}
-	
 
-	private static void LimpiarBuffer()
-	{
-		leer.nextLine();
-	}
+	
+	
+	
+	
 }
 
 
