@@ -1,29 +1,51 @@
 package Main;
 
-import ClasesDePersonas.Empleado;
+import java.util.Scanner;
 
+import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
 import ClasesDePersonas.Persona;
 import Excepciones.ExcepcionDeCampoVacio;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
-import java.util.Scanner;
 
-
-
-
-public class Main
-{
+public class Main {
 	static Scanner leer = new Scanner(System.in);
 	static Listado<Integer, Persona> empleadores = new Listado<Integer, Persona>();
 
 	public static void main(String[] args)
-	{	
-		menuPrincipal();
+	{
 		
-		empleadores.leerDeArchivo();
+		
+		/*
+		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+		Empleador nuevo2 = new Empleador("Nahuel", "Goméz", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+		Empleador nuevo3 = new Empleador("Nahuel", "Peréz", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+
+		
+		empleadores.agregar(nuevo1.getNroLegajo(), nuevo1);
+		empleadores.agregar(nuevo2.getNroLegajo(), nuevo2);
+		empleadores.agregar(nuevo3.getNroLegajo(), nuevo3);
+		
 		System.out.println(empleadores.listar());
-		System.out.println("---");
+		
+		System.out.println("guardar\n");
+		Listado.guardarEnArchivo(empleadores);
+		System.out.println("Guardo? \n");
+		*/
+		
+		empleadores = Listado.leerDeArchivo();
+		
+		System.out.println(empleadores.listar());
+		/*
+		Integer claveBuscado = empleadores.buscar("Peréz", "Nahuel");
+		
+		String bajado = empleadores.mostrar(claveBuscado);
+		
+		System.out.println(bajado);
+		*/
+		
+	
 		
 		
 		
@@ -35,10 +57,7 @@ public class Main
 		
 		
 		
-		
-		
-		
-		
+	
 		
 		
 		// ZONA DE PRUEBAS ( Hacia abajo )
@@ -123,87 +142,90 @@ public class Main
         
         */
 
-       
 	}
-	
-	 
-	 
-	public static void menuPrincipal()
-	{
+
+	public static void menuPrincipal() {
 		int opcionMenu;
+
 		banner();
+		opcionMenu = mostrarMenu();
+
+		switch (opcionMenu)
+		{
+			case 1:
+				Empleador nuevoEmpleador = (Empleador) crearPersona(opcionMenu);
+
+				empleadores.leerDeArchivo();
+				empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
+				empleadores.guardarEnArchivo(empleadores);
+
+				// TODO terminar case
+				// empleadores.clear();
+				break;
+
+			case 2:
+				// TODO case
+				//LimpiarBuffer(); empleadores.leerDeArchivo(); String nombre; String apellido;
+				//boolean encontrado = false;
+				 
+				//do
+				//{
+				//	System.out.println("Ingrese primer nombre del empleador:");
+			 
+			 	//} while ( );
+			 	
+			 	//Empleado nuevoEmpleado = crearPersona(opcionMenu);
+				break;
+
+			case 3:
+				// TODO case
+				break;
+			
+			case 4:
+				// TODO case
+				break;
+			
+			case 5:
+				// TODO case
+				break;
 		
+			case 6:
+				// TODO case
+				break;
+	
+			case 7:
+				// TODO case
+				break;
+			
+			case 8:
+				// TODO case
+				break;
+		}
+
+	}
+
+	public static int mostrarMenu() {
+		int opcionMenu;
+
 		System.out.println("\n   Elija una opción:");
 		System.out.println("");
 		System.out.println("\t1.- Registrar un nuevo empleador");
 		System.out.println("\t2.- Registrar un nuevo empleado");
-		
+		System.out.println("\t3.- Buscar un empleador.");
+		System.out.println("\t4.- Listar empleadores.");
+		System.out.println("\t5.- Generar recibos.");
+		System.out.println("\t6.- Generar factura.");
+		System.out.println("\t7.- Generar Json de archivo de empleadores.");
+		System.out.println("\t8.- Acerca del sistema.");
 		opcionMenu = leer.nextInt();
-	
-		
-		switch (opcionMenu)
-		{
-			case 1: 
-			Empleador nuevoEmpleador = (Empleador) crearPersona(opcionMenu); 
-			
-			empleadores.leerDeArchivo();
-			empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
-			empleadores.guardarEnArchivo(empleadores);
-			
-			//empleadores.clear();
-			break;
-			
-		case 2:
-			/*
-			LimpiarBuffer();
-			empleadores.leerDeArchivo();
-			String nombre;
-			String apellido;
-			boolean encontrado = false;
-			
-			do
-			{
-				System.out.println("Ingrese primer nombre del empleador:");
-				
-			} while (  );
-			
-			
-			Empleado nuevoEmpleado = crearPersona(opcionMenu);
-			
-			*/
-			
-			break;
-			
-		case 3:
-			break;
-		}
-		
-		
-	}
-	
-	
 
-
-	public static void banner()
-	{
-		System.out.println("\n====================================================================================\n");
-		
-		System.out.println("\t\t\t    Bienvenido a SevenGestión");
-		
-		System.out.println("\n------------------------------------------------------------------------------------\n");
+		return opcionMenu;
 	}
-	
 
-	private static void LimpiarBuffer()
-	{
-		leer.nextLine();
-	}
-	
-	
-	private static Persona crearPersona(int opcionMenu)
-	{
+	private static Persona crearPersona(int opcionMenu) {
 		Persona nueva = null;
 		boolean semaforo;
+
 		String nombre;
 		String apellido;
 		StringBuilder cuil = new StringBuilder();
@@ -213,252 +235,219 @@ public class Main
 		String lugarResidencia;
 		String telefono;
 		String email;
-		
-		
+
 		// NOMBRE
-		do
-		{
+		do {
 			LimpiarBuffer();
 			
 			System.out.println("Ingrese nombre: ");
 			nombre = leer.nextLine();
-			
-			try
-			{
-				if ( nombre.isEmpty() )
-						throw new ExcepcionDeCampoVacio();
-						// Excepción forzada para demostar funcionamiento
-			}
-			catch(ExcepcionDeCampoVacio e)
-			{
+
+			try {
+				if (nombre.isEmpty())
+					throw new ExcepcionDeCampoVacio();
+				// Excepción forzada para demostar funcionamiento
+			} catch (ExcepcionDeCampoVacio e) {
 				System.out.println("Debe completar este campo.\n");
 			}
 		} while (nombre.isEmpty());
-		
+
 		// APEllIDO
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese apellido: ");
 			apellido = leer.nextLine();
-			
-			try
-			{
-				if ( apellido.isEmpty() )
-						throw new ExcepcionDeCampoVacio();
-						// Excepción forzada para demostar funcionamiento
-			}
-			catch(ExcepcionDeCampoVacio e)
-			{
+
+			try {
+				if (apellido.isEmpty())
+					throw new ExcepcionDeCampoVacio();
+				// Excepción forzada para demostar funcionamiento
+			} catch (ExcepcionDeCampoVacio e) {
 				System.out.println("Debe completar este campo.\n");
 			}
 		} while (apellido.isEmpty());
-		
+
 		// CUIL
-		do
-		{
+		do {
 			LimpiarBuffer();
 			semaforo = false;
 			String auxCUIL;
-					
-			System.out.println("Ingrese CUIL: ");
+
+			System.out.println("Ingrese CUIL (sin guiones): ");
 			auxCUIL = leer.nextLine();
-					
-			try
-			{
-				if ( auxCUIL.isEmpty() )
-						throw new ExcepcionDeCampoVacio();
-						// Excepción forzada para demostar funcionamiento
-				else
-				{
+
+			try {
+				if (auxCUIL.isEmpty())
+					throw new ExcepcionDeCampoVacio();
+				// Excepción forzada para demostar funcionamiento
+				else {
 					cuil.append(auxCUIL);
 					semaforo = true;
 				}
-			}
-			catch(ExcepcionDeCampoVacio e)
-			{
+			} catch (ExcepcionDeCampoVacio e) {
 				System.out.println("Debe completar este campo.\n");
 			}
 		} while (!semaforo);
-		
 
 		// LUGAR DE NACIMIENTO
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese lugar de nacimiento: ");
 			lugarNacimiento = leer.nextLine();
-			
-			if ( lugarNacimiento.isEmpty() )
+
+			if (lugarNacimiento.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (lugarNacimiento.isEmpty());
-		
-		
+
 		// NACIONALIDAD
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese nacionalidad: ");
 			nacionalidad = leer.nextLine();
-			
-			if ( nacionalidad.isEmpty() )
+
+			if (nacionalidad.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (nacionalidad.isEmpty());
-		
-		
+
 		// DIRECCION
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese dirección: ");
 			direccion = leer.nextLine();
-			
-			if ( direccion.isEmpty() )
+
+			if (direccion.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (direccion.isEmpty());
-		
-				
+
 		// LUGAR DE RESIDENCIA
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese lugar de residencia: ");
 			lugarResidencia = leer.nextLine();
-			
-			if ( lugarResidencia.isEmpty() )
+
+			if (lugarResidencia.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (lugarResidencia.isEmpty());
-	
-				
+
 		// TELEFONO
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese teléfono: ");
 			telefono = leer.nextLine();
-			
-			if ( telefono.isEmpty() )
+
+			if (telefono.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (telefono.isEmpty());
-				
+
 		// E-MAIL
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese e-mail: ");
 			email = leer.nextLine();
-			
-			if ( email.isEmpty() )
+
+			if (email.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (email.isEmpty());
-		
-		switch (opcionMenu) 
-		{
-			case 1: 
-					nueva = new Empleador();
-					nueva = crearEmpleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
-					break;
-			case 2:
-					nueva = new Empleado();
-					nueva = crearEmpleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email);
-					break;
+
+		switch (opcionMenu) {
+		case 1:
+			nueva = new Empleador();
+			nueva = crearEmpleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia,
+					telefono, email);
+			break;
+		case 2:
+			nueva = new Empleado();
+			nueva = crearEmpleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia,
+					telefono, email);
+			break;
 		}
-		
+
 		return nueva;
-		
+
 	}
-	
-	private static Empleador crearEmpleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, String telefono, String email)
-	{
+
+	private static Empleador crearEmpleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
+			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxActividad;
-		
+
 		// ACTIVIDAD
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese actividad: ");
 			auxActividad = leer.nextLine();
-			
-			if ( auxActividad.isEmpty() )
+
+			if (auxActividad.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (auxActividad.isEmpty());
-		
-		Empleador nuevo = new Empleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email, auxActividad);
-		
+
+		Empleador nuevo = new Empleador(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion,
+				lugarResidencia, telefono, email, auxActividad);
+
 		return nuevo;
 	}
-	
-	private static Empleado crearEmpleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento, String nacionalidad, String direccion, String lugarResidencia, String telefono, String email)
-	{
+
+	private static Empleado crearEmpleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
+			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxCategoria;
 		String auxObraSocial;
 		String auxFechaIngreso;
-		
-		
+
 		// CATEGORIA
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese categoría: ");
 			auxCategoria = leer.nextLine();
-			
-			if ( auxCategoria.isEmpty() )
+
+			if (auxCategoria.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (auxCategoria.isEmpty());
-		
-		
-		
-		//  OBRA SOCIAL
-		do
-		{
+
+		// OBRA SOCIAL
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese obra social: ");
 			auxObraSocial = leer.nextLine();
-			
-			if ( auxObraSocial.isEmpty() )
+
+			if (auxObraSocial.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (auxObraSocial.isEmpty());
-		
-		
+
 		// FECHA DE INGRESO
-		do
-		{
+		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese fecha de ingreso (aaaa-mm-dd): ");
 			auxFechaIngreso = leer.nextLine();
-			
-			if ( auxFechaIngreso.isEmpty() )
+
+			if (auxFechaIngreso.isEmpty())
 				System.out.println("Debe completar este campo.\n");
 		} while (auxFechaIngreso.isEmpty());
-		
-		
-		Empleado nuevo = new Empleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia, telefono, email, auxCategoria, auxObraSocial, auxFechaIngreso);
-		
-		
+
+		Empleado nuevo = new Empleado(nombre, apellido, cuil, lugarNacimiento, nacionalidad, direccion, lugarResidencia,
+				telefono, email, auxCategoria, auxObraSocial, auxFechaIngreso);
+
 		return nuevo;
 	}
 
+	public static void banner() {
+		System.out.println("\n====================================================================================\n");
 
+		System.out.println("\t\t\t    Bienvenido a SevenGestión");
 
-	
-	
-	
-	
+		System.out.println("\n------------------------------------------------------------------------------------\n");
+	}
+
+	private static void LimpiarBuffer() {
+		leer.nextLine();
+	}
 }
-
-
-	
-	
-	
-	

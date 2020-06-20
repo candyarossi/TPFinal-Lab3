@@ -3,6 +3,7 @@ package ClasesDePersonas;
 import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import Interfaces.IGenerarJSON;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
@@ -151,7 +152,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	public void setCantidadEmpleados ()
 	{
 		this.cantidadEmpleados = empleados.contar();
-
 	}
 	
 	

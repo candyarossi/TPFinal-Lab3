@@ -15,7 +15,7 @@ import Interfaces.IGenerarJSON;
  * <p>La clase <code>Persona</code> contiene todos los métodos que serán compartidos por sus clases hijas. Esta clase no se puede instanciar e implementa las interfaces <code>IGenerarJSON</code> y <code>Serializable</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public class Persona implements IGenerarJSON, Serializable
+public abstract class Persona implements IGenerarJSON, Serializable
 {
 	private String nombre;
 	private String apellido;

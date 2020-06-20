@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.sun.crypto.provider.HmacMD5;
+
 import Interfaces.IGenerarJSON;
+import ListadosGenericos.Listado;
 
 
 /**
@@ -134,7 +138,6 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 	{
 		this.fechaIngreso = LocalDate.parse(fIngreso);
 	}
-
 	
 	/**
 	 * <p><b><i>toString</i></b></p>

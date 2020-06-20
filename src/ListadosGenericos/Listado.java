@@ -8,11 +8,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import org.json.JSONArray;
-import ClasesDePersonas.Persona;
-import Interfaces.ILista;
+
+import Archivos.GestorDeArchivos;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
-import Archivos.GestorDeArchivos;
+import ClasesDePersonas.Persona;
+import Interfaces.ILista;
 
 
 /**
@@ -211,7 +212,6 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	{
 		Set<Entry<Integer, Persona>> set = listado.hMap.entrySet();
 		Iterator<Entry<Integer, Persona>> it = set.iterator();
-		//Iterator <Entry<Integer, Persona>> it = listado.entrySet().iterator();
 		
 		while (it.hasNext())
 		{
@@ -231,17 +231,15 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	{
 		Listado<Integer, Persona> listado = new Listado<Integer, Persona>();
 		
-		try
-		{
-			Persona aux = GestorDeArchivos.leer(ARCHIVO);
-			listado.agregar(aux.getNroLegajo(), aux);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		listado = GestorDeArchivos.leer(ARCHIVO);
 		
 		return listado;
+	}
+	
+	// TODO Documentar: "Elimina todas las asignaciones de este listado. El listado estará vacío después invocar este método."
+	public void vaciarListado()
+	{
+		hMap.clear();
 	}
 	
 }
