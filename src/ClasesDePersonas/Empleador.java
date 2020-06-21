@@ -4,6 +4,7 @@ import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Archivos.GestorDeArchivos;
 import Interfaces.IGenerarJSON;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
@@ -21,6 +22,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	private String actividad;
 	private Listado<Integer, Empleado> empleados; 
 	private int cantidadEmpleados;
+	private String nombreArchivo;
 	
 	
 	/**
@@ -35,6 +37,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		actividad = "";
 		empleados = new Listado<Integer, Empleado>();
 		cantidadEmpleados = 0;
+		nombreArchivo = "";
 	}
 	
 	
@@ -61,6 +64,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		this.actividad = actividad;
 		empleados = new Listado<Integer, Empleado>();
 		setCantidadEmpleados();
+		nombreArchivo = getCuil() + ".dat";
 	}
 
 	
@@ -191,6 +195,18 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	}
 
 	
+	//TODO doc
+	public void setNombreArchivo () 
+	{
+		this.nombreArchivo =  getCuil() + ".dat";
+	}
+	
+	public String getNombreArchivo ()
+	{
+		return nombreArchivo;
+	}
+	
+	
 	/**
 	 * <p><b><i>toString</i></b></p>
 	 * <pre>public String toString()</pre>
@@ -267,4 +283,30 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		return jsonObj;
 	}
 	
+	
+	//TODO CAMBIAR DOC
+	/**
+	 * <p><b><i>guardarEnArchivo</i></b></p>
+	 * <pre>public static void guardarEnArchivo (Listado<Integer, Persona> listado) </pre>
+	 * @param listado Recibe el listado de pesonas que tiene que guardar en el archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public static void guardarEnArchivo (Empleador empleador) 
+	{
+			GestorDeArchivos.guardarEmpleado(empleador, empleador.getNombreArchivo()); 
+	}
+	
+	
+	/**
+	 * <p><b><i>leerDeArchivo</i></b></p>
+	 * <pre>public static Listado<Integer, Persona> leerDeArchivo ()  </pre>
+	 * @return Retorna un listado de personas, leido del archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public static Empleador leerDeArchivo (String archivo) 
+	{
+		Empleador empleador = GestorDeArchivos.leerEmpleador(archivo);
+		
+		return empleador;
+	}
 }

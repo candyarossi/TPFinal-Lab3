@@ -2,6 +2,7 @@ package ListadosGenericos;
 
 import java.awt.print.Printable;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +29,6 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 {
 
 	private HashMap<K, T> hMap;
-	public static String ARCHIVO = "empleadores.dat";
 	
 	
 	/**
@@ -202,39 +202,64 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 	
-	/**
-	 * <p><b><i>guardarEnArchivo</i></b></p>
-	 * <pre>public static void guardarEnArchivo (Listado<Integer, Persona> listado) </pre>
-	 * @param listado Recibe el listado de pesonas que tiene que guardar en el archivo.
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	public static void guardarEnArchivo (Listado<Integer, Persona> listado) 
+	//TODO doc 
+	public ArrayList<String> setNombreArchivosEmpleadores () 
 	{
-		Set<Entry<Integer, Persona>> set = listado.hMap.entrySet();
-		Iterator<Entry<Integer, Persona>> it = set.iterator();
+		ArrayList<String> array = new ArrayList<String>();
+		
+		Iterator<Entry<K, T>> it = hMap.entrySet().iterator();
 		
 		while (it.hasNext())
 		{
-			Map.Entry<Integer, Persona> me = (Map.Entry<Integer, Persona>) it.next();
-			Persona persona = me.getValue();
-			GestorDeArchivos.guardar(persona, ARCHIVO); 
+			Map.Entry<K, T> me = (Map.Entry<K, T>) it.next();
+			Empleador aux = (Empleador) me.getValue();
+			array.add(aux.getNombreArchivo());
+		}
+		
+		return array;
+	}
+	
+	
+	//TODO doc
+	public static void guardarCuils (ArrayList<String> array)
+	{
+		GestorDeArchivos.guardarCuils(array);
+	}
+	
+	public static ArrayList<String> leerCuils ()
+	{
+		ArrayList<String> array = new ArrayList<String>();
+		array = GestorDeArchivos.leerCuils();
+		return array;
+	}
+	
+	public void guardarListadoEnArchivos ()
+	{
+		Iterator<Entry<K, T>> it = hMap.entrySet().iterator();
+		
+		while (it.hasNext())
+		{
+			Map.Entry<K, T> me = (Map.Entry<K, T>) it.next();
+			Empleador aux = (Empleador) me.getValue();
+			Empleador.guardarEnArchivo(aux);
 		}
 	}
 	
-	/**
-	 * <p><b><i>leerDeArchivo</i></b></p>
-	 * <pre>public static Listado<Integer, Persona> leerDeArchivo ()  </pre>
-	 * @return Retorna un listado de personas, leido del archivo.
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	public static Listado<Integer, Persona> leerDeArchivo () 
+	public static Listado<Integer, Empleador> generarListadoDeArchivo ()
 	{
-		Listado<Integer, Persona> listado = new Listado<Integer, Persona>();
+		Listado<Integer, Empleador> listado = new Listado<Integer, Empleador>();
 		
-		listado = GestorDeArchivos.leer(ARCHIVO);
+		ArrayList<String> array = GestorDeArchivos.leerCuils();
+		
+		for(String archivo : array)
+		{
+			Empleador emp = GestorDeArchivos.leerEmpleador(archivo);
+			listado.agregar(emp.getNroLegajo(), emp);
+		}
 		
 		return listado;
 	}
+	
 	
 	// TODO Documentar: "Elimina todas las asignaciones de este listado. El listado estará vacío después invocar este método."
 	public void vaciarListado()

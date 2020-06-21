@@ -9,15 +9,19 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
-import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry.Entry;
-
+import ClasesDePersonas.Empleador;
 import ClasesDePersonas.Persona;
 import ListadosGenericos.Listado;
 
 
+// TODO doc
 public class GestorDeArchivos
 {
 	
@@ -29,19 +33,19 @@ public class GestorDeArchivos
 	 * @param archivo
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public static void guardar(Persona persona, String archivo)
+	public static void guardarEmpleado(Empleador empleador, String archivo)
 	{
 		File file = new File(archivo);
-		boolean append = file.exists();
 		
 		try
         {
             FileOutputStream fos = new FileOutputStream(archivo);
-            AppendableObjectOutputStream aoos = new AppendableObjectOutputStream(fos, append);
-            
-            aoos.writeObject(persona);
-           
-            aoos.close();
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                       
+        	oos.writeObject(empleador);
+  
+            oos.close();
+         
         }	
 		catch (FileNotFoundException e)
         {
@@ -55,37 +59,32 @@ public class GestorDeArchivos
         {
             e.printStackTrace();
         }
+		
+		
 	}
 	
 	
 
 	// TODO Documentar método
 	// TODO leer
-	public static Listado<Integer, Persona> leer(String archivo)
+	public static Empleador leerEmpleador(String archivo)
 	{
-		Listado<Integer, Persona> listado = new Listado<Integer, Persona>();
-		Object obj;
+		Empleador empleador = null;
 		
 		try
         {
             FileInputStream fis = new FileInputStream(archivo);
-            System.out.println("----------------" + archivo);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            
-            obj = ois.readObject();
-            
-            while ( obj != null )
-            {
-            	Persona persona = (Persona)obj;
-            	listado.agregar(persona.nroLegajo, persona);
+                  	
+            try {
+            empleador = (Empleador) ois.readObject();
             }
-            /*
-            while ( (persona = (Persona)ois.readObject()) != null )
-            {
-            	listado.agregar(persona.nroLegajo, persona);
+            catch (Exception e) {
+    			System.out.println("aca.");
+
             }
-            */
             ois.close();
+           
         }
 		catch (FileNotFoundException e)
         {
@@ -99,21 +98,95 @@ public class GestorDeArchivos
         {
         	e.printStackTrace();
         }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-		catch (Exception e)
+        catch (Exception e)
         {
 			e.printStackTrace();
         }
 		
-		return listado;
+		
+		return empleador;
     }
 	
 	
+	//TODO DOC
+	public static void guardarCuils(ArrayList<String> array)
+	{
+		File file = new File("cuils.dat");
+		
+		try
+        {
+            FileOutputStream fos = new FileOutputStream("cuils.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                       
+            for (String str : array)
+            {
+            	oos.writeUTF(str);
+            }
+            
+            oos.close();
+ 
+        }	
+		catch (FileNotFoundException e)
+        {
+            System.out.println("Archivo inexistente.");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+		
+	}
 	
 	
+
+	// TODO Documentar método
+	// TODO leer
+	public static ArrayList<String> leerCuils()
+	{
+		ArrayList<String> array = new ArrayList<String>();
+		String str;
+        boolean flag = true;
+
+		
+		try
+        {
+            FileInputStream fis = new FileInputStream("cuils.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            
+            while (flag)
+            {
+            	str = ois.readUTF();
+            	array.add(str);
+            }
+            
+            ois.close();
+
+           
+        }
+		catch (FileNotFoundException e)
+        {
+			System.out.println("Archivo inexistente.");
+        }
+        catch (EOFException e)
+        {
+        	//System.out.println("Fin del archivo de Cuils.");
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+			e.printStackTrace();
+        }
+		
+		
+		return array;
+    }
 	
 	
 	

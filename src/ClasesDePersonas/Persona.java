@@ -6,6 +6,7 @@ import java.lang.StringBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Excepciones.ExcepcionDeCampoVacio;
 import Interfaces.IGenerarJSON;
 
 
@@ -28,7 +29,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	private String telefono;
 	private String email; 
 	public int nroLegajo; 
-	public static int cantidad = 0;
+	public static int cantidad = 1;
 	public String nombreArchivo; 
 	
 	
@@ -106,9 +107,10 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p><b><i>setNombre</i></b></p>
 	 * <pre>public void setNombre (String nombre)</pre>
 	 * @param nombre Recibe el nombre de la persona.
+	 * @throws ExcepcionDeCampoVacio.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public void setNombre(String nombre)
+	public void setNombre(String nombre) throws ExcepcionDeCampoVacio
 	{
 		this.nombre = nombre;
 	}
@@ -130,9 +132,10 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p><b><i>setApellido</i></b></p>
 	 * <pre>public void setApellido (String apellido)</pre>
 	 * @param apellido Recibe el apellido de la persona.
+	 * @throws ExcepcionDeCampoVacio.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public void setApellido(String apellido)
+	public void setApellido(String apellido) throws ExcepcionDeCampoVacio
 	{
 		this.apellido = apellido;
 	}
@@ -156,9 +159,10 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 * <p>Este método recibe el cuil de la persona sin los guiones y los agrega. Además, guarda el número de dni.</p>
 	 * @param cuil Recibe el cuil de la persona (sin guiones).
 	 * @return Retorna el cuil de la persona en formato <code>StringBuilder</code>.
+	 * @throws ExcepcionDeCampoVacio.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public StringBuilder setCuil(StringBuilder cuil)
+	public StringBuilder setCuil(StringBuilder cuil) throws ExcepcionDeCampoVacio
 	{
 		this.cuil = cuil;
 		cuil.insert(2, "-");

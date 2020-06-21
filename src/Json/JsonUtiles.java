@@ -25,7 +25,7 @@ public class JsonUtiles
 		public static void grabar(JSONArray array)
 		{
 			try {
-				FileWriter file = new FileWriter("listado.json");
+				FileWriter file = new FileWriter("ListadoDeEmpleadores.json");
 				
 				file.write(array.toString());
 				file.flush();
@@ -51,7 +51,7 @@ public class JsonUtiles
 			String contenido = "";
 			try 
 			{
-				contenido = new String(Files.readAllBytes(Paths.get("listado.json")));
+				contenido = new String(Files.readAllBytes(Paths.get("ListadoDeEmpleadores.json")));
 			} 
 			catch (IOException e) 
 			{
