@@ -76,13 +76,8 @@ public class GestorDeArchivos
             FileInputStream fis = new FileInputStream(archivo);
             ObjectInputStream ois = new ObjectInputStream(fis);
                   	
-            try {
             empleador = (Empleador) ois.readObject();
-            }
-            catch (Exception e) {
-    			System.out.println("aca.");
-
-            }
+          
             ois.close();
            
         }
