@@ -36,7 +36,7 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 		super();
 		categoria = "";
 		obraSocial = "";
-		fechaIngreso = LocalDate.parse("");
+		fechaIngreso = LocalDate.parse("0000-00-00");
 	}
 	
 	

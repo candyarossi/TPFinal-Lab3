@@ -34,17 +34,14 @@ public class Main {
 	static final int CASE_SALIDA = 11; // Actualizar esta variable siempre que se agreguen o quiten opciones al menú principal.
 
 	public static void main(String[] args) {
-/*
+		
 		empleadores = Listado.generarListadoDeArchivo();
 		
-		System.out.println(empleadores.listar());
-
 		menuPrincipal();
-		*/
 		
 	
 
-		
+		/*
 		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
 				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
 		
@@ -118,6 +115,7 @@ public class Main {
 		JSONArray arrayJ = empleadores2.toJSON(); JsonUtiles.grabar(arrayJ);
 		System.out.println("\n\n\nJSON del Listado Completo:"); String json =
 		JsonUtiles.leer(); System.out.println(json);
+		*/
 		
 
 	}
@@ -194,6 +192,8 @@ public class Main {
 				break;
 
 			case CASE_SALIDA:
+				guardarCambios();
+				
 				String confirmacion;
 				
 				LimpiarBuffer();
@@ -205,7 +205,6 @@ public class Main {
 
 				if ( confirmacion.equalsIgnoreCase("S"))
 				{
-					guardarCambios();
 					System.out.println("¡Gracias. Vuelvas prontos!");
 					System.out.println("\n------------------------------------------------------------------------------------\n");
 				}
@@ -487,6 +486,7 @@ public class Main {
 	
 	public static void case2(int opcionMenu) // REGISTRAR UN NUEVO EMPLEADO
 	{
+		LimpiarBuffer();
 		String nombre;
 		String apellido;
 		Integer claveBuscado;
@@ -506,6 +506,8 @@ public class Main {
 			System.out.println("El empleador que usted busca, no está registrado en el sistema");
 		else
 		{
+			System.out.println("Empleador encontrado\n");
+			System.out.println("Ingrese los datos del empleado:\n");
 			Empleador buscado = (Empleador)empleadores.getEmpleador(claveBuscado);
 			Empleado nuevo = (Empleado) crearPersona(opcionMenu);
 			buscado.agregarEmpleado(nuevo.getNroLegajo(), nuevo);
@@ -515,9 +517,12 @@ public class Main {
 	
 	public static void case3() // BUSCAR UN EMPLEADOR
 	{
+		LimpiarBuffer();
+		
 		String nombre;
 		String apellido;
-		Empleador buscado;
+		Integer claveBuscado;
+		String buscado;
 		
 		System.out.println("Ingrese el nombre de pila del empleador: ");
 		nombre = leer.nextLine();
@@ -527,13 +532,16 @@ public class Main {
 		apellido = leer.nextLine();
 		LimpiarBuffer();
 		
-		buscado = empleadores.buscar(apellido, nombre);
+		claveBuscado = empleadores.buscar(apellido, nombre);
 		
-		if ( buscado == null )
-			System.out.println("El empleador que usted busca, no está registrado en el sistema");
+		if ( claveBuscado != null )
+		{
+			buscado = empleadores.mostrar(claveBuscado);
+			System.out.println(buscado);
+		}
 		else
 		{
-			buscado.toString();
+			System.out.println("El empleador que usted busca, no está registrado en el sistema");
 		}
 	}
 	
