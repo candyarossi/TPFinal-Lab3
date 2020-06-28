@@ -126,6 +126,18 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		return hMap.get(clave).toString();
 	}
 	
+	/**
+	 * <p><b><i>getEmpleador</i></b></p>
+	 * <pre>public Empleador getEmpleador (K clave)</pre>
+	 * @param clave Recibe la clave del empleador que se busca.
+	 * @return Retorna un <code>Empleador</code> con los datos de la persona correspondiente a la clave que recibe por parametro.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public Empleador getEmpleador(K clave)
+	{
+		return (Empleador) hMap.get(clave);
+	}
+	
 	
 	/**
 	 * <p><b><i>contar</i></b></p>
@@ -248,7 +260,6 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	public static Listado<Integer, Empleador> generarListadoDeArchivo ()
 	{
 		Listado<Integer, Empleador> listado = new Listado<Integer, Empleador>();
-		
 		ArrayList<String> array = GestorDeArchivos.leerCuils();
 		
 		for(String archivo : array)

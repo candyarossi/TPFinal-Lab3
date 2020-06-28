@@ -12,12 +12,14 @@ public class ExcepcionDeCampoVacio extends RuntimeException
 {
 	public ExcepcionDeCampoVacio()
 	{
-		
+		// TODO (?
 	}
 	
 	public ExcepcionDeCampoVacio(String mensaje)
 	{
 		super(mensaje);
 	}
+	
+	// TODO algo más(?
 
 }

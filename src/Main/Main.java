@@ -27,51 +27,51 @@ import Excepciones.ExcepcionDeCampoVacio;
 import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 
-
 public class Main {
-	
+
 	static Scanner leer = new Scanner(System.in);
 	static Listado<Integer, Empleador> empleadores = new Listado<Integer, Empleador>();
+	static final int CASE_SALIDA = 11; // Actualizar esta variable siempre que se agreguen o quiten opciones al menú principal.
 
-	public static void main(String[] args)
-	{
-		
-		
-		/*
-		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-		Empleador nuevo2 = new Empleador("Nahuel", "Goméz", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-		Empleador nuevo3 = new Empleador("Nahuel", "Peréz", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-
-		
-		empleadores.agregar(nuevo1.getNroLegajo(), nuevo1);
-		empleadores.agregar(nuevo2.getNroLegajo(), nuevo2);
-		empleadores.agregar(nuevo3.getNroLegajo(), nuevo3);
+	public static void main(String[] args) {
+/*
+		empleadores = Listado.generarListadoDeArchivo();
 		
 		System.out.println(empleadores.listar());
-		
-		System.out.println("guardar\n");
-		Listado.guardarEnArchivo(empleadores);
-		System.out.println("Guardo? \n");
+
+		menuPrincipal();
 		*/
 		
-		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-		Empleador nuevo2 = new Empleador("Nahuel", "Goméz", new StringBuilder("20207565335"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-		Empleador nuevo3 = new Empleador("Nahuel", "Peréz", new StringBuilder("20207565336"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+	
 
-		Empleado empleadito = new Empleado("Cande", "Escudero", new StringBuilder("20202002002"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
-		Empleado empleadito2 = new Empleado("Cande", "Margaride", new StringBuilder("20202002003"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
+		
+		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
+				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+		
+		Empleador nuevo2 = new Empleador("Nahuel", "Goméz", new StringBuilder("20207565335"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
+				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+		
+		Empleador nuevo3 = new Empleador("Nahuel", "Peréz", new StringBuilder("20207565336"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
+				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
+		
+		
+		Empleado empleadito = new Empleado("Cande", "Escudero", new StringBuilder("20202002002"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
+				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
+		
+		Empleado empleadito2 = new Empleado("Cande", "Margaride", new StringBuilder("20202002003"), "Buenos Aires", "Argentina", "Chacabuco 1312",
+				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
 
+		
 		
 		nuevo2.agregarEmpleado(empleadito.getNroLegajo(), empleadito);
 		nuevo2.agregarEmpleado(empleadito2.getNroLegajo(), empleadito2);
-
 		
 		empleadores.agregar(nuevo1.getNroLegajo(), nuevo1);
 		empleadores.agregar(nuevo2.getNroLegajo(), nuevo2);
 		empleadores.agregar(nuevo3.getNroLegajo(), nuevo3);
 		
 		System.out.println("Listado de empleados antes de guardar:");
-
+		
 		System.out.println(empleadores.listar());
 		
 		System.out.println("Guardando...\n");
@@ -79,240 +79,164 @@ public class Main {
 		ArrayList<String> array = empleadores.setNombreArchivosEmpleadores();
 		
 		Listado.guardarCuils(array);
-		
 		empleadores.guardarListadoEnArchivos();
 		
+		
 		System.out.println("Leyendo...");
-		
 		Listado<Integer, Empleador> empleadores2 = Listado.generarListadoDeArchivo();
-				
-		ArrayList<String> array2 = GestorDeArchivos.leerCuils();
-		
+		//ArrayList<String> array2 = GestorDeArchivos.leerCuils();
 		System.out.println("\nLista de nombres de archivos:");
+		 
+		//for(String str : array2)
+			//System.out.println(str);
+		 
 		
-		for(String str : array2)
-		{
-			System.out.println(str);
-		}
-
 		System.out.println("\nPrueba de leer un archivo en especial 1:");
-
 		Empleador emp2 = GestorDeArchivos.leerEmpleador("20-20756533-6.dat");
-		
 		System.out.println(emp2.toString());
 		
+		
 		System.out.println("\nPrueba de leer un archivo en especial 2:");
-		
 		Empleador emp3 = GestorDeArchivos.leerEmpleador("20-20756533-5.dat");
-		
 		System.out.println(emp3.toString());
 		
+		
 		System.out.println("\nPrueba de leer un archivo en especial 3:");
-		
 		Empleador emp4 = GestorDeArchivos.leerEmpleador("20-20756533-4.dat");
-		
 		System.out.println(emp4.toString());
+		
 		
 		System.out.println("------");
 		System.out.println("Listado luego de la recuperacion:");
-		System.out.println(empleadores2.listar());
-		System.out.println("------");
-
+		System.out.println(empleadores2.listar()); System.out.println("------");
+		
+		
 		System.out.println("\nAccediendo a un empleado de un empleador recuperado de archivo:");
-
 		String clave = emp3.buscarEmpleado("Escudero", "Cande");
 		System.out.println(clave);
 		
+		JSONArray arrayJ = empleadores2.toJSON(); JsonUtiles.grabar(arrayJ);
+		System.out.println("\n\n\nJSON del Listado Completo:"); String json =
+		JsonUtiles.leer(); System.out.println(json);
 		
-		JSONArray arrayJ = empleadores2.toJSON();
-		JsonUtiles.grabar(arrayJ);
-		
-		System.out.println("\n\n\nJSON del Listado Completo:");
-		String json = JsonUtiles.leer();
-		System.out.println(json);
-
-		
-		/*
-		Integer claveBuscado = empleadores.buscar("Peréz", "Nahuel");
-		
-		String bajado = empleadores.mostrar(claveBuscado);
-		
-		System.out.println(bajado);
-		*/
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-		
-		
-		// ZONA DE PRUEBAS ( Hacia abajo )
-		
-		
-		
-		/*
-		Empleador nahuelEmpleador = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", "Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-	
-		System.out.println(nahuelEmpleador.toString());
-		
-		System.out.println("");
-        System.out.println("");
-		
-        Empleado empleadoN = new Empleado("Cosme", "Fulanito",  new StringBuilder("20205522336"), "Balcarce", "Argentina", "nose", "nose", "", "anamaria@hotmail.com", "niides", "", "2020-07-20");
-        
-        nahuelEmpleador.agregarEmpleado(empleadoN.getNroLegajo(), empleadoN);
-        
-        System.out.println(nahuelEmpleador.toString());
-        System.out.println(nahuelEmpleador.getNombre());
-        System.out.println(nahuelEmpleador.verEmpleados());
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Buscado: ");
-        System.out.println(nahuelEmpleador.buscarEmpleado("Fulanito", "Cosme"));
-        
-        System.out.println("");
-        System.out.println("");
-        
-        System.out.println(nahuelEmpleador.generarRecibos(nahuelEmpleador, empleadoN, 20000, "2020-07-03", "2020-05-01", 25, 5));
-        
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Generando JSON de 1 empleador con array empleados:");
-        System.out.println(nahuelEmpleador.toJSON().toString());
-
-        
-        Listado<Integer, Persona> empleadores = new Listado<Integer, Persona>();
-        empleadores.agregar(nahuelEmpleador.getNroLegajo(), nahuelEmpleador);
-        
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Generando JSON de listado de empleadores");
-        System.out.println(empleadores.toJSON().toString());
-        
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Guardando archivo JSON...");
-        JsonUtiles.grabar(empleadores.toJSON());
-        
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Leyendo archivo JSON...");
-        System.out.println(JsonUtiles.leer().toString());
-        
-        System.out.println("");
-        System.out.println("");
-        
-        
-        System.out.println("Guardando archivo");
-        Listado.guardarEnArchivo(empleadores);
-        
-        System.out.println("Leyendo archivo");
-        Listado<Integer, Persona> listado = Listado.leerDeArchivo();
-        System.out.println(listado.listar());
-        
-        
-        */
 
 	}
 
 	public static void menuPrincipal() {
 		int opcionMenu;
 
-		banner();
-		opcionMenu = mostrarMenu();
+		do {
+			banner();
 
-		switch (opcionMenu)
-		{
+			do {
+				opcionMenu = mostrarMenu();
+			} while (opcionMenu < 1 && opcionMenu > 10); // Rango de opciones del menu 1...10
+
+			switch (opcionMenu) {
 			case 1:
 				Empleador nuevoEmpleador = (Empleador) crearPersona(opcionMenu);
-
-				//Comento porque tira errores, ya no se llaman asi las funciones ni funcionan igual. 
-				//empleadores.leerDeArchivo();
-				//empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
-				//empleadores.guardarEnArchivo(empleadores);
-
-				// TODO terminar case
-				// empleadores.clear();
+				empleadores.agregar(nuevoEmpleador.getNroLegajo(), nuevoEmpleador);
 				break;
 
 			case 2:
-				// TODO case
-				//LimpiarBuffer(); empleadores.leerDeArchivo(); String nombre; String apellido;
-				//boolean encontrado = false;
-				 
-				//do
-				//{
-				//	System.out.println("Ingrese primer nombre del empleador:");
-			 
-			 	//} while ( );
-			 	
-			 	//Empleado nuevoEmpleado = crearPersona(opcionMenu);
+				// TODO ver método, tiene error.
+				case2(opcionMenu);
+				// Lo corvertí en un método para limitar la existencia de las variables solo al tiempo de ejecución del método,
+				//	y evitar inconvenientes con las mismas, ya que se repetirían o debería usar nombres muy parecidos,
+				// 	por ejemplo en los casos de nombre, apellido, buscado, etc
 				break;
 
 			case 3:
-				// TODO case
+				case3();
 				break;
-			
+
 			case 4:
-				// TODO case
+				case4();
 				break;
-			
+
 			case 5:
-				// TODO case
+				System.out.println("\n====================================================================================\n");
+
+				System.out.println("\t\t   Lista de empleadores registrados en el sistema\n\n");
+				System.out.println(empleadores.listar());
+
+				System.out.println("\n------------------------------------------------------------------------------------\n");
 				break;
-		
+
 			case 6:
-				// TODO case
+				// TODO case GENERAR RECIBOS
+				
 				break;
-	
+
 			case 7:
-				// TODO case
+				// TODO case GENERAR FACTURAS
 				break;
-			
+				
 			case 8:
-				// TODO case
+				// TODO case GENERAR JSON
+				System.out.println("\n====================================================================================\n");
+				System.out.println(empleadores.toJSON());
+				System.out.println("\n------------------------------------------------------------------------------------\n");
+				
+				
 				break;
-		}
+
+			case 9:
+				guardarCambios();
+				System.out.println("\n====================================================================================");
+				System.out.println("\t\t   Los cambios se guardaron correctamente");
+				System.out.println("\n------------------------------------------------------------------------------------");
+				break;
+				
+			case 10:
+				// TODO case ACERCA DEL SISTEMA
+				
+				break;
+
+			case CASE_SALIDA:
+				String confirmacion;
+				
+				LimpiarBuffer();
+				System.out.println("\n====================================================================================\n");
+				System.out.println("Confirmar: \n");
+				System.out.println("¿Desea salir del sistema?\n");
+				System.out.println("Presione S para confirmar, si presiona cualquier otra tecla volverá al menu principal:\n\n");
+				confirmacion = leer.nextLine();
+
+				if ( confirmacion.equalsIgnoreCase("S"))
+				{
+					guardarCambios();
+					System.out.println("¡Gracias. Vuelvas prontos!");
+					System.out.println("\n------------------------------------------------------------------------------------\n");
+				}
+				else
+				{
+					System.out.println("   >> Se ha cancelado la acción.");
+					menuPrincipal();
+				}
+				break;
+			}
+
+		} while (opcionMenu != CASE_SALIDA); // CASE_SALIDA contiene el valor de la opción del menú, que da la salida del sistema.
 
 	}
 
 	public static int mostrarMenu() {
 		int opcionMenu;
 
-		System.out.println("\n   Elija una opción:");
+		System.out.println("\n   Elija una opción y luego presione tecla Entrar:");
 		System.out.println("");
-		System.out.println("\t1.- Registrar un nuevo empleador");
-		System.out.println("\t2.- Registrar un nuevo empleado");
-		System.out.println("\t3.- Buscar un empleador.");
-		System.out.println("\t4.- Listar empleadores.");
-		System.out.println("\t5.- Generar recibos.");
-		System.out.println("\t6.- Generar factura.");
-		System.out.println("\t7.- Generar Json de archivo de empleadores.");
-		System.out.println("\t8.- Acerca del sistema.");
+		System.out.println("\t 1.- Registrar un nuevo empleador");
+		System.out.println("\t 2.- Registrar un nuevo empleado");
+		System.out.println("\t 3.- Buscar un empleador.");
+		System.out.println("\t 4.- Buscar un empleado.");
+		System.out.println("\t 5.- Listar empleadores.");
+		System.out.println("\t 6.- Generar recibos.");
+		System.out.println("\t 7.- Generar factura.");
+		System.out.println("\t 8.- Generar Json a partir del listado de empleadores.");
+		System.out.println("\t 9.- Guardar cambios en archivo.");
+		System.out.println("\t10.- Acerca del sistema.");
+		System.out.println("\t" + CASE_SALIDA + ".- Salir.");
 		opcionMenu = leer.nextInt();
 
 		return opcionMenu;
@@ -335,7 +259,7 @@ public class Main {
 		// NOMBRE
 		do {
 			LimpiarBuffer();
-			
+
 			System.out.println("Ingrese nombre: ");
 			nombre = leer.nextLine();
 
@@ -534,7 +458,15 @@ public class Main {
 
 		return nuevo;
 	}
-
+	
+	public static void guardarCambios()
+	{
+		ArrayList<String> array = empleadores.setNombreArchivosEmpleadores();
+		
+		Listado.guardarCuils(array);
+		empleadores.guardarListadoEnArchivos();
+	}
+	
 	public static void banner() {
 		System.out.println("\n====================================================================================\n");
 
@@ -545,5 +477,89 @@ public class Main {
 
 	private static void LimpiarBuffer() {
 		leer.nextLine();
+	}
+	
+	
+	
+	
+	// ---------------------------------------------- MÉTODOS CASE ----------------------------------------------------- //
+	
+	
+	public static void case2(int opcionMenu) // REGISTRAR UN NUEVO EMPLEADO
+	{
+		String nombre;
+		String apellido;
+		Integer claveBuscado;
+		
+		// TODO ARROJA ERROR ACÁ, NO DESCUBRO PROBLEMA
+		System.out.println("Ingrese el nombre de pila del empleador: \n\t(Empleador al que se le añadirán los datos de un nuevo empleado) ");
+		nombre = leer.nextLine();
+		LimpiarBuffer();
+		
+		System.out.println("Ingrese el apellido del empleador:");
+		apellido = leer.nextLine();
+		LimpiarBuffer();
+		
+		claveBuscado = empleadores.buscar(apellido, nombre);
+		
+		if ( claveBuscado == null )
+			System.out.println("El empleador que usted busca, no está registrado en el sistema");
+		else
+		{
+			Empleador buscado = (Empleador)empleadores.getEmpleador(claveBuscado);
+			Empleado nuevo = (Empleado) crearPersona(opcionMenu);
+			buscado.agregarEmpleado(nuevo.getNroLegajo(), nuevo);
+			System.out.println("Se asignó a " + nuevo.getNombreCompleto() + " como empleado de " + buscado.getNombreCompleto()+ ".\n");
+		}
+	}
+	
+	public static void case3() // BUSCAR UN EMPLEADOR
+	{
+		String nombre;
+		String apellido;
+		Empleador buscado;
+		
+		System.out.println("Ingrese el nombre de pila del empleador: ");
+		nombre = leer.nextLine();
+		LimpiarBuffer();
+		
+		System.out.println("Ingrese el apellido del empleador:");
+		apellido = leer.nextLine();
+		LimpiarBuffer();
+		
+		buscado = empleadores.buscar(apellido, nombre);
+		
+		if ( buscado == null )
+			System.out.println("El empleador que usted busca, no está registrado en el sistema");
+		else
+		{
+			buscado.toString();
+		}
+	}
+	
+	public static void case4() // BUSCAR UN EMPLEADO
+	{
+		/*
+		String nombre;
+		String apellido;
+		Empleador buscado;
+		
+		System.out.println("Ingrese el nombre de pila del empleador: ");
+		nombre = leer.nextLine();
+		LimpiarBuffer();
+		
+		System.out.println("Ingrese el apellido del empleador:");
+		apellido = leer.nextLine();
+		LimpiarBuffer();
+		
+		buscado = empleadores.buscar(apellido, nombre);
+		
+		if ( buscado == null )
+			System.out.println("El empleador que usted busca, no está registrado en el sistema");
+		else
+		{
+			buscado.toString();
+		}
+		*/
 	}
 }

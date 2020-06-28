@@ -92,6 +92,17 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	
 	
 	/**
+	 * <p><b><i>getNombreCompleto</i></b></p>
+	 * <pre>public String getNombreCompleto ()</pre>
+	 * @return Retorna el nombre completo de la persona en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String getNombreCompleto()
+	{
+		return nombre + " " + apellido;
+	}
+	
+	/**
 	 * <p><b><i>getNombre</i></b></p>
 	 * <pre>public String getNombre ()</pre>
 	 * @return Retorna el nombre de la persona en formato <code>String</code>.
