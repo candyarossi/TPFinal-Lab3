@@ -521,7 +521,7 @@ public class Main {
 		
 		String nombre;
 		String apellido;
-		Integer claveBuscado;
+		Integer claveBuscado = null;
 		String buscado;
 		
 		System.out.println("Ingrese el nombre de pila del empleador: ");
@@ -547,25 +547,56 @@ public class Main {
 	
 	public static void case4() // BUSCAR UN EMPLEADO
 	{
-		String nombre;
-		String apellido;
-		Empleador buscado;
+		LimpiarBuffer();
+		
+		
+		// 1 para identificar Empleador
+		String nombre1;
+		String apellido1;
+		Integer clave1;
+		Empleador buscado1;
+		
+		// 2 para identificar Empleado
+		String nombre2;
+		String apellido2;
+		String buscado2;
 		
 		System.out.println("Ingrese el nombre de pila del empleador: ");
-		nombre = leer.nextLine();
+		nombre1 = leer.nextLine();
 		LimpiarBuffer();
 		
 		System.out.println("Ingrese el apellido del empleador:");
-		apellido = leer.nextLine();
+		apellido1 = leer.nextLine();
 		LimpiarBuffer();
 		
-		buscado = empleadores.buscar(apellido, nombre);
+		clave1 = empleadores.buscar(apellido1, nombre1);
 		
-		if ( buscado == null )
+		if ( clave1 == null )
 			System.out.println("El empleador que usted busca, no está registrado en el sistema");
 		else
 		{
-			buscado.toString();
+			buscado1 = empleadores.getEmpleador(clave1);
+			
+			System.out.println("Empleador encontrado.");
+			System.out.println("Presione tecla Entrar para buscar el empleado.\n");
+			LimpiarBuffer();
+			
+			System.out.println("Ingrese el nombre de pila del empleado: ");
+			nombre2 = leer.nextLine();
+			LimpiarBuffer();
+			
+			System.out.println("Ingrese el apellido del empleado:");
+			apellido2 = leer.nextLine();
+			LimpiarBuffer();
+			
+			buscado2 = buscado1.buscarEmpleado(apellido2, nombre2);
+			
+			if ( buscado2 == null )
+				System.out.println("La persona que usted busca, no está registrada en el sistema como empleado de " + buscado1.getNombreCompleto() + "." );
+			else
+			{
+				System.out.println("\n" + buscado2);
+			}
 		}
 	}
 }
