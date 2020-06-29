@@ -547,7 +547,6 @@ public class Main {
 	
 	public static void case4() // BUSCAR UN EMPLEADO
 	{
-		/*
 		String nombre;
 		String apellido;
 		Empleador buscado;
@@ -568,6 +567,5 @@ public class Main {
 		{
 			buscado.toString();
 		}
-		*/
 	}
 }
