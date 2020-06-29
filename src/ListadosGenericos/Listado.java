@@ -1,15 +1,12 @@
 package ListadosGenericos;
 
-import java.awt.print.Printable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import org.json.JSONArray;
-
 import Archivos.GestorDeArchivos;
 import ClasesDePersonas.Empleado;
 import ClasesDePersonas.Empleador;
@@ -21,8 +18,8 @@ import Interfaces.ILista;
  * <p><b><i>Listado <K, T extends Persona></i></b></p>
  * <pre>public class Listado <K, T extends Persona> implements Serializable</pre>
  * <p>La clase <code>Listado <K, T extends Persona></code> es una clase genérica que puede ser utilizada para generar diferentes tipos de listados, 
- * donde K sea una clave única y significativa para el objeto y T sea un objeto que extienda de <code>Persona</code>. Esta clase implementa la
- * interfaz <code>Serializable</code>.</p>
+ * donde K sea una clave única y significativa para el objeto y T sea un objeto que extienda de <code>Persona</code>. Esta clase implementa las
+ * interfaces <code>Serializable</code> y <code>ILista</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
 public class Listado <K, T extends Persona> extends HashMap implements Serializable, ILista<K, T>
@@ -46,7 +43,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>agregar</i></b></p>
 	 * <pre>public void agregar (K clave, T persona)</pre>
-	 * * <p>Sobreescritura del método <code>guardar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
+	 * <p>Sobreescritura del método <code>guardar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave con la que será guardada la persona.
 	 * @param persona Recibe la persona a ser guardada.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -57,10 +54,11 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		hMap.put(clave, persona);
 	}
 	
+	
 	/**
 	 * <p><b><i>borrar</i></b></p>
 	 * <pre>public void borrar (K clave)</pre>
-	 * * <p>Sobreescritura del método <code>borrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
+	 * <p>Sobreescritura del método <code>borrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave de la persona a borrar.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
@@ -74,7 +72,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>listar</i></b></p>
 	 * <pre>public String listar ()</pre>
-	 * * <p>Sobreescritura del método <code>listar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
+	 * <p>Sobreescritura del método <code>listar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @return Retorna los nombres y apellidos de las personas que se encontraban en el listado en formato <code>String</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
@@ -96,7 +94,6 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 
-	
 	/**
 	 * <p><b><i>modificar</i></b></p>
 	 * <pre>public void modificar (K clave, T nuevaPersona)</pre>
@@ -115,7 +112,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>mostrar</i></b></p>
 	 * <pre>public String mostrar (K clave)</pre>
-	 * * <p>Sobreescritura del método <code>mostrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
+	 * <p>Sobreescritura del método <code>mostrar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @param clave Recibe la clave de la persona a mostrar.
 	 * @return Retorna un <code>String</code> con los datos de la persona a mostrar.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -125,6 +122,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	{
 		return hMap.get(clave).toString();
 	}
+	
 	
 	/**
 	 * <p><b><i>getEmpleador</i></b></p>
@@ -142,7 +140,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	/**
 	 * <p><b><i>contar</i></b></p>
 	 * <pre>public int contar ()</pre>
-	 * * <p>Sobreescritura del método <code>contar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
+	 * <p>Sobreescritura del método <code>contar()</code> perteneciente a la interfaz <code>ILista</code>.</p>
 	 * @return Retorna un <code>int</code> indicando cuantos registros hay en el listado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
@@ -185,7 +183,7 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	
 	/**
 	 * <p><b><i>toJSON</i></b></p>
-	 * <pre>public JSONArray toJSON()</pre>
+	 * <pre>public JSONArray toJSON ()</pre>
 	 * @return Retorna un <code>JSONArray</code> con los datos del listado que ha llamado al método.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
@@ -214,7 +212,12 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 	
-	//TODO doc 
+	/**
+	 * <p><b><i>setNombreArchivosEmpleadores</i></b></p>
+	 * <pre>public ArrayList<String> setNombreArchivosEmpleadores ()</pre>
+	 * @return Retorna un <code>ArrayList</code> con los nombres de los archivos que contienen a cada uno de los empleadores.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */ 
 	public ArrayList<String> setNombreArchivosEmpleadores () 
 	{
 		ArrayList<String> array = new ArrayList<String>();
@@ -232,12 +235,24 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 	
-	//TODO doc
+	/**
+	 * <p><b><i>guardarCuils</i></b></p>
+	 * <pre>public static void guardarCuils (ArrayList<String> array)</pre>
+	 * @param array Recibe un array con los nombres de los archivos de empleadores y los guarda.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static void guardarCuils (ArrayList<String> array)
 	{
 		GestorDeArchivos.guardarCuils(array);
 	}
 	
+	
+	/**
+	 * <p><b><i>leerCuils</i></b></p>
+	 * <pre>public static ArrayList<String> leerCuils ()</pre>
+	 * @return Retorna un <code>ArrayList</code> con los nombres de los archivos que contienen a los empleadores.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static ArrayList<String> leerCuils ()
 	{
 		ArrayList<String> array = new ArrayList<String>();
@@ -245,6 +260,13 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		return array;
 	}
 	
+	
+	/**
+	 * <p><b><i>guardarListadoEnArchivos</i></b></p>
+	 * <pre>public void guardarListadoEnArchivos ()</pre>
+	 * <p>Guarda el listado de empleadores en sus correspondientes archivos.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void guardarListadoEnArchivos ()
 	{
 		Iterator<Entry<K, T>> it = hMap.entrySet().iterator();
@@ -257,6 +279,13 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 		}
 	}
 	
+	
+	/**
+	 * <p><b><i>generarListadoDeArchivo</i></b></p>
+	 * <pre>public static Listado<Integer, Empleador> generarListadoDeArchivo ()</pre>
+	 * @return Retorna un listado de empleadores generado a partir de los archivos guardados.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static Listado<Integer, Empleador> generarListadoDeArchivo ()
 	{
 		Listado<Integer, Empleador> listado = new Listado<Integer, Empleador>();
@@ -272,7 +301,12 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	}
 	
 	
-	// TODO Documentar: "Elimina todas las asignaciones de este listado. El listado estará vacío después invocar este método."
+	/**
+	 * <p><b><i>vaciarListado</i></b></p>
+	 * <pre>public void vaciarListado ()</pre>
+	 * <p>Elimina todas las asignaciones de este listado. El listado estará vacío después invocar este método.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void vaciarListado()
 	{
 		hMap.clear();

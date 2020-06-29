@@ -3,8 +3,8 @@ package Interfaces;
 
 /**
  * <p><b><i>ILista</i></b></p>
- * <pre>public interface ILista</pre>
- * <p>La interfaz <code>ILista</code> contiene una serie de métodos a redefinir en aquellas clases que necesiten realizar estas operaciones básicas</p>
+ * <pre>public interface ILista<K, T></pre>
+ * <p>La interfaz <code>ILista</code> contiene una serie de métodos a redefinir en aquellas clases que necesiten realizar estas operaciones básicas.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
 public interface ILista<K, T>

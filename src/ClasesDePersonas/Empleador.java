@@ -3,7 +3,6 @@ package ClasesDePersonas;
 import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import Archivos.GestorDeArchivos;
 import Interfaces.IGenerarJSON;
 import ListadosGenericos.Listado;
@@ -195,12 +194,24 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	}
 
 	
-	//TODO doc
+	/**
+	 * <p><b><i>setNombreArchivo</i></b></p>
+	 * <pre>public void setNombreArchivo ()</pre>
+	 * <p>Crea el nombre del archivo del empleador.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public void setNombreArchivo () 
 	{
 		this.nombreArchivo =  getCuil() + ".dat";
 	}
 	
+	
+	/**
+	 * <p><b><i>getNombreArchivo</i></b></p>
+	 * <pre>public String getNombreArchivo ()</pre>
+	 * @return Retorna el nombre del archivo del empleador en formato <code>String</code>.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public String getNombreArchivo ()
 	{
 		return nombreArchivo;
@@ -209,7 +220,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>toString</i></b></p>
-	 * <pre>public String toString()</pre>
+	 * <pre>public String toString ()</pre>
 	 * <p>Sobreescritura del método <code>toString()</code>.</p>
 	 * @return Retorna un <code>String</code> con los datos del empleador.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -258,7 +269,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>toJSON</i></b></p>
-	 * <pre>public JSONObject toJSON()</pre>
+	 * <pre>public JSONObject toJSON ()</pre>
 	 * <p>Sobreescritura del método <code>toJSON()</code> perteneciente a la interfaz <code>IGenerarJSON</code>.</p>
 	 * @return Retorna un <code>JSONObject</code> con los datos del empleador en formato <code>JSON</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -287,20 +298,21 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	//TODO CAMBIAR DOC
 	/**
 	 * <p><b><i>guardarEnArchivo</i></b></p>
-	 * <pre>public static void guardarEnArchivo (Listado<Integer, Persona> listado) </pre>
-	 * @param listado Recibe el listado de pesonas que tiene que guardar en el archivo.
+	 * <pre>public static void guardarEnArchivo (Empleador empleador)</pre>
+	 * @param empleador Recibe el empleador a guardar en el archivo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public static void guardarEnArchivo (Empleador empleador) 
 	{
-			GestorDeArchivos.guardarEmpleado(empleador, empleador.getNombreArchivo()); 
+			GestorDeArchivos.guardarEmpleador(empleador, empleador.getNombreArchivo()); 
 	}
 	
 	
 	/**
 	 * <p><b><i>leerDeArchivo</i></b></p>
-	 * <pre>public static Listado<Integer, Persona> leerDeArchivo ()  </pre>
-	 * @return Retorna un listado de personas, leido del archivo.
+	 * <pre>public static Empleador leerDeArchivo (String archivo)</pre>
+	 * @param archivo Recibe el nombre del archivo a leer.
+	 * @return Retorna el empleador leido del archivo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public static Empleador leerDeArchivo (String archivo) 

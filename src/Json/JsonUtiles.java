@@ -19,7 +19,7 @@ public class JsonUtiles
 		 * <p><b><i>grabar</i></b></p>
 		 * <pre>public static void grabar (JSONArray array)</pre>
 		 * <p>Este método graba un <code>JSONArray</code> en un archivo "<code>.json</code>". </p>
-		 * @param array Recibe el JSONArray. 
+		 * @param array Recibe el JSONArray a guardar. 
 		 * @author Los profes de Programación y Laboratorio de Computación III - UTN FRMDP
 		 */
 		public static void grabar(JSONArray array)

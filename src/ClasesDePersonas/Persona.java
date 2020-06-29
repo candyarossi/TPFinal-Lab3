@@ -2,10 +2,8 @@ package ClasesDePersonas;
 
 import java.io.Serializable;
 import java.lang.StringBuilder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import Excepciones.ExcepcionDeCampoVacio;
 import Interfaces.IGenerarJSON;
 
@@ -450,32 +448,8 @@ public abstract class Persona implements IGenerarJSON, Serializable
 
 	
 	/**
-	 * <p><b><i>getNombreArchivo</i></b></p>
-	 * <pre>public String getNombreArchivo ()</pre>
-	 * @return Retorna el nombre del archivo de la persona en formato <code>String</code>.
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	public String getNombreArchivo()
-	{
-		return nombreArchivo;
-	}
-	
-	
-	/**
-	 * <p><b><i>setNombreArchivo</i></b></p>
-	 * <pre>public void setNombreArchivo ()</pre>
-	 * <p>Crea el nombre del archivo de la persona.</p>
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	public void setNombreArchivo()
-	{
-		nombreArchivo = getCuil() + ".dat";
-	}
-	
-	
-	/**
 	 * <p><b><i>toString</i></b></p>
-	 * <pre>public String toString()</pre>
+	 * <pre>public String toString ()</pre>
 	 * <p>Sobreescritura del método <code>toString()</code>.</p>
 	 * @return Retorna un <code>String</code> con los datos de la persona.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -499,7 +473,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>equals</i></b></p>
-	 * <pre>public boolean equals(Object obj)</pre>
+	 * <pre>public boolean equals (Object obj)</pre>
 	 * <p>Sobreescritura del método <code>equals(Object obj)</code>. Compara números de CUIL.</p>
 	 * @return Retorna un <code>boolean</code> indicando si ambas personas son iguales o no.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -524,7 +498,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>hashCode</i></b></p>
-	 * <pre>public int hashCode()</pre>
+	 * <pre>public int hashCode ()</pre>
 	 * <p>Sobreescritura del método <code>hashCode()</code>.</p>
 	 * @return Retorna 1.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -538,7 +512,7 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>toJSON</i></b></p>
-	 * <pre>public JSONObject toJSON()</pre>
+	 * <pre>public JSONObject toJSON ()</pre>
 	 * <p>Sobreescritura del método <code>toJSON()</code> perteneciente a la interfaz <code>IGenerarJSON</code>.</p>
 	 * @return Retorna un <code>JSONObject</code> con los datos de la persona en formato <code>JSON</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel

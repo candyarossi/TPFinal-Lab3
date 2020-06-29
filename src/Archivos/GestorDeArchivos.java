@@ -6,34 +6,29 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import ClasesDePersonas.Empleador;
-import ClasesDePersonas.Persona;
-import ListadosGenericos.Listado;
 
 
-// TODO doc
+/**
+ * <p><b><i>GestorDeArchivos</i></b></p>
+ * <pre>public class GestorDeArchivos</pre>
+ * <p>La clase <code>GestorDeArchivos</code> contiene todos los métodos para leer y escribir archivos binarios.</p>
+ * @author Yarossi, Candela & Trucco, Nahuel
+ */
 public class GestorDeArchivos
 {
 	
 	/**
-	 *  <p><b><i></i></b></p>
-	 * <pre>public static void guardar(Persona aux, String archivo)</pre>
-	 * <p>Esta función recibe un empleador y lo guarda en el archivo que también recive por parametro.</p>
-	 * @param persona 
-	 * @param archivo
+	 *  <p><b><i>guardarEmpleador</i></b></p>
+	 * <pre>public static void guardarEmpleador (Empleador empleador, String archivo)</pre>
+	 * @param empleador Recibe al empleador a guardar en el archivo.
+	 * @param archivo Recibe el nombre del archivo donde se va a guardar el empleador.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public static void guardarEmpleado(Empleador empleador, String archivo)
+	public static void guardarEmpleador(Empleador empleador, String archivo)
 	{
 		File file = new File(archivo);
 		
@@ -53,20 +48,23 @@ public class GestorDeArchivos
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+        	e.getMessage();
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+        	e.getMessage();
         }
-		
 		
 	}
 	
 	
-
-	// TODO Documentar método
-	// TODO leer
+	/**
+	 *  <p><b><i>leerEmpleador</i></b></p>
+	 * <pre>public static Empleador leerEmpleador (String archivo)</pre>
+	 * @param archivo Recibe el nombre del archivo que se debe leer.
+	 * @return Retorna el empleador leido del archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static Empleador leerEmpleador(String archivo)
 	{
 		Empleador empleador = null;
@@ -87,23 +85,27 @@ public class GestorDeArchivos
         }
         catch (EOFException e)
         {
-        	System.out.println("Fin del archivo.");
+        	System.out.println("");
         }
         catch (IOException e)
         {
-        	e.printStackTrace();
+        	e.getMessage();
         }
         catch (Exception e)
         {
-			e.printStackTrace();
+        	e.getMessage();
         }
-		
 		
 		return empleador;
     }
 	
 	
-	//TODO DOC
+	/**
+	 *  <p><b><i>guardarCuils</i></b></p>
+	 * <pre>public static void guardarCuils (ArrayList<String> array)</pre>
+	 * @param array Recibe el array con los nombres de los archivos de los empleadores.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static void guardarCuils(ArrayList<String> array)
 	{
 		File file = new File("cuils.dat");
@@ -127,19 +129,22 @@ public class GestorDeArchivos
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+        	e.getMessage();
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+        	e.getMessage();
         }
 		
 	}
 	
 	
-
-	// TODO Documentar método
-	// TODO leer
+	/**
+	 *  <p><b><i>leerCuils</i></b></p>
+	 * <pre>public static ArrayList<String> leerCuils ()</pre>
+	 * @return Retorna el array con los nombres de los archivos de los empleadores.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static ArrayList<String> leerCuils()
 	{
 		ArrayList<String> array = new ArrayList<String>();
@@ -168,22 +173,19 @@ public class GestorDeArchivos
         }
         catch (EOFException e)
         {
-        	//System.out.println("Fin del archivo de Cuils.");
+        	System.out.println("");
         }
         catch (IOException e)
         {
-        	e.printStackTrace();
+        	e.getMessage();
         }
         catch (Exception e)
         {
-			e.printStackTrace();
+			e.getMessage();
         }
-		
 		
 		return array;
     }
-	
-	
 	
 
 }

@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.sun.crypto.provider.HmacMD5;
-
 import Interfaces.IGenerarJSON;
-import ListadosGenericos.Listado;
 
 
 /**
@@ -141,7 +137,7 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>toString</i></b></p>
-	 * <pre>public String toString()</pre>
+	 * <pre>public String toString ()</pre>
 	 * <p>Sobreescritura del método <code>toString()</code>.</p>
 	 * @return Retorna un <code>String</code> con los datos del empleado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
@@ -155,7 +151,7 @@ public class Empleado extends Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>toJSON</i></b></p>
-	 * <pre>public JSONObject toJSON()</pre>
+	 * <pre>public JSONObject toJSON ()</pre>
 	 * <p>Sobreescritura del método <code>toJSON()</code> perteneciente a la interfaz <code>IGenerarJSON</code>.</p>
 	 * @return Retorna un <code>JSONObject</code> con los datos del empleado en formato <code>JSON</code>.
 	 * @author Yarossi, Candela & Trucco, Nahuel
