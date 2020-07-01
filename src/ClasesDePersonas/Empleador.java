@@ -1,6 +1,10 @@
 package ClasesDePersonas;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import Archivos.GestorDeArchivos;
@@ -8,6 +12,7 @@ import Interfaces.IGenerarJSON;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
 import Papeles.Recibo;
+import sun.util.locale.provider.AuxLocaleProviderAdapter;
 
 
 /**
@@ -133,16 +138,68 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	
 	/**
 	 * <p><b><i>buscarEmpleado</i></b></p>
-	 * <pre>public String buscarEmpleado (String apellido, String nombre)</pre>
-	 * @param nombre Recibe el nombre del empleado.
-	 * @param apellido Recibe el apellido del empleado.
-	 * @return Retorna un <code>String</code> con los datos del empleado.
+	 * <pre>public Empleado buscarEmpleado (String apellido, String nombre)</pre>
+	 * @param clave Recibe la clave (Numero de legajo) del empleado.
+	 * @return Retorna un <code>Empleado</code> con los datos del empleado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public String buscarEmpleado (String apellido, String nombre)
+	public Empleado buscarEmpleado (Integer clave)
+	{
+		boolean encontrado = false;
+		Empleado empleado = null;
+		
+		if ( clave != null )
+		{
+			Iterator it = empleados.entrySet().iterator();
+			
+			while ( !encontrado && it.hasNext() )
+			{
+				Map.Entry<Integer, Empleado> me = (Entry<Integer, Empleado>) it.next();
+				Empleado aux = (Empleado) me.getValue();
+				
+				if ( aux.getNroLegajo() == clave )
+				{
+					encontrado = true;
+					empleado = aux;
+				}
+			}
+		}
+		
+		return empleado;
+	}
+	
+	/**
+	 * <p><b><i>buscarEmpleado</i></b></p>
+	 * <pre>public Empleado buscarEmpleado (String apellido, String nombre)</pre>
+	 * @param nombre Recibe el nombre del empleado.
+	 * @param apellido Recibe el apellido del empleado.
+	 * @return Retorna un <code>Empleado</code> con los datos del empleado.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public Empleado buscarEmpleado (String apellido, String nombre)
 	{
 		Integer clave = empleados.buscar(apellido, nombre);
-		return empleados.mostrar(clave);
+		boolean encontrado = false;
+		Empleado empleado = null;
+		
+		if ( clave != null )
+		{
+			Iterator it = empleados.entrySet().iterator();
+			
+			while ( !encontrado && it.hasNext() )
+			{
+				Map.Entry<Integer, Empleado> me = (Entry<Integer, Empleado>) it.next();
+				Empleado aux = (Empleado) me.getValue();
+				
+				if ( aux.getNombreCompleto().equalsIgnoreCase(nombre + " " + apellido)  )
+				{
+					encontrado = true;
+					empleado = aux;
+				}
+			}
+		}
+		
+		return empleado;
 	}
 	
 	
@@ -233,8 +290,8 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	
 	
 	/**
-	 * <p><b><i>generarRecibos</i></b></p>
-	 * <pre>public String generarRecibos (Empleador empleador, Empleado empleado, float sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)</pre>
+	 * <p><b><i>generarRecibo</i></b></p>
+	 * <pre>public String generarRecibo (Empleador empleador, Empleado empleado, float sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)</pre>
 	 * @param empleador Recibe al empleador.
 	 * @param empleado Recibe al empleado del que se va a generar el recibo.
 	 * @param sueldoBasico Recibe el monto del sueldo básico establecido para la categoría del empleado.
@@ -245,7 +302,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	 * @return Retorna un <code>String</code> con el recibo de sueldo del empleado.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public String generarRecibos (Empleador empleador, Empleado empleado, double sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)
+	public String generarRecibo (Empleador empleador, Empleado empleado, double sueldoBasico, String fechaPago, String periodo, int diasTrabajados, int diasVacaciones)
 	{
 		Recibo recibo = new Recibo(empleador, empleado, sueldoBasico, fechaPago, periodo, diasTrabajados, diasVacaciones);
 		return recibo.imprimirRecibo().toString();

@@ -80,14 +80,14 @@ public class Recibo
 	 * @param diasVacaciones Recibe la cantidad de días que el empleado se ha tomado de vacaciones en este periodo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public Recibo(Empleador empleador, Empleado empleado, double sueldoBasico, String fPago, String period, int diasTrabajados, int diasVacaciones)
+	public Recibo(Empleador empleador, Empleado empleado, double sueldoBasico, String fPago, String periodo, int diasTrabajados, int diasVacaciones)
 	{
 		super();
 		this.empleador = empleador;
 		this.empleado = empleado;
 		this.sueldoBasico = sueldoBasico;
 		fechaPago = LocalDate.parse(fPago);
-		periodo = LocalDate.parse(period);
+		this.periodo = LocalDate.parse(periodo);
 		this.diasTrabajados = diasTrabajados;
 		this.diasVacaciones = diasVacaciones;
 		obraSocial = calcularObraSocial(sueldoBasico);
@@ -95,11 +95,11 @@ public class Recibo
 		ley = calcularLey19032(sueldoBasico);
 		cuotaSindical = calcularCuotaSindical(sueldoBasico);
 		destajo = calcularDestajo(sueldoBasico, diasTrabajados);
-		antiguedad = calcularAntiguedad(sueldoBasico, empleado.getFechaIngreso(), LocalDate.parse(period));
+		antiguedad = calcularAntiguedad(sueldoBasico, empleado.getFechaIngreso(), LocalDate.parse(periodo));
 		presentismo = calcularPresentismo(sueldoBasico, antiguedad);
-		sac = calcularSAC(sueldoBasico, diasTrabajados, empleado.getFechaIngreso(), LocalDate.parse(period));
+		sac = calcularSAC(sueldoBasico, diasTrabajados, empleado.getFechaIngreso(), LocalDate.parse(periodo));
 		vacaciones = calcularVacaciones(sueldoBasico, diasTrabajados, diasVacaciones); 
-		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones, empleado.getFechaIngreso(), LocalDate.parse(period));
+		totalRemuneraciones = calcularTotalRemuneraciones(sueldoBasico, diasTrabajados, diasVacaciones, empleado.getFechaIngreso(), LocalDate.parse(periodo));
 		totalRetenciones = calcularTotalRetenciones(sueldoBasico);
 		salarioNeto = calcularSalarioNeto(totalRemuneraciones, totalRetenciones);
 	}
@@ -245,7 +245,7 @@ public class Recibo
 	 * @return Retorna un <code>Recibo</code> en formato <code>StringBuilder</code> con todos sus datos.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public StringBuilder imprimirRecibo()
+	public String imprimirRecibo()
 	{		
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n-----------------------------------------------------\n");
@@ -269,7 +269,7 @@ public class Recibo
 				+ "\n\nPeriodo Liquidado: " + periodo.getYear() + "-" + periodo.getMonthValue() 
 				+ "\nFecha de Pago: " + fechaPago);
 		sb.append("\n-----------------------------------------------------\n\n");
-		return sb;
+		return sb.toString();
 	}
 	
 

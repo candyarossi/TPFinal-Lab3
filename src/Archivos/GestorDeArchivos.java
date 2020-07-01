@@ -85,7 +85,7 @@ public class GestorDeArchivos
         }
         catch (EOFException e)
         {
-        	System.out.println("");
+        	System.out.println("Archivo leido.");
         }
         catch (IOException e)
         {

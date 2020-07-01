@@ -1,0 +1,113 @@
+package appData;
+
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+
+public class DatosDelSistema
+{
+	public static int cantidadLegajos = 0;;
+	
+	public DatosDelSistema()
+	{
+		cantidadLegajos = DatosDelSistema.leerDatos("datos.dat");
+	}
+	
+	
+	public int getCantLegajos()
+	{
+		return cantidadLegajos;
+	}
+	
+	public static void incrementarLegajo()
+	{
+		cantidadLegajos++;
+	}
+
+	
+	/**
+	 *  <p><b><i>guardarDatos</i></b></p>
+	 * <pre>public static void guardarDatos (DatosDelSistema datos, String archivo)</pre>
+	 * @param datos Recibe los datos a guardar en el archivo.
+	 * @param archivo Recibe el nombre del archivo donde se va a guardar los datos.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public static void guardarDatos()
+	{
+		
+		File file = new File("datos.dat");
+		
+		try
+        {
+            FileOutputStream fos = new FileOutputStream("datos.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                       
+        	oos.writeInt(cantidadLegajos);
+  
+            oos.close();
+         
+        }	
+		catch (FileNotFoundException e)
+        {
+            System.out.println("Archivo inexistente.");
+        }
+        catch (IOException e)
+        {
+        	e.getMessage();
+        }
+        catch (Exception e)
+        {
+        	e.getMessage();
+        }
+		
+	}
+	
+	
+	
+	/**
+	 *  <p><b><i>leerDatos</i></b></p>
+	 * <pre>public static DatosDelSistema leerDatos (String archivo)</pre>
+	 * @param archivo Recibe el nombre del archivo que se debe leer.
+	 * @return Retorna el dato leido del archivo.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public static int leerDatos(String archivo)
+	{
+		int dato = 0;
+		
+		try
+        {
+            FileInputStream fis = new FileInputStream(archivo);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+                  	
+            dato = (int) ois.readInt();
+          
+            ois.close();
+           
+        }
+		catch (FileNotFoundException e)
+        {
+			System.out.println("Archivo inexistente.");
+        }
+        catch (EOFException e)
+        {
+        	System.out.println("Archivo leido.");
+        }
+        catch (IOException e)
+        {
+        	e.getMessage();
+        }
+        catch (Exception e)
+        {
+        	e.getMessage();
+        }
+		
+		return dato;
+    }
+}

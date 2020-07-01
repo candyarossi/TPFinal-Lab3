@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import Excepciones.ExcepcionDeCampoVacio;
 import Interfaces.IGenerarJSON;
+import appData.DatosDelSistema;
 
 
 /**
@@ -27,7 +28,6 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	private String telefono;
 	private String email; 
 	public int nroLegajo; 
-	public static int cantidad = 1;
 	public String nombreArchivo; 
 	
 	
@@ -391,22 +391,13 @@ public abstract class Persona implements IGenerarJSON, Serializable
 	 */
 	private int setNroLegajo()
 	{
-		return incrementarCantidad();
+		DatosDelSistema dato = new DatosDelSistema();
+		int proxlegajo = dato.getCantLegajos() +1;
+		
+		DatosDelSistema.incrementarLegajo();
+		
+		return proxlegajo;
 	}
-	
-	
-	
-	/**
-	 * <p><b><i>incrementarCantidad</i></b></p>
-	 * <pre>private static int incrementarCantidad ()</pre>
-	 * @return Retorna el incremento del número de legajo en formato <code>int</code>.
-	 * @author Yarossi, Candela & Trucco, Nahuel
-	 */
-	private static int incrementarCantidad()
-	{
-		return cantidad++;
-	}
-	
 	
 	
 	/**
