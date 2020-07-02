@@ -46,8 +46,6 @@ public class Main {
 		menuPrincipal();
 		
 
-		
-
 	}
 
 	/**
@@ -158,6 +156,9 @@ public class Main {
 			case CASE_SALIDA:
 				DatosDelSistema.guardarDatos();
 				guardarCambios();
+				System.out.println("\n====================================================================================");
+				System.out.println("\n\t\t   Los cambios se guardaron correctamente");
+				System.out.println("\n------------------------------------------------------------------------------------");
 				
 				String confirmacion;
 				
@@ -193,8 +194,8 @@ public class Main {
 
 		System.out.println("\n   Elija una opción y luego presione tecla Entrar:");
 		System.out.println("");
-		System.out.println("\t 1.- Registrar un nuevo empleador");
-		System.out.println("\t 2.- Registrar un nuevo empleado");
+		System.out.println("\t 1.- Registrar un nuevo empleador.");
+		System.out.println("\t 2.- Registrar un nuevo empleado.");
 		System.out.println("\t 3.- Buscar un empleador.");
 		System.out.println("\t 4.- Buscar un empleado.");
 		System.out.println("\t 5.- Listar empleadores.");
