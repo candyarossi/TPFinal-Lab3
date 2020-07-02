@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.lang.StringBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import Archivos.DatosDelSistema;
 import Excepciones.ExcepcionDeCampoVacio;
 import Interfaces.IGenerarJSON;
-import appData.DatosDelSistema;
 
 
 /**

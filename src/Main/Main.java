@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.json.JSONArray;
 
+import Archivos.DatosDelSistema;
 import Archivos.GestorDeArchivos;
 
 import java.util.Map.Entry;
@@ -28,7 +29,6 @@ import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
 import Papeles.Recibo;
-import appData.DatosDelSistema;
 
 public class Main {
 
@@ -51,7 +51,7 @@ public class Main {
 	/**
 	 * <p><b><i>menuPrincipal</i></b></p>
 	 * <pre>public static void menuPrincipal()</pre>
-	 * <p>Contiene el <code>switch</c> que construye el menu principal del sistema, solo dejará de 
+	 * <p>Contiene el <code>switch</code> que construye el menu principal del sistema, solo dejará de 
 	 * ejecutarse cuando el usuario ingrese un valor igual al almacenado en <code>CASE_SALIDA</code></p>
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
@@ -213,10 +213,10 @@ public class Main {
 	/**
 	 * <p><b><i>crearPersona</i></b></p>
 	 * <pre>private static Persona crearPersona(int opcionMenu)</pre>
-	 * <p>Crea una <code>Persona (Empleaador o Empleado</code> dependiendo de la opción elegida por el usuario.</p>
-	 * @param opcionMenu Recibe la opcion escojida por el usuario, puede ser 1 o 2
-	 * @return Retorna un <code>Persona</code> que contendrá un <code>Empleador</code> o un <code>Empleador</code>
-	 * -gracias al método de sustitución- según la opción elegida por usuario.
+	 * <p>Crea una <code>Persona (Empleaador o Empleado)</code> dependiendo de la opción elegida por el usuario.</p>
+	 * @param opcionMenu Recibe la opcion escogida por el usuario, puede ser 1 o 2.
+	 * @return Retorna un <code>Persona</code> que contendrá un <code>Empleador</code> o un <code>Empleado</code>
+	 * -gracias al principio de sustitución- según la opción elegida por usuario.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	private static Persona crearPersona(int opcionMenu) {
@@ -491,9 +491,9 @@ public class Main {
 }
 	
 	/**
-	 * <p><b><i>buscarEmpleador</i></b></p>
-	 * <pre>public static Empleador buscarEmpleador()</pre>
-	 * @return Retorna un <code>Empleador</code> buscado por el usuario o <code>null</code> si no existe.
+	 * <p><b><i>buscarEmpleado</i></b></p>
+	 * <pre>public static Empleado buscarEmpleado()</pre>
+	 * @return Retorna un <code>Empleado</code> buscado por el usuario o <code>null</code> si no existe.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 public static Empleado buscarEmpleado(Empleador empleador)
