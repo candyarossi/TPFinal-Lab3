@@ -9,14 +9,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-// TODO documentar
+/**
+ * <p><b><i>DatosDelSistema</i></b></p>
+ * <pre>public class DatosDelSistema</pre>
+ * <p>La clase <code>DatosDelSistema</code> maneja datos del sistema, como la asignación de datos de legajo</p>
+ * @author Yarossi, Candela & Trucco, Nahuel
+ */
 public class DatosDelSistema
 {
+	public static final String archivoSistema = "datos.dat";
 	public static int cantidadLegajos;
+	
 	
 	public DatosDelSistema()
 	{
-		cantidadLegajos = DatosDelSistema.leerDatos("datos.dat");
+		cantidadLegajos = DatosDelSistema.leerDatos();
 	}
 	
 	
@@ -25,7 +32,7 @@ public class DatosDelSistema
 		return cantidadLegajos;
 	}
 	
-	public static void setCantLegajo(int cantidadLegajos)
+	public static void setCantLegajos(int cantidadLegajos)
 	{
 		DatosDelSistema.cantidadLegajos = cantidadLegajos;
 	}
@@ -33,19 +40,17 @@ public class DatosDelSistema
 	
 	/**
 	 *  <p><b><i>guardarDatos</i></b></p>
-	 * <pre>public static void guardarDatos (DatosDelSistema datos, String archivo)</pre>
-	 * @param datos Recibe los datos a guardar en el archivo.
-	 * @param archivo Recibe el nombre del archivo donde se va a guardar los datos.
+	 * <pre>public static void guardarDatos ()</pre>
+	 * <p>Guarda en el archvivo los datos de la clase</p>
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
 	public static void guardarDatos()
 	{
-		String archivo = "datos.dat";
-		File file = new File(archivo);
+		File file = new File(archivoSistema);
 		
 		try
         {
-            FileOutputStream fos = new FileOutputStream(archivo);
+            FileOutputStream fos = new FileOutputStream(archivoSistema);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
                        
         	oos.writeInt(DatosDelSistema.cantidadLegajos);
@@ -55,7 +60,7 @@ public class DatosDelSistema
         }	
 		catch (FileNotFoundException e)
         {
-            System.out.println("Archivo inexistente.----------1");
+            System.out.println("Archivo inexistente.");
         }
         catch (IOException e)
         {
@@ -72,18 +77,18 @@ public class DatosDelSistema
 	
 	/**
 	 *  <p><b><i>leerDatos</i></b></p>
-	 * <pre>public static DatosDelSistema leerDatos (String archivo)</pre>
+	 * <pre>public static int leerDatos (String archivo)</pre>
 	 * @param archivo Recibe el nombre del archivo que se debe leer.
 	 * @return Retorna el dato leido del archivo.
 	 * @author Yarossi, Candela & Trucco, Nahuel
 	 */
-	public static int leerDatos(String archivo)
+	public static int leerDatos()
 	{
 		int dato = 0;
 		
 		try
         {
-            FileInputStream fis = new FileInputStream(archivo);
+            FileInputStream fis = new FileInputStream(archivoSistema);
             ObjectInputStream ois = new ObjectInputStream(fis);
                   	
             dato = (int) ois.readInt();
@@ -111,15 +116,19 @@ public class DatosDelSistema
 		return dato;
     }
 	
-	// TODO documentar
+	/**
+	 *  <p><b><i>set0</i></b></p>
+	 * <pre>public static void set0 ()</pre>
+	 * <p>Crea el archivo de <code>DatosDelSistema</code> e inicializa sus datos.</p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static void set0()
 	{
-		String archivo = "datos.dat";
-		File file = new File(archivo);
+		File file = new File(archivoSistema);
 		
 		try
         {
-            FileOutputStream fos = new FileOutputStream(archivo);
+            FileOutputStream fos = new FileOutputStream(archivoSistema);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
                        
         	oos.writeInt(0);

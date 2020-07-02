@@ -309,6 +309,17 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		return super.toString() + "\nActividad: " + actividad + "\n\nEmpleados: \n" + verEmpleados();
 	}
 	
+	/**
+	 * <p><b><i>mostrarDatos</i></b></p>
+	 * <pre>public String mostrarDatos ()</pre>
+	 * @return Retorna un <code>String</code> con los datos del empleador.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public String mostrarDatos()
+	{
+		return super.toString() + "\nActividad: " + actividad + "\n";
+	}
+	
 	
 	/**
 	 * <p><b><i>generarRecibo</i></b></p>

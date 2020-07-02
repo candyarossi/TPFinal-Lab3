@@ -39,7 +39,9 @@ public class Main {
 	public static void main(String[] args)
 	{
 		
-		empleadores = Listado.generarListadoDeArchivo();
+		Main.generarDatosGenericos();
+		
+//		empleadores = Listado.generarListadoDeArchivo();
 		
 		menuPrincipal();
 		
@@ -48,7 +50,13 @@ public class Main {
 
 	}
 
-	// TODO documentar
+	/**
+	 * <p><b><i>menuPrincipal</i></b></p>
+	 * <pre>public static void menuPrincipal()</pre>
+	 * <p>Contiene el <code>switch</c> que construye el menu principal del sistema, solo dejará de 
+	 * ejecutarse cuando el usuario ingrese un valor igual al almacenado en <code>CASE_SALIDA</code></p>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static void menuPrincipal() {
 		int opcionMenu;
 
@@ -144,8 +152,7 @@ public class Main {
 				break;
 				
 			case 10:
-				// TODO case ACERCA DEL SISTEMA
-				
+				acercaDelSistema();   
 				break;
 
 			case CASE_SALIDA:
@@ -202,7 +209,15 @@ public class Main {
 		return opcionMenu;
 	}
 
-	// TODO documentar
+	/**
+	 * <p><b><i>crearPersona</i></b></p>
+	 * <pre>private static Persona crearPersona(int opcionMenu)</pre>
+	 * <p>Crea una <code>Persona (Empleaador o Empleado</code> dependiendo de la opción elegida por el usuario.</p>
+	 * @param opcionMenu Recibe la opcion escojida por el usuario, puede ser 1 o 2
+	 * @return Retorna un <code>Persona</code> que contendrá un <code>Empleador</code> o un <code>Empleador</code>
+	 * -gracias al método de sustitución- según la opción elegida por usuario.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	private static Persona crearPersona(int opcionMenu) {
 		Persona nueva = null;
 		boolean semaforo;
@@ -354,7 +369,6 @@ public class Main {
 
 	}
 
-	// TODO documentar
 	private static Empleador crearEmpleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
 			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxActividad;
@@ -376,7 +390,6 @@ public class Main {
 		return nuevo;
 	}
 
-	// TODO documentar
 	private static Empleado crearEmpleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
 			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxCategoria;
@@ -430,7 +443,12 @@ public class Main {
 		empleadores.guardarListadoEnArchivos();
 	}
 	
-	// TODO documentar
+	/**
+	 * <p><b><i>buscarEmpleador</i></b></p>
+	 * <pre>public static Empleador buscarEmpleador()</pre>
+	 * @return Retorna un <code>Empleador</code> buscado por el usuario o <code>null</code> si no existe.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 	public static Empleador buscarEmpleador()
 	{
 	LimpiarBuffer();
@@ -470,12 +488,18 @@ public class Main {
 	
 	return empleador;
 }
-	// TODO documentar
+	
+	/**
+	 * <p><b><i>buscarEmpleador</i></b></p>
+	 * <pre>public static Empleador buscarEmpleador()</pre>
+	 * @return Retorna un <code>Empleador</code> buscado por el usuario o <code>null</code> si no existe.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
 public static Empleado buscarEmpleado(Empleador empleador)
-{
-	String nombre = "";
+{	
+	 String nombre = "";
 	String apellido = "";
-	// Integer claveEmpleado;
+//	Integer claveEmpleado;
 	Empleado empleado = null;
 	
 	while ( nombre.isEmpty() )
@@ -499,8 +523,8 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	}
 	
 	// PRUEBA DE SOBRECARGA DEL METODO buscarEmpleado() de la clase Empleador.
-	 //claveEmpleado = empleados.buscar(apellido, nombre);
-	 //empleado = empleador.buscarEmpleado(claveEmpleado);
+//	 claveEmpleado = empleados.buscar(apellido, nombre);
+//	 empleado = empleador.buscarEmpleado(claveEmpleado);
 			
 	empleado = empleador.buscarEmpleado(apellido, nombre);
 	
@@ -508,7 +532,7 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	return empleado;
 }
 
-// TODO documentar
+
 public static String formarPeriodo()
 {
 	String periodo = "";
@@ -532,6 +556,19 @@ public static String formarPeriodo()
 		System.out.println("\t\t\t    Bienvenido a SevenGestión");
 
 		System.out.println("\n------------------------------------------------------------------------------------\n");
+	}
+	
+	public static void acercaDelSistema()
+	{
+		System.out.println("SevenGestión v1.0");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("\t> SevenGestión es el Trabajo Final de Laboratorio de Computación 3. ");
+		System.out.println("\n\t\t>> Diseñado y desarrollado por Candela Yarossi y Nahuel Truco.");
+		System.out.println("\n\t> Es un sistema de gestión contable generador de recibos de sueldo y facturación" 
+						   + "\t  de gastos administrativos en base a datos de empleadores y sus empleados.");
+		System.out.println("");
+		System.out.println("\tUltima revisión: Viernes 3 de Julio de 2020");
 	}
 
 	private static void LimpiarBuffer()
@@ -566,6 +603,8 @@ public static String formarPeriodo()
 	
 	public static void case4() // BUSCAR UN EMPLEADO
 	{
+		
+		//TODO revisar, no anda
 		LimpiarBuffer();
 		
 		Empleador empleador =  buscarEmpleador();
@@ -590,7 +629,8 @@ public static String formarPeriodo()
 			}
 		}
 	}
-	// TODO documentar
+	
+	
 	public static void case6()
 	{
 		Empleador empleador = buscarEmpleador();
@@ -670,6 +710,72 @@ public static String formarPeriodo()
 				
 			}
 		}
+	}
+	
+	
+	
+	// CARGA DE DATOS GENERICOS PARA PRUEBAS
+	public static void generarDatosGenericos()
+	{
+		Empleador empleador1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20502315405"), "Mar del Plata", 
+				"Argentino", "Falucho 995","Mar del Plata", "+542236338083", "nahuel.trucco.bkn@gmail.com", "Java Full-Stack Developer");
+		
+		
+		Empleado empleado11 =  new Empleado("Gabriela", "Gomez", new StringBuilder("204005653395"), "Mar del Plata", 
+				"Argentino", "Arenales 425", "Mar del Plata", "+542236260365", "gabiel@gomez.com", "categoria", "OSDE", "1995-05-15");
+		
+		Empleado empleado12 =  new Empleado("Julieta", "Guzman", new StringBuilder("204005288495"), "Mar del Plata", 
+				"Argentino", "Azcuenaga 12345", "Mar del Plata", "+542236520365", "qwerty@qwerty.com", "categoria", "OSDE", "1985-05-15");
+		
+		Empleado empleado13 =  new Empleado("Ivan", "Goméz", new StringBuilder("203305658495"), "Mar del Plata", 		
+				"Argentino", "Constitución 1345", "Mar del Plata", "+542236520365", "qaz@yui.com", "", "OSDE", "1992-05-15");
+		
+		Empleado empleado14 =  new Empleado("Agustina", "Zabala", new StringBuilder("204005648495"), "Mar del Plata", 
+				"Argentino", "Luro 1245", "Mar del Plata", "+542238520365", "email", "categoria", "OSDE", "1985-05-15");
+
+		Empleado empleado15 =  new Empleado("Nicolas", "Benavidez", new StringBuilder("2040056168495"), "Mar del Plata", 
+				"Argentino", "Libertad 1235", "Mar del Plata", "+542236520765", "email", "categoria", "OSDE", "1997-05-15");
+		
+		empleador1.agregarEmpleado(empleado11.getNroLegajo(), empleado11);
+		empleador1.agregarEmpleado(empleado12.getNroLegajo(), empleado12);
+		empleador1.agregarEmpleado(empleado13.getNroLegajo(), empleado13);
+		empleador1.agregarEmpleado(empleado14.getNroLegajo(), empleado14);
+		empleador1.agregarEmpleado(empleado15.getNroLegajo(), empleado15);
+		
+		
+		
+		
+		Empleador empleador2 = new Empleador("Candela", "Yarossi", new StringBuilder("20397845625"), "Mar del Plata", 
+				"Argentina", "Luro 4523", "Mar del Plata", "+542235448596", "candela@yarossi.com", "Diseño Gráfico");
+		
+		Empleado empleado21 =  new Empleado("Santino", "Guardia", new StringBuilder("20452361812"), "CABA", "Argentino",
+				"San Martin 1253", "CABA", "+5411465328", "liuy@paser.com", "categoria", "Maphre", "1985-05-14");
+		
+		Empleado empleado22 =  new Empleado("Bruno", "Guardia", new StringBuilder("20452318812"), "CABA", "Argentino",
+				"San Nicolas 1253", "CABA", "+5414565328", "lasre@paser.com", "categoria", "Maphre", "1985-05-14");
+					
+		Empleado empleado23 =  new Empleado("Diego", "Roca", new StringBuilder("20458561812"), "Mar del Plata", "Argentino",
+				"Belgrano 1253", "CABA", "+5411465328", "granafk@paser.com", "categoria", "Maphre", "1995-04-14");
+					
+		Empleado empleado24 =  new Empleado("Sabrina", "Mendiola", new StringBuilder("20452385612"), "Chascomus", "Argentina",
+				"San Martin 4520", "Mar del Plata", "+5429165328", "sabrina@paser.com", "categoria", "Maphre", "2015-05-14");
+					
+		Empleado empleado25 =  new Empleado("Victoria", "Balbuena", new StringBuilder("20452361842"), "CABA", "Argentina",
+				"Aristobulo del Valle 1614", "Mar del Plata", "+54114515328", "vbalbuena@paser.com", "categoria", "Maphre", "2019-05-14");
+		
+		empleador2.agregarEmpleado(empleado21.getNroLegajo(), empleado21);
+		empleador2.agregarEmpleado(empleado22.getNroLegajo(), empleado22);
+		empleador2.agregarEmpleado(empleado23.getNroLegajo(), empleado23);
+		empleador2.agregarEmpleado(empleado24.getNroLegajo(), empleado24);
+		empleador2.agregarEmpleado(empleado25.getNroLegajo(), empleado25);
+		
+		
+		
+		
+		
+		
+		empleadores.agregar(empleador1.getNroLegajo(), empleador1);
+		empleadores.agregar(empleador2.getNroLegajo(), empleador2);
 	}
 }
 

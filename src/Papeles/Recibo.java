@@ -248,27 +248,40 @@ public class Recibo
 	public String imprimirRecibo()
 	{		
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n-----------------------------------------------------\n");
-		sb.append("RECIBO \n\n");
-		sb.append("EMPLEADOR: \n");
-		sb.append(empleador.toString());
+		sb.append("\n=====================================================\n");
+		sb.append("\n\t\t   :: RECIBO ::\n\n");
+		
+		sb.append("\n-----------------------------------");
+		sb.append("\nEMPLEADOR: \n");
+		sb.append(empleador.mostrarDatos());
+		
+		sb.append("\n-----------------------------------");
 		sb.append("\nEMPLEADO: \n");
 		sb.append(empleado.toString());
-		sb.append("\n\n\nRetenciones: \nDNRP = $ " + String.format ("%.2f", jubilacion)
-				+ "\nINSSJP Ley 19032 = $ " + String.format ("%.2f", ley) 
-				+ "\nObra Social " + empleado.getObraSocial() + " = $ " + String.format ("%.2f", obraSocial) 
-				+ "\nCuota Sindical = $ " + String.format ("%.2f", cuotaSindical) 
-				+ "\nTotal = $ " + String.format ("%.2f", totalRetenciones) + "\n"
-				+ "\nRemuneraciones: \nDestajo = $ " + String.format ("%.2f", destajo)
-				+ "\nPresentismo = $ " + String.format ("%.2f", presentismo) 
-				+ "\nAntiguedad = $ " + String.format ("%.2f", antiguedad) 
-				+ "\nSAC = $ " + String.format ("%.2f", sac) 
-				+ "\nVacaciones = $ " + String.format ("%.2f", vacaciones) 
-				+ "\nTotal = $ " + String.format ("%.2f", totalRemuneraciones) + "\n"
-				+ "\nNeto a Percibir: $ " + String.format ("%.2f", salarioNeto) 
-				+ "\n\nPeriodo Liquidado: " + periodo.getYear() + "-" + periodo.getMonthValue() 
-				+ "\nFecha de Pago: " + fechaPago);
-		sb.append("\n-----------------------------------------------------\n\n");
+		
+		sb.append("\n\n-----------------------------------");
+		sb.append("\nRetenciones: \n\nDNRP = $ " + String.format ("%.2f", jubilacion));
+		sb.append("\nINSSJP Ley 19032 = $ " + String.format ("%.2f", ley));
+		sb.append("\nObra Social " + empleado.getObraSocial() + " = $ " + String.format ("%.2f", obraSocial));
+		sb.append("\nCuota Sindical = $ " + String.format ("%.2f", cuotaSindical));
+		sb.append("\nTotal = $ " + String.format ("%.2f", totalRetenciones) + "\n");
+		
+		sb.append("\n\n-----------------------------------");
+		sb.append("\nRemuneraciones: \nDestajo = $ " + String.format ("%.2f", destajo));
+		sb.append("\nPresentismo = $ " + String.format ("%.2f", presentismo) );
+		sb.append("\nAntiguedad = $ " + String.format ("%.2f", antiguedad) );
+		sb.append("\nSAC = $ " + String.format ("%.2f", sac) );
+		sb.append("\nVacaciones = $ " + String.format ("%.2f", vacaciones) ); 
+		sb.append("\nTotal = $ " + String.format ("%.2f", totalRemuneraciones) + "\n" );
+		
+		sb.append("\n\n-----------------------------------");
+		sb.append("\nNeto a Percibir: $ " + String.format ("%.2f", salarioNeto) + "\n");
+		
+		sb.append("\n\n-----------------------------------");
+		sb.append("\nPeriodo Liquidado: " + periodo.getYear() + "-" + periodo.getMonthValue() );
+		sb.append("\nFecha de Pago: " + fechaPago);
+		
+		sb.append("\n\n\n=====================================================\n\n");
 		return sb.toString();
 	}
 	

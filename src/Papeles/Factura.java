@@ -58,14 +58,19 @@ public class Factura {
 	public StringBuilder imprimirFactura () 
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n-----------------------------------------------------\n");
-		sb.append("FACTURA");
-		sb.append("\n\nSr./Sra. " + empleador.getApellido() + " " + empleador.getNombre());
-		sb.append("\n\nSe cobrara un total de $ " + String.format ("%.2f", total) 
-				+ " \npor los gastos administrativos de " + cantidadEmpleados 
-				+ " empleados:\n" + empleador.verEmpleados()
-				+ "siendo el valor individual por cada recibo de $ " + String.format ("%.2f", costoPorRecibo));
-		sb.append("\n-----------------------------------------------------\n\n");
+		sb.append("\n=====================================================\n");
+		sb.append("\n\t\t   :: FACTURA ::\n\n");
+		
+		sb.append("\n\n  Sr./Sra. " + empleador.getApellido() + " " + empleador.getNombre());
+		
+		sb.append("\n\nSe cobrara un total de $ " + String.format ("%.2f", total) + ","); 
+		sb.append(" \npor los gastos administrativos de " + cantidadEmpleados );
+		
+		sb.append(" empleados:\n\n" + empleador.verEmpleados() + "\n\n" );
+		
+		sb.append("Siendo el valor individual por cada recibo: $ " + String.format ("%.2f", costoPorRecibo));
+		sb.append("\n=====================================================\n");
+		
 		return sb;
 	}
 }
