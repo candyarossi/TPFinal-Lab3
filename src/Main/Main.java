@@ -477,7 +477,6 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	String apellido = "";
 	// Integer claveEmpleado;
 	Empleado empleado = null;
-	LimpiarBuffer();
 	
 	while ( nombre.isEmpty() )
 	{
@@ -500,8 +499,8 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	}
 	
 	// PRUEBA DE SOBRECARGA DEL METODO buscarEmpleado() de la clase Empleador.
-	// claveEmpleado = empleados.buscar(apellido, nombre);
-	// empleado = empleador.buscarEmpleado(claveEmpleado);
+	 //claveEmpleado = empleados.buscar(apellido, nombre);
+	 //empleado = empleador.buscarEmpleado(claveEmpleado);
 			
 	empleado = empleador.buscarEmpleado(apellido, nombre);
 	

@@ -394,7 +394,8 @@ public abstract class Persona implements IGenerarJSON, Serializable
 		DatosDelSistema dato = new DatosDelSistema();
 		int proxlegajo = dato.getCantLegajos() +1;
 		
-		DatosDelSistema.incrementarLegajo();
+		DatosDelSistema.setCantLegajo(proxlegajo);
+		DatosDelSistema.guardarDatos();
 		
 		return proxlegajo;
 	}

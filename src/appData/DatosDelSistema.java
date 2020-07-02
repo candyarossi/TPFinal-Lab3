@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 // TODO documentar
 public class DatosDelSistema
 {
-	public static int cantidadLegajos = 0;;
+	public static int cantidadLegajos;
 	
 	public DatosDelSistema()
 	{
@@ -25,9 +25,9 @@ public class DatosDelSistema
 		return cantidadLegajos;
 	}
 	
-	public static void incrementarLegajo()
+	public static void setCantLegajo(int cantidadLegajos)
 	{
-		cantidadLegajos++;
+		DatosDelSistema.cantidadLegajos = cantidadLegajos;
 	}
 
 	
@@ -48,7 +48,7 @@ public class DatosDelSistema
             FileOutputStream fos = new FileOutputStream(archivo);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
                        
-        	oos.writeInt(cantidadLegajos);
+        	oos.writeInt(DatosDelSistema.cantidadLegajos);
   
             oos.close();
          

@@ -180,15 +180,19 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	{
 		Integer clave = empleados.buscar(apellido, nombre);
 		
-		System.out.println("nombre: " + nombre + "apellido: " + apellido);
+		System.out.println("Nombre: " + nombre + " Apellido: " + apellido);
 		boolean encontrado = false;
 		Empleado empleado = null;
 		
 		// TODO quitar print
 		System.out.println("------------: TEST BUSCAR EMPLEADO : EMPLEADOR");
+
 		
 		// TODO quitar print
 		System.out.println("CLAVE: " + clave);
+		
+		//Aca lo muestra bien.
+		System.out.println(empleados.mostrar(clave));
 		
 		if ( clave != null )
 		{
@@ -202,7 +206,9 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 				// TODO quitar print
 				System.out.println("------------: aux " + aux.toString());
 				
-				if ( aux.getNombreCompleto().equalsIgnoreCase(nombre + " " + apellido)  )
+//				if ( aux.getNombreCompleto().equalsIgnoreCase(nombre + " " + apellido)  )
+					if ( aux.getNombre().equalsIgnoreCase(nombre) && aux.getApellido().equalsIgnoreCase(apellido) )
+
 				{
 					encontrado = true;
 					empleado = aux;
