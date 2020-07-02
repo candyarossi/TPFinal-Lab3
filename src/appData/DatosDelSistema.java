@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
+// TODO documentar
 public class DatosDelSistema
 {
 	public static int cantidadLegajos = 0;;
@@ -40,12 +40,12 @@ public class DatosDelSistema
 	 */
 	public static void guardarDatos()
 	{
-		
-		File file = new File("datos.dat");
+		String archivo = "datos.dat";
+		File file = new File(archivo);
 		
 		try
         {
-            FileOutputStream fos = new FileOutputStream("datos.dat");
+            FileOutputStream fos = new FileOutputStream(archivo);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
                        
         	oos.writeInt(cantidadLegajos);
@@ -55,7 +55,7 @@ public class DatosDelSistema
         }	
 		catch (FileNotFoundException e)
         {
-            System.out.println("Archivo inexistente.");
+            System.out.println("Archivo inexistente.----------1");
         }
         catch (IOException e)
         {
@@ -87,13 +87,13 @@ public class DatosDelSistema
             ObjectInputStream ois = new ObjectInputStream(fis);
                   	
             dato = (int) ois.readInt();
-          
+                      
             ois.close();
            
         }
 		catch (FileNotFoundException e)
         {
-			System.out.println("Archivo inexistente.");
+			DatosDelSistema.set0();
         }
         catch (EOFException e)
         {
@@ -110,4 +110,34 @@ public class DatosDelSistema
 		
 		return dato;
     }
+	
+	// TODO documentar
+	public static void set0()
+	{
+		String archivo = "datos.dat";
+		File file = new File(archivo);
+		
+		try
+        {
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                       
+        	oos.writeInt(0);
+  
+            oos.close();
+         
+        }	
+		catch (FileNotFoundException e)
+        {
+            System.out.println("Archivo inexistente.");
+        }
+        catch (IOException e)
+        {
+        	e.getMessage();
+        }
+        catch (Exception e)
+        {
+        	e.getMessage();
+        }
+	}
 }

@@ -28,6 +28,7 @@ import Json.JsonUtiles;
 import ListadosGenericos.Listado;
 import Papeles.Factura;
 import Papeles.Recibo;
+import appData.DatosDelSistema;
 
 public class Main {
 
@@ -35,91 +36,19 @@ public class Main {
 	static Listado<Integer, Empleador> empleadores = new Listado<Integer, Empleador>();
 	static final int CASE_SALIDA = 11; // Actualizar esta variable siempre que se agreguen o quiten opciones al menú principal.
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		
 		empleadores = Listado.generarListadoDeArchivo();
 		
 		menuPrincipal();
 		
-	
 
-//		Empleador nuevo1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20207565334"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
-//				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-//		
-//		Empleador nuevo2 = new Empleador("Nahuel", "Goméz", new StringBuilder("20207565335"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
-//				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-//		
-//		Empleador nuevo3 = new Empleador("Nahuel", "Peréz", new StringBuilder("20207565336"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
-//				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea");
-//		
-//		
-//		Empleado empleadito = new Empleado("Cande", "Escudero", new StringBuilder("20202002002"), "Buenos Aires", "Argentina", "Chacabuco 1312", 
-//				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
-//		
-//		Empleado empleadito2 = new Empleado("Cande", "Margaride", new StringBuilder("20202002003"), "Buenos Aires", "Argentina", "Chacabuco 1312",
-//				"Mar del Plata", "487-7741", "lucas@gmail.com", "Ni idea", "otra", "2020-03-04");
-//
-//		
-//		
-//		nuevo2.agregarEmpleado(empleadito.getNroLegajo(), empleadito);
-//		nuevo2.agregarEmpleado(empleadito2.getNroLegajo(), empleadito2);
-//		
-//		empleadores.agregar(nuevo1.getNroLegajo(), nuevo1);
-//		empleadores.agregar(nuevo2.getNroLegajo(), nuevo2);
-//		empleadores.agregar(nuevo3.getNroLegajo(), nuevo3);
-//		
-//		System.out.println("Listado de empleados antes de guardar:");
-//		
-//		System.out.println(empleadores.listar());
-//		
-//		System.out.println("Guardando...\n");
-//		
-//		ArrayList<String> array = empleadores.setNombreArchivosEmpleadores();
-//		
-//		Listado.guardarCuils(array);
-//		empleadores.guardarListadoEnArchivos();
-//		
-//		
-//		System.out.println("Leyendo...");
-//		Listado<Integer, Empleador> empleadores2 = Listado.generarListadoDeArchivo();
-//		//ArrayList<String> array2 = GestorDeArchivos.leerCuils();
-//		System.out.println("\nLista de nombres de archivos:");
-//		 
-//		//for(String str : array2)
-//			//System.out.println(str);
-//		 
-//		
-//		System.out.println("\nPrueba de leer un archivo en especial 1:");
-//		Empleador emp2 = GestorDeArchivos.leerEmpleador("20-20756533-6.dat");
-//		System.out.println(emp2.toString());
-//		
-//		
-//		System.out.println("\nPrueba de leer un archivo en especial 2:");
-//		Empleador emp3 = GestorDeArchivos.leerEmpleador("20-20756533-5.dat");
-//		System.out.println(emp3.toString());
-//		
-//		
-//		System.out.println("\nPrueba de leer un archivo en especial 3:");
-//		Empleador emp4 = GestorDeArchivos.leerEmpleador("20-20756533-4.dat");
-//		System.out.println(emp4.toString());
-//		
-//		
-//		System.out.println("------");
-//		System.out.println("Listado luego de la recuperacion:");
-//		System.out.println(empleadores2.listar()); System.out.println("------");
-//		
-//		
-//		System.out.println("\nAccediendo a un empleado de un empleador recuperado de archivo:");
-//		String clave = emp3.buscarEmpleado("Escudero", "Cande");
-//		System.out.println(clave);
-//		
-//		JSONArray arrayJ = empleadores2.toJSON(); JsonUtiles.grabar(arrayJ);
-//		System.out.println("\n\n\nJSON del Listado Completo:"); String json =
-//		JsonUtiles.leer(); System.out.println(json);
 		
 
 	}
 
+	// TODO documentar
 	public static void menuPrincipal() {
 		int opcionMenu;
 
@@ -207,6 +136,7 @@ public class Main {
 				break;
 
 			case 9:
+				DatosDelSistema.guardarDatos();
 				guardarCambios();
 				System.out.println("\n====================================================================================");
 				System.out.println("\n\t\t   Los cambios se guardaron correctamente");
@@ -219,6 +149,7 @@ public class Main {
 				break;
 
 			case CASE_SALIDA:
+				DatosDelSistema.guardarDatos();
 				guardarCambios();
 				
 				String confirmacion;
@@ -241,6 +172,9 @@ public class Main {
 					menuPrincipal();
 				}
 				break;
+				
+			default:
+				System.out.println("\n\t >> Opción invalida");
 			}
 
 		} while (opcionMenu != CASE_SALIDA); // CASE_SALIDA contiene el valor de la opción del menú, que da la salida del sistema.
@@ -268,6 +202,7 @@ public class Main {
 		return opcionMenu;
 	}
 
+	// TODO documentar
 	private static Persona crearPersona(int opcionMenu) {
 		Persona nueva = null;
 		boolean semaforo;
@@ -419,6 +354,7 @@ public class Main {
 
 	}
 
+	// TODO documentar
 	private static Empleador crearEmpleador(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
 			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxActividad;
@@ -440,6 +376,7 @@ public class Main {
 		return nuevo;
 	}
 
+	// TODO documentar
 	private static Empleado crearEmpleado(String nombre, String apellido, StringBuilder cuil, String lugarNacimiento,
 			String nacionalidad, String direccion, String lugarResidencia, String telefono, String email) {
 		String auxCategoria;
@@ -493,8 +430,9 @@ public class Main {
 		empleadores.guardarListadoEnArchivos();
 	}
 	
-public static Empleador buscarEmpleador()
-{
+	// TODO documentar
+	public static Empleador buscarEmpleador()
+	{
 	LimpiarBuffer();
 	
 	String nombre = "";
@@ -532,7 +470,7 @@ public static Empleador buscarEmpleador()
 	
 	return empleador;
 }
-
+	// TODO documentar
 public static Empleado buscarEmpleado(Empleador empleador)
 {
 	String nombre = "";
@@ -571,6 +509,7 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	return empleado;
 }
 
+// TODO documentar
 public static String formarPeriodo()
 {
 	String periodo = "";
@@ -652,7 +591,7 @@ public static String formarPeriodo()
 			}
 		}
 	}
-	
+	// TODO documentar
 	public static void case6()
 	{
 		Empleador empleador = buscarEmpleador();

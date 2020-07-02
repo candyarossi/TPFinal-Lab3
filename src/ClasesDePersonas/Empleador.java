@@ -179,8 +179,16 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	public Empleado buscarEmpleado (String apellido, String nombre)
 	{
 		Integer clave = empleados.buscar(apellido, nombre);
+		
+		System.out.println("nombre: " + nombre + "apellido: " + apellido);
 		boolean encontrado = false;
 		Empleado empleado = null;
+		
+		// TODO quitar print
+		System.out.println("------------: TEST BUSCAR EMPLEADO : EMPLEADOR");
+		
+		// TODO quitar print
+		System.out.println("CLAVE: " + clave);
 		
 		if ( clave != null )
 		{
@@ -191,10 +199,17 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 				Map.Entry<Integer, Empleado> me = (Entry<Integer, Empleado>) it.next();
 				Empleado aux = (Empleado) me.getValue();
 				
+				// TODO quitar print
+				System.out.println("------------: aux " + aux.toString());
+				
 				if ( aux.getNombreCompleto().equalsIgnoreCase(nombre + " " + apellido)  )
 				{
 					encontrado = true;
 					empleado = aux;
+					
+					
+					// TODO quitar print
+					System.out.println("------------: empleado:  " + empleado.toString());
 				}
 			}
 		}
@@ -352,7 +367,6 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	}
 	
 	
-	//TODO CAMBIAR DOC
 	/**
 	 * <p><b><i>guardarEnArchivo</i></b></p>
 	 * <pre>public static void guardarEnArchivo (Empleador empleador)</pre>

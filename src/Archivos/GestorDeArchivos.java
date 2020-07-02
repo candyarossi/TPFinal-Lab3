@@ -44,7 +44,7 @@ public class GestorDeArchivos
         }	
 		catch (FileNotFoundException e)
         {
-            System.out.println("Archivo inexistente.");
+            System.out.println("Archivo inexistente. de guardar empleador");
         }
         catch (IOException e)
         {
@@ -81,7 +81,8 @@ public class GestorDeArchivos
         }
 		catch (FileNotFoundException e)
         {
-			System.out.println("Archivo inexistente.");
+			// TODO acomodat print
+			System.out.println("Archivo inexistente. de leer empleador");
         }
         catch (EOFException e)
         {
@@ -125,7 +126,8 @@ public class GestorDeArchivos
         }	
 		catch (FileNotFoundException e)
         {
-            System.out.println("Archivo inexistente.");
+			// TODO acomodat print
+            System.out.println("Archivo inexistente. ggggggggggggggggggggggggggggg");
         }
         catch (IOException e)
         {
@@ -169,7 +171,8 @@ public class GestorDeArchivos
         }
 		catch (FileNotFoundException e)
         {
-			System.out.println("Archivo inexistente.");
+			// TODO acomodat print
+			System.out.println("Archivo inexistente. llllllllllllllllllllllll1");
         }
         catch (EOFException e)
         {
