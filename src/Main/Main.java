@@ -39,7 +39,7 @@ public class Main {
 	public static void main(String[] args)
 	{
 		
-		Main.generarDatosGenericos();
+		empleadores = Main.generarDatosGenericos();
 		
 //		empleadores = Listado.generarListadoDeArchivo();
 		
@@ -714,10 +714,18 @@ public static String formarPeriodo()
 	}
 	
 	
-	
-	// CARGA DE DATOS GENERICOS PARA PRUEBAS
-	public static void generarDatosGenericos()
+	/**
+	 * <p><b><i>generarDatosGenericos</i></b></p>
+	 * <pre>public static Listado<Integer, Empleador> generarDatosGenericos()</pre>
+	 * @return Retorna un <code>Listado</code> de empleadores genericos, se usa para pruebas.
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public static Listado<Integer, Empleador> generarDatosGenericos()
 	{
+		
+		Listado<Integer, Empleador> empleadoresGenericos = new Listado<Integer, Empleador>();
+		
+		
 		Empleador empleador1 = new Empleador("Nahuel", "Trucco", new StringBuilder("20502315405"), "Mar del Plata", 
 				"Argentino", "Falucho 995","Mar del Plata", "+542236338083", "nahuel.trucco.bkn@gmail.com", "Java Full-Stack Developer");
 		
@@ -774,9 +782,70 @@ public static String formarPeriodo()
 		
 		
 		
+		Empleador empleador3 = new Empleador("Cosme", "Fulanito", new StringBuilder("20632548549"), "Bourdeos", 
+				"Frances", "Saavedra 4523", "Mar del Plata", "+542234568596", "cosme@fulanito.com", "Pintor");
+		
+		
+		Empleado empleado31 =  new Empleado("Victoria", "Rodrigez", new StringBuilder("20361754575"), "CABA", "Argentina",
+				"Aristobulo del Valle 896", "Mar del Plata", "+54112215328", "vrodrigez@full.com", "categoria", "Maphre", "2009-05-14");
+
+		Empleado empleado32 =  new Empleado("Carlos", "Rodrigez", new StringBuilder("20312584575"), "CABA", "Argentina",
+				"Saavedra 896", "Mar del Plata", "+54112298328", "crodriguez@full.com", "categoria", "Maphre", "2019-05-14");
+
+		Empleado empleado33 =  new Empleado("Samanta", "Dieguez", new StringBuilder("20368984575"), "CABA", "Argentina",
+				"Quintana 4568", "Mar del Plata", "+54112211628", "sdieguez@full.com", "categoria", "Maphre", "2009-08-14");
+
+		Empleado empleado34 =  new Empleado("Hector", "Gonzalez", new StringBuilder("20361584135"), "CABA", "Argentina",
+				"Gral. Roca 4569", "Mar del Plata", "+54112273328", "hectorg@full.com", "categoria", "Maphre", "2009-05-25");
+
+		Empleado empleado35 =  new Empleado("Juan", "Perez", new StringBuilder("20361194575"), "CABA", "Argentina",
+				"Matheu 4583", "Mar del Plata", "+54112211328", "perezjuan@full.com", "categoria", "Maphre", "2003-05-14");
+		
+		
+		empleador3.agregarEmpleado(empleado31.getNroLegajo(), empleado31);
+		empleador3.agregarEmpleado(empleado32.getNroLegajo(), empleado32);
+		empleador3.agregarEmpleado(empleado33.getNroLegajo(), empleado33);
+		empleador3.agregarEmpleado(empleado34.getNroLegajo(), empleado34);
+		empleador3.agregarEmpleado(empleado35.getNroLegajo(), empleado35);
+		
+		
+		
+		
+		Empleador empleador4 = new Empleador("Jairo", "Velenzuela", new StringBuilder("20401856525"), "Mar del Plata", 
+				"Argentino", "Polonia 4523", "Mar del Plata", "+542234452396", "jairo@valenzuela.com", "Programador C");
+		
+		Empleado empleado41 =  new Empleado("Diego", "Jara", new StringBuilder("20361144289"), "Mar del Plata", "Argentina",
+				"Buenos Aires 1805", "Mar del Plata", "+54112753228", "jarad@val.com", "categoria", "Asociart", "2011-12-14");
+		
+		Empleado empleado42 =  new Empleado("Diego", "Mendiola", new StringBuilder("20361143575"), "Neuquen", "Argentina",
+				"Cordoba 1805", "Mar del Plata", "+54112427328", "mendiolad@val.com", "categoria", "Asociart", "2010-07-24");
+		
+		Empleado empleado43 =  new Empleado("Javier", "Diaz", new StringBuilder("20312353575"), "Mendoza", "Argentina",
+				"Ayacucho 2145", "Mar del Plata", "+54112445628", "javierdiaz@val.com", "categoria", "Asociart", "2010-07-24");
+		
+		Empleado empleado44 =  new Empleado("Cristina", "Gaitan", new StringBuilder("20361458975"), "Tierra del Fuego", "Argentina",
+				"Chañares 994", "Tierra del Fuego", "+54112427328", "gaitancristina@val.com", "categoria", "Asociart", "2019-12-24");
+		
+		Empleado empleado45 =  new Empleado("Marcos", "Falcon", new StringBuilder("20364523575"), "CABA", "Argentina",
+				"Estrada 1823", "Mar del Plata", "+54223647328", "mfalcon@val.com", "categoria", "Asociart", "2001-11-14");
+		
+		
+		empleador4.agregarEmpleado(empleado41.getNroLegajo(), empleado41);
+		empleador4.agregarEmpleado(empleado42.getNroLegajo(), empleado42);
+		empleador4.agregarEmpleado(empleado43.getNroLegajo(), empleado43);
+		empleador4.agregarEmpleado(empleado44.getNroLegajo(), empleado44);
+		empleador4.agregarEmpleado(empleado45.getNroLegajo(), empleado45);
+		
+		
+		
 		
 		empleadores.agregar(empleador1.getNroLegajo(), empleador1);
 		empleadores.agregar(empleador2.getNroLegajo(), empleador2);
+		empleadores.agregar(empleador3.getNroLegajo(), empleador3);
+		empleadores.agregar(empleador4.getNroLegajo(), empleador4);
+		
+		
+		return empleadoresGenericos;
 	}
 }
 
