@@ -267,7 +267,7 @@ public class Recibo
 		sb.append("\nTotal = $ " + String.format ("%.2f", totalRetenciones) + "\n");
 		
 		sb.append("\n\n-----------------------------------");
-		sb.append("\nRemuneraciones: \nDestajo = $ " + String.format ("%.2f", destajo));
+		sb.append("\nRemuneraciones:\n\nDestajo = $ " + String.format ("%.2f", destajo));
 		sb.append("\nPresentismo = $ " + String.format ("%.2f", presentismo) );
 		sb.append("\nAntiguedad = $ " + String.format ("%.2f", antiguedad) );
 		sb.append("\nSAC = $ " + String.format ("%.2f", sac) );

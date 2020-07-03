@@ -38,14 +38,10 @@ public class Main {
 
 	public static void main(String[] args)
 	{
+		//empleadores = generarDatosGenericos();
 		
-		empleadores = Main.generarDatosGenericos();
-		
-//		empleadores = Listado.generarListadoDeArchivo();
-		
+		empleadores = Listado.generarListadoDeArchivo();
 		menuPrincipal();
-		
-
 	}
 
 	/**
@@ -82,7 +78,7 @@ public class Main {
 				Empleador buscado = buscarEmpleador();
 				
 				if ( buscado != null )
-					System.out.println(buscado.toString());
+					System.out.println("\n----------------------------------------- " + buscado.toString());
 				else
 					System.out.println("El empleador que usted busca, no está registrado en el sistema");
 				break;
@@ -484,8 +480,10 @@ public class Main {
 	
 	if ( claveEmpleador != null )
 	{
+	
 		empleador = empleadores.getEmpleador(claveEmpleador);
 	}
+	
 	
 	return empleador;
 }
@@ -524,8 +522,8 @@ public static Empleado buscarEmpleado(Empleador empleador)
 	}
 	
 	// PRUEBA DE SOBRECARGA DEL METODO buscarEmpleado() de la clase Empleador.
-//	 claveEmpleado = empleados.buscar(apellido, nombre);
-//	 empleado = empleador.buscarEmpleado(claveEmpleado);
+	// claveEmpleado = empleados.buscar(apellido, nombre);
+	// empleado = empleador.buscarEmpleado(claveEmpleado);
 			
 	empleado = empleador.buscarEmpleado(apellido, nombre);
 	
@@ -540,7 +538,7 @@ public static String formarPeriodo()
 
 	while ( periodo.isEmpty() )
 	{
-		System.out.println("Ingrese la fecha de pago (aaaa-mm): ");
+		System.out.println("Ingrese el periodo a abonar al empleado (aaaa-mm): ");
 		periodo = leer.nextLine();
 		LimpiarBuffer();
 		
@@ -561,15 +559,19 @@ public static String formarPeriodo()
 	
 	public static void acercaDelSistema()
 	{
-		System.out.println("SevenGestión v1.0");
+		System.out.println("\n\n====================================================================================\n");
+		System.out.println("\t\t\t  ::  SevenGestión v1.0  ::");
+		System.out.println("\t\t\t-----------------------------");
 		System.out.println("");
 		System.out.println("");
 		System.out.println("\t> SevenGestión es el Trabajo Final de Laboratorio de Computación 3. ");
 		System.out.println("\n\t\t>> Diseñado y desarrollado por Candela Yarossi y Nahuel Truco.");
-		System.out.println("\n\t> Es un sistema de gestión contable generador de recibos de sueldo y facturación" 
-						   + "\t  de gastos administrativos en base a datos de empleadores y sus empleados.");
+		System.out.println("\n\t> Es un sistema de gestión contable generador de recibos de sueldo y \n"
+				+ "\t\tfacturación de gastos administrativos en base a datos de\n"
+				+ "\t\templeadores y sus empleados.");
 		System.out.println("");
-		System.out.println("\tUltima revisión: Viernes 3 de Julio de 2020");
+		System.out.println("\n\n\túltima revisión: Jueves 2 de Julio de 2020");
+		System.out.println("\n\tPresentación: Viernes 3 de Julio de 2020");
 	}
 
 	private static void LimpiarBuffer()
@@ -604,8 +606,6 @@ public static String formarPeriodo()
 	
 	public static void case4() // BUSCAR UN EMPLEADO
 	{
-		
-		//TODO revisar, no anda
 		LimpiarBuffer();
 		
 		Empleador empleador =  buscarEmpleador();
@@ -626,7 +626,7 @@ public static String formarPeriodo()
 				System.out.println("La persona que usted busca, no está registrada en el sistema como empleado de " + empleador.getNombreCompleto() + "." );
 			else
 			{
-				System.out.println("\n\t >> " + empleado.getNombreCompleto());
+				System.out.println("\n----------------------------------------- " + empleado.toString());
 			}
 		}
 	}
@@ -751,7 +751,7 @@ public static String formarPeriodo()
 		empleador1.agregarEmpleado(empleado14.getNroLegajo(), empleado14);
 		empleador1.agregarEmpleado(empleado15.getNroLegajo(), empleado15);
 		
-		
+			
 		
 		
 		Empleador empleador2 = new Empleador("Candela", "Yarossi", new StringBuilder("20397845625"), "Mar del Plata", 
@@ -828,8 +828,7 @@ public static String formarPeriodo()
 		
 		Empleado empleado45 =  new Empleado("Marcos", "Falcon", new StringBuilder("20364523575"), "CABA", "Argentina",
 				"Estrada 1823", "Mar del Plata", "+54223647328", "mfalcon@val.com", "categoria", "Asociart", "2001-11-14");
-		
-		
+				
 		empleador4.agregarEmpleado(empleado41.getNroLegajo(), empleado41);
 		empleador4.agregarEmpleado(empleado42.getNroLegajo(), empleado42);
 		empleador4.agregarEmpleado(empleado43.getNroLegajo(), empleado43);
@@ -839,10 +838,11 @@ public static String formarPeriodo()
 		
 		
 		
-		empleadores.agregar(empleador1.getNroLegajo(), empleador1);
-		empleadores.agregar(empleador2.getNroLegajo(), empleador2);
-		empleadores.agregar(empleador3.getNroLegajo(), empleador3);
-		empleadores.agregar(empleador4.getNroLegajo(), empleador4);
+		
+		empleadoresGenericos.agregar(empleador1.getNroLegajo(), empleador1);
+		empleadoresGenericos.agregar(empleador2.getNroLegajo(), empleador2);
+		empleadoresGenericos.agregar(empleador3.getNroLegajo(), empleador3);
+		empleadoresGenericos.agregar(empleador4.getNroLegajo(), empleador4);
 		
 		
 		return empleadoresGenericos;

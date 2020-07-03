@@ -150,7 +150,7 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 		
 		if ( clave != null )
 		{
-			Iterator it = empleados.entrySet().iterator();
+			Iterator it = empleados.getHashMap().entrySet().iterator();
 			
 			while ( !encontrado && it.hasNext() )
 			{
@@ -180,42 +180,23 @@ public class Empleador extends Persona implements IGenerarJSON, Serializable
 	{
 		Integer clave = empleados.buscar(apellido, nombre);
 		
-		System.out.println("Nombre: " + nombre + " Apellido: " + apellido);
-		boolean encontrado = false;
+boolean encontrado = false;
 		Empleado empleado = null;
-		
-		// TODO quitar print
-		System.out.println("------------: TEST BUSCAR EMPLEADO : EMPLEADOR");
-
-		
-		// TODO quitar print
-		System.out.println("CLAVE: " + clave);
-		
-		//Aca lo muestra bien.
-		System.out.println(empleados.mostrar(clave));
-		
+				
 		if ( clave != null )
 		{
-			Iterator it = empleados.entrySet().iterator();
+			Iterator it = empleados.getHashMap().entrySet().iterator();
 			
 			while ( !encontrado && it.hasNext() )
 			{
 				Map.Entry<Integer, Empleado> me = (Entry<Integer, Empleado>) it.next();
 				Empleado aux = (Empleado) me.getValue();
 				
-				// TODO quitar print
-				System.out.println("------------: aux " + aux.toString());
 				
-//				if ( aux.getNombreCompleto().equalsIgnoreCase(nombre + " " + apellido)  )
-					if ( aux.getNombre().equalsIgnoreCase(nombre) && aux.getApellido().equalsIgnoreCase(apellido) )
-
+				if ( aux.getNombre().equalsIgnoreCase(nombre) && aux.getApellido().equalsIgnoreCase(apellido) )
 				{
 					encontrado = true;
-					empleado = aux;
-					
-					
-					// TODO quitar print
-					System.out.println("------------: empleado:  " + empleado.toString());
+					empleado = aux;					
 				}
 			}
 		}

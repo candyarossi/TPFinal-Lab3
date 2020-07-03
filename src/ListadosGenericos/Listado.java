@@ -22,7 +22,7 @@ import Interfaces.ILista;
  * interfaces <code>Serializable</code> y <code>ILista</code>.</p>
  * @author Yarossi, Candela & Trucco, Nahuel
  */
-public class Listado <K, T extends Persona> extends HashMap implements Serializable, ILista<K, T>
+public class Listado <K, T extends Persona> implements Serializable, ILista<K, T>
 {
 
 	private HashMap<K, T> hMap;
@@ -310,6 +310,18 @@ public class Listado <K, T extends Persona> extends HashMap implements Serializa
 	public void vaciarListado()
 	{
 		hMap.clear();
+	}
+	
+	
+	/**
+	 * <p><b><i>getHashMap</i></b></p>
+	 * <pre>public HashMap<K, T> getHashMap()</pre>
+	 * @return Retorna el <code>HashMap</code> que trabaja de fondo en <code>Listado</code>
+	 * @author Yarossi, Candela & Trucco, Nahuel
+	 */
+	public HashMap<K, T> getHashMap()
+	{
+		return hMap;
 	}
 	
 }
